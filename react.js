@@ -14,5 +14,20 @@ module.exports = {
     },
     frontEnd : function() {
         return isc;
+    },
+    init: function(bus) {
+        this.bus = bus;
+        isc.defineClass("RPCDataSource", "RestDataSource");
+        isc.RPCDataSource.addProperties({
+            dataFormat:"json",
+            transformRequest:function(request){
+                var data=this.Super("transformRequest", arguments);
+                request.dataProtocol='clientCustom';
+                bus.importMethod(this.dataURL+'.'+request.operationType)(data).then(function(result){
+                    this.processResponse(request.requestId,{status:0,data:result})
+                }.bind(this));
+                return data;
+            }
+        })
     }
 }
