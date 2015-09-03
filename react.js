@@ -6,8 +6,20 @@ module.exports = {
     },
     createElement : function(type, props, children){
         if (arguments.length > 2) {
-            props.members = Array.prototype.slice.call(arguments, 2);
+            if (!props) {
+                props = {};
+            }
+            var members = Array.prototype.slice.call(arguments, 2);
+            switch(type.Class) {
+                case 'Window':
+                    props.items = members;
+                    break;
+                default:
+                    props.members = members;
+                    break;
+            }
         }
+
         var result=type.create(props);
         props.ref && ((props.$owner.refs || (props.$owner.refs={}))[props.ref] = result);
         return result;
