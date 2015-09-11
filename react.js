@@ -48,7 +48,6 @@ module.exports = {
         isc.RPCDataSource.addProperties({
             dataFormat:"json",
             transformRequest:function(request){
-                debugger;
                 var data = {};
                 var params = this.Super("transformRequest", arguments);
                 if(this.defaultParams) {
