@@ -12,10 +12,13 @@ module.exports = function(main){
         const win = new BrowserWindow({
             width: 800,
             height: 600,
-            resizable: true
+            resizable: true,
+            'web-preferences': {'web-security': false}
         });
 
-        win.loadUrl('utfront://ut.local/desktop.html');
+        win.loadUrl('utfront://ut.local/desktop.html', {
+            headers: ['Content-Type: text/html']
+        });
         win.on('closed', onClosed);
         win.webContents.on('did-finish-load', function() {
             win.webContents.send('require', main);
