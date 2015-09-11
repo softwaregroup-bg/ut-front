@@ -1,4 +1,5 @@
 var React = require('react');
+var _ = require('lodash');
 var self;
 module.exports = {
     createClass : function(spec){
@@ -47,7 +48,13 @@ module.exports = {
         isc.RPCDataSource.addProperties({
             dataFormat:"json",
             transformRequest:function(request){
-                var data=this.Super("transformRequest", arguments);
+                debugger;
+                var data = {};
+                var params = this.Super("transformRequest", arguments);
+                if(this.defaultParams) {
+                    data = JSON.parse(this.defaultParams);
+                }
+                data = _.assign({}, this.Super("transformRequest", arguments), data);
                 request.dataProtocol='clientCustom';
                 self.request(this.dataURL+'.'+request.operationType, data).then(function(result){
                     this.processResponse(request.requestId,{status:0,data:result})
