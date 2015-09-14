@@ -1,14 +1,7 @@
 var lasso = require('lasso');
 lasso.configure({
         'plugins': [
-            {
-                plugin: 'lasso-require',
-                config: {
-                    builtins: {
-                        "timers": "timers-browserify"
-                    }
-                }
-            },
+            'lasso-require',
             'lasso-jsx',
             'lasso-marko',
             'lasso-minify-js'
