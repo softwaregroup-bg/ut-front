@@ -3,6 +3,7 @@ const app = require('app');
 const BrowserWindow = require('browser-window');
 const globalShortcut = require('global-shortcut');
 var path = require('path');
+const isOSX = process.platform === 'darwin';
 
 module.exports = function(main){
 // report crashes to the Electron project
@@ -12,10 +13,13 @@ module.exports = function(main){
         const win = new BrowserWindow({
             width: 800,
             height: 600,
-            resizable: true
+            resizable: true,
+            'web-preferences': {'web-security': false}
         });
 
-        win.loadUrl('utfront://ut.local/desktop.html');
+        win.loadUrl('utfront://ut.local/desktop.html', {
+            headers: ['Content-Type: text/html']
+        });
         win.on('closed', onClosed);
         win.webContents.on('did-finish-load', function() {
             win.webContents.send('require', main);
@@ -47,30 +51,39 @@ module.exports = function(main){
 
     app.on('ready', function () {
         var protocol = require('protocol');
-        protocol.registerProtocol('utfront', function (request) {
+        protocol.registerFileProtocol('utfront', function (request, callback) {
             var url = request.url.substr(18)
-            return new protocol.RequestFileJob(path.normalize(__dirname + '/browser/' + url));
-        }, function (error, scheme) {
+            callback({path:path.normalize(__dirname + '/browser/' + url)});
+        }, function (error) {
             if (!error)
-                console.log(scheme, ' registered successfully')
+                console.log('Protocol utfront registered successfully')
+            else
+                console.log('Failed to register utfront protocol')
         });
 
         mainWindow = createMainWindow();
 
-        globalShortcut.register('CmdOrCtrl+J', function () {
+        globalShortcut.register('F12', devTools);
+        globalShortcut.register(isOSX ? 'Cmd+Alt+I' : 'Ctrl+Shift+I', devTools);
+
+        globalShortcut.register('F5', refresh);
+        globalShortcut.register('CmdOrCtrl+R', refresh);
+
+        function devTools() {
             var win = BrowserWindow.getFocusedWindow();
+
             if (win) {
                 win.toggleDevTools();
             }
-        });
+        }
 
-        globalShortcut.register('CmdOrCtrl+R', function () {
+        function refresh() {
             var win = BrowserWindow.getFocusedWindow();
+
             if (win) {
                 win.reloadIgnoringCache();
             }
-        });
-
+        }
     });
 
 }
