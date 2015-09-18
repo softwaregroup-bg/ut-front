@@ -1,5 +1,6 @@
 var React = require('react');
-
+var _ = require('lodash');
+var self;
 module.exports = {
     createClass : function(spec){
         return React.createClass(spec);
@@ -27,15 +28,34 @@ module.exports = {
     frontEnd : function() {
         return isc;
     },
+    request: function( opcode, params ){
+        return this.bus.importMethod(opcode)(params)
+            .catch(function(error){
+                if(error.code == '123') {
+                    self.bus.importMethod('login.ui.render')(this);
+                } else {
+                    throw error;
+                }
+            });
+    },
+    openPage: function(nameSpace){
+        this.bus.importMethod(nameSpace+'.ui.render')(this);
+    },
     init: function(bus) {
+        self = this;
         this.bus = bus;
         isc.defineClass("RPCDataSource", "RestDataSource");
         isc.RPCDataSource.addProperties({
             dataFormat:"json",
             transformRequest:function(request){
-                var data=this.Super("transformRequest", arguments);
+                var data = {};
+                var params = this.Super("transformRequest", arguments);
+                if(this.defaultParams) {
+                    data = JSON.parse(this.defaultParams);
+                }
+                data = _.assign({}, this.Super("transformRequest", arguments), data);
                 request.dataProtocol='clientCustom';
-                bus.importMethod(this.dataURL+'.'+request.operationType)(data).then(function(result){
+                self.request(this.dataURL+'.'+request.operationType, data).then(function(result){
                     this.processResponse(request.requestId,{status:0,data:result})
                 }.bind(this));
                 return data;
