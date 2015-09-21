@@ -1,6 +1,7 @@
-var React = require('react');
+var React = require('react/lib/ReactClass');
 var _ = require('lodash');
 var self;
+
 module.exports = {
     createClass : function(spec){
         return React.createClass(spec);
@@ -20,6 +21,24 @@ module.exports = {
                     break;
             }
         }
+        Object.keys(props).forEach(function(prop) {
+            if (prop.endsWith('_action')) {
+                props[prop.slice(0, -7)] = (function(action) {
+                    var bus = this.bus;
+                    var busMethod = bus.importMethod(action);
+                    return function() {
+                        return busMethod.call(bus, {
+                            action: action,
+                            params: arguments,
+                            target: function() {
+                                return this;
+                            }.bind(this)
+                        });
+                    }
+                }.bind(this))(props[prop]);
+                delete props[prop];
+            }
+        }.bind(this));
 
         var result=type.create(props);
         props.ref && ((props.$owner.refs || (props.$owner.refs={}))[props.ref] = result);
