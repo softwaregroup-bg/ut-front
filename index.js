@@ -49,7 +49,15 @@ module.exports = function (config) {
             delete config.main;
             lasso.configure(_.assign({
                     plugins: [
-                        'lasso-require',
+                        {
+                            plugin: 'lasso-require',
+                            config: {
+                                builtins:{
+                                    'os':'os-browserify',
+                                    'fs':'ut-bus/browser/fs'
+                                }
+                            }
+                        },
                         'lasso-jsx',
                         'lasso-marko',
                         'lasso-minify-js'
