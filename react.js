@@ -1,5 +1,6 @@
 var React = require('react/lib/ReactClass');
 var _ = require('lodash');
+var when = require('when');
 var self;
 
 module.exports = {
@@ -50,10 +51,13 @@ module.exports = {
     request: function( opcode, params ){
         return this.bus.importMethod(opcode)(params)
             .catch(function(error){
-                if(error.code == '123') {
-                    self.bus.importMethod('login.ui.render')(this);
+                console.log(opcode, params, error);
+                if(self.bus.config.identity && error.code == self.bus.config.identity.errorCode) {
+                    isc.warn((error.errorPrint || error.message) + " Please relogin!", function(){
+                        location.reload();
+                    });
                 } else {
-                    throw error;
+                    return when.reject(error);
                 }
             });
     },
@@ -74,9 +78,14 @@ module.exports = {
                 }
                 data = _.assign({}, this.Super("transformRequest", arguments), data);
                 request.dataProtocol='clientCustom';
-                self.request(this.dataURL+'.'+request.operationType, data).then(function(result){
-                    this.processResponse(request.requestId,{status:0,data:result})
-                }.bind(this));
+                self.request(this.dataURL+'.'+request.operationType, data)
+                    .then(function(result){
+                        this.processResponse(request.requestId,{status:0,data:result});
+                    }.bind(this))
+                    .catch(function(error){
+                        this.processResponse(request.requestId,{status:0,data:[]});
+                        isc.warn(error.errorPrint || error.message);
+                    }.bind(this));
                 return data;
             }
         })
