@@ -53,6 +53,9 @@ module.exports = function(main){
         var protocol = require('protocol');
         protocol.registerFileProtocol('utfront', function (request, callback) {
             var url = request.url.substr(18)
+            if( url.indexOf('?') !== -1 ) {
+                url = url.substring(0,url.indexOf('?'));
+            }
             callback({path:path.normalize(__dirname + '/browser/' + url)});
         }, function (error) {
             if (!error)
