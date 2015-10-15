@@ -61,6 +61,23 @@ module.exports = {
                 }
             });
     },
+    checkPermission: function(action) {
+        if(action){
+            return true;
+        } else {
+            return true;
+        }
+    },
+    checkRights: function(items){
+        if(items && Array.isArray(items)) {
+            for(var key = 0, len = items.length; key<len; key++) {
+                if( items[key] && items[key].type === 'button' && !this.checkPermission(items[key].action) ){
+                    items.splice(key,1);
+                }
+            }
+        }
+        return items;
+    },
     openPage: function(nameSpace){
         this.bus.importMethod(nameSpace+'.ui.render')(this);
     },
