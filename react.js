@@ -101,8 +101,8 @@ module.exports = {
                         this.processResponse(request.requestId,{status:0,data:result});
                     }.bind(this))
                     .catch(function(error){
-                        this.processResponse(request.requestId,{status:0,data:[]});
                         isc.warn(error.errorPrint || error.message);
+                        this.processResponse(request.requestId,{status:0,data:[]});
                     }.bind(this));
                 return data;
             }
