@@ -8,6 +8,11 @@ module.exports = {
         return React.createClass(spec);
     },
     createElement : function(type, props, children){
+        if(props.type == 'button') {
+            if(!this.checkPermission(props.action)) {
+                return '';
+            }
+        }
         if (arguments.length > 2) {
             if (!props) {
                 props = {};
