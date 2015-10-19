@@ -5,8 +5,8 @@ const globalShortcut = require('global-shortcut');
 var path = require('path');
 const isOSX = process.platform === 'darwin';
 
-module.exports = function(main){
-// report crashes to the Electron project
+module.exports = function(main) {
+    // report crashes to the Electron project
     require('crash-reporter').start();
 
     function createMainWindow() {
@@ -34,43 +34,38 @@ module.exports = function(main){
         mainWindow = null;
     }
 
-// prevent window being GC'd
+    // prevent window being GC'd
     var mainWindow = null;
 
-    app.on('window-all-closed', function () {
+    app.on('window-all-closed', function() {
         if (process.platform !== 'darwin') {
             app.quit();
         }
     });
 
-    app.on('activate-with-no-open-windows', function () {
+    app.on('activate-with-no-open-windows', function() {
         if (!mainWindow) {
             mainWindow = createMainWindow();
         }
     });
 
-    app.on('ready', function () {
+    app.on('ready', function() {
         var protocol = require('protocol');
-        protocol.registerFileProtocol('utfront', function (request, callback) {
-            var url = request.url.substr(18)
-            if( url.indexOf('?') !== -1 ) {
+        protocol.registerFileProtocol('utfront', function(request, callback) {
+            var url = request.url.substr(18);
+            if (url.indexOf('?') !== -1) {
                 url = url.substring(0,url.indexOf('?'));
             }
             callback({path:path.normalize(__dirname + '/browser/' + url)});
-        }, function (error) {
-            if (!error)
-                console.log('Protocol utfront registered successfully')
-            else
-                console.log('Failed to register utfront protocol')
+        }, function(error) {
+            if (!error) {
+                console.log('Protocol utfront registered successfully');
+            } else {
+                console.log('Failed to register utfront protocol');
+            }
         });
 
         mainWindow = createMainWindow();
-
-        globalShortcut.register('F12', devTools);
-        globalShortcut.register(isOSX ? 'Cmd+Alt+I' : 'Ctrl+Shift+I', devTools);
-
-        globalShortcut.register('F5', refresh);
-        globalShortcut.register('CmdOrCtrl+R', refresh);
 
         function devTools() {
             var win = BrowserWindow.getFocusedWindow();
@@ -87,6 +82,13 @@ module.exports = function(main){
                 win.reloadIgnoringCache();
             }
         }
+
+        globalShortcut.register('F12', devTools);
+        globalShortcut.register(isOSX ? 'Cmd+Alt+I' : 'Ctrl+Shift+I', devTools);
+
+        globalShortcut.register('F5', refresh);
+        globalShortcut.register('CmdOrCtrl+R', refresh);
+
     });
 
-}
+};
