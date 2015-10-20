@@ -67,8 +67,8 @@ module.exports = {
             });
     },
     checkPermission: function(action) {
-        if (this.bus.config.session && Array.isArray(this.bus.config.session.permissions)) {
-            if (action && this.bus.config.session.permissions.indexOf(action) === -1) {
+        if ( Array.isArray(this.bus.config.permissions) ) {
+            if (action && this.bus.config.permissions.indexOf(action) === -1) {
                 return false;
             }
         }
