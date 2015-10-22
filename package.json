@@ -1,12 +1,12 @@
 {
   "name": "ut-front",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies":{
+  "dependencies": {
     "lasso": "^1.10.0"
   },
   "devDependencies": {
