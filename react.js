@@ -8,8 +8,8 @@ module.exports = {
         return React.createClass(spec);
     },
     createElement : function(type, props, children) {
-        if (props.type === 'button') {
-            if (!this.checkPermission(props.action)) {
+        if (props.type === 'button' || props.ut5Action) {
+            if (!this.checkPermission(props.ut5Action || props.action)) {
                 return '';
             }
         }
@@ -78,7 +78,7 @@ module.exports = {
         var permissions = [];
         if (items && Array.isArray(items)) {
             for (var key = 0, len = items.length; key < len; key++) {
-                if (items[key] && items[key].type === 'button' && !this.checkPermission(items[key].action)) {
+                if ( items[key] && ((items[key].ut5Action && !this.checkPermission(items[key].ut5Action)) || (items[key].type === 'button' && !this.checkPermission(items[key].action))) ) {
                     //items.splice(key, 1);
                 } else {
                     permissions.push(items[key]);
