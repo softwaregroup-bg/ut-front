@@ -112,7 +112,9 @@ module.exports = {
                     }.bind(this))
                     .catch(function(error) {
                         window.isc.warn(error.errorPrint || error.message);
-                        this.processResponse(request.requestId,{status:0,data:[]});
+                        if(request.operationType == 'fetch') {
+                            this.processResponse(request.requestId,{status:0,data:[]});
+                        }
                     }.bind(this));
                 return data;
             }
