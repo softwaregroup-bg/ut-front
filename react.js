@@ -54,17 +54,21 @@ module.exports = {
         return window.isc;
     },
     request: function(opcode, params) {
-        return this.bus.importMethod(opcode)(params)
-            .catch(function(error) {
-                console.log(opcode, params, error);
-                if (self.bus.config.identity && error.code === self.bus.config.identity.errorCode) {
-                    window.isc.warn((error.errorPrint || error.message) + ' Please relogin!', function() {
-                        location.reload();
-                    });
-                } else {
-                    return when.reject(error);
-                }
-            });
+        if(navigator.onLine || this.bus.config.useAppOffline) {
+            return this.bus.importMethod(opcode)(params)
+                .catch(function(error) {
+                    console.log(opcode, params, error);
+                    if (self.bus.config.identity && error.code === self.bus.config.identity.errorCode) {
+                        window.isc.warn((error.errorPrint || error.message) + ' Please relogin!', function() {
+                            location.reload();
+                        });
+                    } else {
+                        return when.reject(error);
+                    }
+                });
+        } else {
+            return when.reject(new Error('This data not available while offline'));
+        }
     },
     checkPermission: function(action) {
         if ( Array.isArray(this.bus.config.permissions) ) {
@@ -90,7 +94,11 @@ module.exports = {
         return permissions;
     },
     openPage: function(nameSpace) {
-        this.bus.importMethod(nameSpace + '.ui.render')(this);
+        if(navigator.onLine || this.bus.config.useAppOffline || nameSpace === 'login') {
+            this.bus.importMethod(nameSpace + '.ui.render')(this);
+        } else {
+            window.isc.warn('This data not available while offline');
+        }
     },
     init: function(bus) {
         self = this;
