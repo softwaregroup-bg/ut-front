@@ -72,7 +72,14 @@ module.exports = {
     },
     checkPermission: function(action) {
         if ( Array.isArray(this.bus.config.permissions) ) {
-            if (action && this.bus.config.permissions.indexOf(action) === -1) {
+            if(Array.isArray(action)) {
+                action.forEach(function(act){
+                    if (act && this.bus.config.permissions.indexOf(act) === -1) {
+                        return false;
+                    }
+                });
+                return false;
+            } else if (action && this.bus.config.permissions.indexOf(action) === -1) {
                 return false;
             }
         }
@@ -82,7 +89,9 @@ module.exports = {
         var permissions = [];
         if (items && Array.isArray(items)) {
             for (var key = 0, len = items.length; key < len; key++) {
-                if ( items[key] && ((items[key].ut5Action && !this.checkPermission(items[key].ut5Action)) || (items[key].type === 'button' && !this.checkPermission(items[key].action))) ) {
+                if ( items[key] && ( (items[key].ut5Action && !this.checkPermission(items[key].ut5Action) ) )) {
+                    //items.splice(key, 1);
+                } else if((items[key].type === 'button' && !this.checkPermission(items[key].action))) {
                     //items.splice(key, 1);
                 } else {
                     permissions.push(items[key]);
