@@ -77,8 +77,7 @@ module.exports = {
                     if (act && this.bus.config.permissions.indexOf(act) === -1) {
                         return false;
                     }
-                });
-                return false;
+                }.bind(this));
             } else if (action && this.bus.config.permissions.indexOf(action) === -1) {
                 return false;
             }
