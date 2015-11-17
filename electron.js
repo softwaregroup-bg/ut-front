@@ -5,7 +5,7 @@ const globalShortcut = require('global-shortcut');
 var path = require('path');
 const isOSX = process.platform === 'darwin';
 
-module.exports = function(main) {
+module.exports = function(config) {
     // report crashes to the Electron project
     require('crash-reporter').start();
 
@@ -22,7 +22,7 @@ module.exports = function(main) {
         });
         win.on('closed', onClosed);
         win.webContents.on('did-finish-load', function() {
-            win.webContents.send('require', main);
+            win.webContents.send('require', config.main);
         });
 
         return win;
