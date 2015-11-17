@@ -62,6 +62,7 @@ module.exports = {
                         window.isc.warn((error.errorPrint || error.message) + ' Please relogin!', function() {
                             location.reload();
                         });
+                        return when.reject(error);
                     } else {
                         return when.reject(error);
                     }
