@@ -1,17 +1,17 @@
 var path = require('path');
 var lasso = require('lasso');
 var when = require('when');
-var _ = require('lodash');
+var assign = require('lodash/object/assign');
 var bus;
-var cachePath;
 
-module.exports = function (config) {
+module.exports = function(config) {
     var result = {
-        init: function (b) {
+        init: function(b) {
             bus = b;
-            cachePath = path.join(bus.config.workDir, 'ut-front-cache');
+            this.cachePath = path.join(bus.config.workDir, 'ut-front-cache');
+            this.lassoCache = path.join(bus.config.workDir, 'lasso');
         },
-        initRoutes: function () {
+        initRoutes: function() {
             bus.importMethod('internal.registerRequestHandler')([{
                 method: 'GET',
                 path: '/s/sc/{p*}',
@@ -27,7 +27,7 @@ module.exports = function (config) {
                 path: '/s/cache/{p*}',
                 handler: {
                     directory: {
-                        path: cachePath,
+                        path: this.cachePath,
                         listing: false,
                         index: true
                     }
@@ -36,40 +36,50 @@ module.exports = function (config) {
             }, {
                 method: 'GET',
                 path: '/pack',
-                handler: function (request, reply) {
+                handler: function(request, reply) {
                     result.pack(config)
-                        .then(function () {
+                        .then(function() {
                             reply.redirect('/s/sc/index.html');
+                        });
+                }
+            }, {
+                method: 'GET',
+                path: '/s/sc/debug.html',
+                handler: function(request, reply) {
+                    result.pack(assign({minifyJS: false, bundlingEnabled:false},config))
+                        .then(function(result) {
+                            reply(result);
                         });
                 }
             }]);
         },
-        pack: function (config) {
+        pack: function(config) {
             var main = config.main;
             delete config.main;
-            lasso.configure(_.assign({
+            lasso.configure(assign({
                     plugins: [
                         {
                             plugin: 'lasso-require',
                             config: {
-                                builtins:{
-                                    'os':'os-browserify',
-                                    'fs':'ut-bus/browser/fs'
+                                builtins: {
+                                    'os': 'os-browserify',
+                                    'fs': 'ut-bus/browser/fs'
                                 }
                             }
                         },
                         'lasso-jsx',
-                        'lasso-marko',
-                        'lasso-minify-js'
+                        'lasso-marko'
                     ],
-                    outputDir: cachePath,
+                    urlPrefix: '/s/cache',
+                    outputDir: this.cachePath,
+                    cacheDir: this.lassoCache,
                     fingerprintsEnabled: false,
-                    minify: false,
+                    minifyJS: true,
                     resolveCssUrls: true,
                     bundlingEnabled: true
                 }, config)
             );
-            return when.promise(function (resolve, reject) {
+            return when.promise(function(resolve, reject) {
                 lasso.lassoPage({
                         name: 'app',
                         dependencies: [
@@ -77,11 +87,22 @@ module.exports = function (config) {
                         ],
                         from: __dirname
                     },
-                    function (err, result) {
+                    function(err, result) {
                         if (err) {
                             reject(err);
                         } else {
-                            resolve(result);
+                            resolve('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">' +
+                                '<meta name="viewport" content="width=device-width, initial-scale=1"><script>var isomorphicDir="isomorphic/";</script>' +
+                                '<script src="isomorphic/system/modules/ISC_Core.js"></script><script src="isomorphic/system/modules/ISC_Foundation.js">' +
+                                '</script><script src="isomorphic/system/modules/ISC_Containers.js"></script>' +
+                                '<script src="isomorphic/system/modules/ISC_Grids.js"></script><script src="isomorphic/system/modules/ISC_Forms.js"></script>' +
+                                '<script src="isomorphic/system/modules/ISC_DataBinding.js"></script><script src="isomorphic/skins/Enterprise/load_skin.js">' +
+                                '</script><meta charset="UTF-8"><script type="text/javascript">global=window;' +
+                                '</script><title>UnderTree</title>' +
+                                result.getHeadHtml() +
+                                '</head><body>' +
+                                result.getBodyHtml() +
+                                '</body></html>');
                         }
                     });
             });
