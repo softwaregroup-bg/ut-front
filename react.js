@@ -47,7 +47,8 @@ module.exports = {
         }.bind(this));
 
         var result = type.create(props);
-        props.ref && ((props.$owner.refs || (props.$owner.refs = {}))[props.ref] = result);
+        props.ref && ((props.$owner.refs && Object.isFrozen(props.$owner.refs)) || (!props.$owner.refs)) && (props.$owner.refs = {});
+        props.ref && (props.$owner.refs[props.ref] = result);
         return result;
     },
     frontEnd : function() {
