@@ -12,7 +12,7 @@ module.exports = function(config) {
             this.lassoCache = path.join(bus.config.workDir, 'lasso');
         },
         initRoutes: function() {
-            bus.importMethod('internal.registerRequestHandler')([{
+            bus.importMethod('httpserver.registerRequestHandler')([{
                 method: 'GET',
                 path: '/s/sc/{p*}',
                 handler: {
