@@ -3,6 +3,9 @@ var lasso = require('lasso');
 var when = require('when');
 var assign = require('lodash/object/assign');
 var bus;
+var registerRequestHandlers = [];
+var registeredHandlersCache = {};
+var config;
 
 module.exports = function(config) {
     var result = {
@@ -10,48 +13,62 @@ module.exports = function(config) {
             bus = b;
             this.cachePath = path.join(bus.config.workDir, 'ut-front-cache');
             this.lassoCache = path.join(bus.config.workDir, 'lasso');
+            config = bus.config.ussd;
+            if (config.registerRequestHandlers && config.registerRequestHandlers.length > 0){
+                for (var i = 0, rrhl = config.registerRequestHandlers.length; i < rrhl; i = i + 1) {
+                    registerRequestHandlers.push({f: bus.importMethod(config.registerRequestHandlers[i]), name: config.registerRequestHandlers[i]});
+                }
+            }
         },
         initRoutes: function() {
-            bus.importMethod('httpserver.registerRequestHandler')([{
-                method: 'GET',
-                path: '/s/sc/{p*}',
-                handler: {
-                    directory: {
-                        path: path.join(__dirname, 'browser'),
-                        listing: false,
-                        index: true
-                    }
+            var self = this;
+            registerRequestHandlers.forEach(function(registerRequestHandler) {
+                if (registeredHandlersCache[registerRequestHandler.name]) {//already registered, skipping
+                    return;
                 }
-            }, {
-                method: 'GET',
-                path: '/s/cache/{p*}',
-                handler: {
-                    directory: {
-                        path: this.cachePath,
-                        listing: false,
-                        index: true
-                    }
-                }
+                registeredHandlersCache[registerRequestHandler.name] = 1;
 
-            }, {
-                method: 'GET',
-                path: '/pack',
-                handler: function(request, reply) {
-                    result.pack(config)
-                        .then(function() {
-                            reply.redirect('/s/sc/index.html');
-                        });
-                }
-            }, {
-                method: 'GET',
-                path: '/s/sc/debug.html',
-                handler: function(request, reply) {
-                    result.pack(assign({minifyJS: false, bundlingEnabled:false},config))
-                        .then(function(result) {
-                            reply(result);
-                        });
-                }
-            }]);
+                registerRequestHandler.f([{
+                    method: 'GET',
+                    path: '/s/sc/{p*}',
+                    handler: {
+                        directory: {
+                            path: path.join(__dirname, 'browser'),
+                            listing: false,
+                            index: true
+                        }
+                    }
+                }, {
+                    method: 'GET',
+                    path: '/s/cache/{p*}',
+                    handler: {
+                        directory: {
+                            path: self.cachePath,
+                            listing: false,
+                            index: true
+                        }
+                    }
+
+                }, {
+                    method: 'GET',
+                    path: '/pack',
+                    handler: function(request, reply) {
+                        result.pack(config)
+                            .then(function() {
+                                reply.redirect('/s/sc/index.html');
+                            });
+                    }
+                }, {
+                    method: 'GET',
+                    path: '/s/sc/debug.html',
+                    handler: function(request, reply) {
+                        result.pack(assign({minifyJS: false, bundlingEnabled:false},config))
+                            .then(function(result) {
+                                reply(result);
+                            });
+                    }
+                }]);
+            });
         },
         pack: function(config) {
             var main = config.main;
