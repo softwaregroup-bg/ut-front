@@ -2,73 +2,58 @@ var path = require('path');
 var lasso = require('lasso');
 var when = require('when');
 var assign = require('lodash/object/assign');
-var bus;
-var registerRequestHandlers = [];
-var registeredHandlersCache = {};
-var config;
 
 module.exports = function(config) {
+    var bus;
+    var cachePath;
+    var lassoCache;
     var result = {
         init: function(b) {
             bus = b;
-            this.cachePath = path.join(bus.config.workDir, 'ut-front-cache');
-            this.lassoCache = path.join(bus.config.workDir, 'lasso');
-            config = bus.config.ussd;
-            if (config.registerRequestHandlers && config.registerRequestHandlers.length > 0){
-                for (var i = 0, rrhl = config.registerRequestHandlers.length; i < rrhl; i = i + 1) {
-                    registerRequestHandlers.push({f: bus.importMethod(config.registerRequestHandlers[i]), name: config.registerRequestHandlers[i]});
-                }
-            }
+            cachePath = path.resolve(bus.config.workDir, 'ut-front-cache');
+            lassoCache = path.resolve(bus.config.workDir, 'lasso');
         },
-        initRoutes: function() {
-            var self = this;
-            registerRequestHandlers.forEach(function(registerRequestHandler) {
-                if (registeredHandlersCache[registerRequestHandler.name]) {//already registered, skipping
-                    return;
+        start: function() {
+            this && this.registerRequestHandler && this.registerRequestHandler([{
+                method: 'GET',
+                path: '/s/sc/{p*}',
+                handler: {
+                    directory: {
+                        path: path.join(__dirname, 'browser'),
+                        listing: false,
+                        index: true
+                    }
                 }
-                registeredHandlersCache[registerRequestHandler.name] = 1;
+            }, {
+                method: 'GET',
+                path: '/s/cache/{p*}',
+                handler: {
+                    directory: {
+                        path: cachePath,
+                        listing: false,
+                        index: true
+                    }
+                }
 
-                registerRequestHandler.f([{
-                    method: 'GET',
-                    path: '/s/sc/{p*}',
-                    handler: {
-                        directory: {
-                            path: path.join(__dirname, 'browser'),
-                            listing: false,
-                            index: true
-                        }
-                    }
-                }, {
-                    method: 'GET',
-                    path: '/s/cache/{p*}',
-                    handler: {
-                        directory: {
-                            path: self.cachePath,
-                            listing: false,
-                            index: true
-                        }
-                    }
-
-                }, {
-                    method: 'GET',
-                    path: '/pack',
-                    handler: function(request, reply) {
-                        result.pack(config)
-                            .then(function() {
-                                reply.redirect('/s/sc/index.html');
-                            });
-                    }
-                }, {
-                    method: 'GET',
-                    path: '/s/sc/debug.html',
-                    handler: function(request, reply) {
-                        result.pack(assign({minifyJS: false, bundlingEnabled:false},config))
-                            .then(function(result) {
-                                reply(result);
-                            });
-                    }
-                }]);
-            });
+            }, {
+                method: 'GET',
+                path: '/pack',
+                handler: function(request, reply) {
+                    result.pack(config)
+                        .then(function() {
+                            reply.redirect('/s/sc/index.html');
+                        });
+                }
+            }, {
+                method: 'GET',
+                path: '/s/sc/debug.html',
+                handler: function(request, reply) {
+                    result.pack(assign({minifyJS: false, bundlingEnabled: false}, config))
+                        .then(function(result) {
+                            reply(result);
+                        });
+                }
+            }]);
         },
         pack: function(config) {
             var main = config.main;
@@ -88,8 +73,8 @@ module.exports = function(config) {
                         'lasso-marko'
                     ],
                     urlPrefix: '/s/cache',
-                    outputDir: this.cachePath,
-                    cacheDir: this.lassoCache,
+                    outputDir: cachePath,
+                    cacheDir: lassoCache,
                     fingerprintsEnabled: false,
                     minifyJS: true,
                     resolveCssUrls: true,

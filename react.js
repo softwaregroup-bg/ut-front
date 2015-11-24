@@ -4,10 +4,10 @@ var when = require('when');
 var self;
 
 module.exports = {
-    createClass : function(spec) {
+    createClass: function(spec) {
         return React.createClass(spec);
     },
-    createElement : function(type, props, children) {
+    createElement: function(type, props, children) {
         if (props.type === 'button' || props.ut5Action) {
             if (!this.checkPermission(props.ut5Action || props.action)) {
                 return '';
@@ -51,11 +51,11 @@ module.exports = {
         props.ref && (props.$owner.refs[props.ref] = result);
         return result;
     },
-    frontEnd : function() {
+    frontEnd: function() {
         return window.isc;
     },
     request: function(opcode, params) {
-        if(navigator.onLine || this.bus.config.useAppOffline) {
+        if (navigator.onLine || this.bus.config.useAppOffline) {
             return this.bus.importMethod(opcode)(params)
                 .catch(function(error) {
                     console.log(opcode, params, error);
@@ -73,9 +73,9 @@ module.exports = {
         }
     },
     checkPermission: function(action) {
-        if ( Array.isArray(this.bus.config.permissions) ) {
-            if(Array.isArray(action)) {
-                action.forEach(function(act){
+        if (Array.isArray(this.bus.config.permissions)) {
+            if (Array.isArray(action)) {
+                action.forEach(function(act) {
                     if (act && this.bus.config.permissions.indexOf(act) === -1) {
                         return false;
                     }
@@ -86,13 +86,13 @@ module.exports = {
         }
         return true;
     },
-    checkRights: function(items){
+    checkRights: function(items) {
         var permissions = [];
         if (items && Array.isArray(items)) {
-            for (var key = 0, len = items.length; key < len; key++) {
-                if ( items[key] && ( (items[key].ut5Action && !this.checkPermission(items[key].ut5Action) ) )) {
+            for (var key = 0, len = items.length; key < len; key += 1) {
+                if (items[key] && ((items[key].ut5Action && !this.checkPermission(items[key].ut5Action)))) {
                     //items.splice(key, 1);
-                } else if((items[key].type === 'button' && !this.checkPermission(items[key].action))) {
+                } else if ((items[key].type === 'button' && !this.checkPermission(items[key].action))) {
                     //items.splice(key, 1);
                 } else {
                     permissions.push(items[key]);
@@ -104,7 +104,7 @@ module.exports = {
         return permissions;
     },
     openPage: function(nameSpace) {
-        if(navigator.onLine || this.bus.config.useAppOffline || nameSpace === 'login') {
+        if (navigator.onLine || this.bus.config.useAppOffline || nameSpace === 'login') {
             this.bus.importMethod(nameSpace + '.ui.render')(this);
         } else {
             window.isc.warn('This data not available while offline');
@@ -115,8 +115,8 @@ module.exports = {
         this.bus = bus;
         window.isc.defineClass('RPCDataSource', 'RestDataSource');
         window.isc.RPCDataSource.addProperties({
-            dataFormat:'json',
-            transformRequest:function(request) {
+            dataFormat: 'json',
+            transformRequest: function(request) {
                 var data = {};
                 this.Super('transformRequest', arguments);
                 if (this.defaultParams) {
@@ -126,12 +126,12 @@ module.exports = {
                 request.dataProtocol = 'clientCustom';
                 self.request(this.dataURL + '.' + request.operationType, data)
                     .then(function(result) {
-                        this.processResponse(request.requestId,{status:0,data:result});
+                        this.processResponse(request.requestId, {status: 0, data: (Array.isArray(result) && Array.isArray(result[0])) ? result[0] : result});
                     }.bind(this))
                     .catch(function(error) {
                         window.isc.warn(error.errorPrint || error.message);
-                        if(request.operationType == 'fetch') {
-                            this.processResponse(request.requestId,{status:0,data:[]});
+                        if (request.operationType === 'fetch') {
+                            this.processResponse(request.requestId, {status: 0, data: []});
                         }
                     }.bind(this));
                 return data;
