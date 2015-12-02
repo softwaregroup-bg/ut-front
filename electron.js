@@ -54,9 +54,9 @@ module.exports = function(config) {
         protocol.registerFileProtocol('utfront', function(request, callback) {
             var url = request.url.substr(18);
             if (url.indexOf('?') !== -1) {
-                url = url.substring(0,url.indexOf('?'));
+                url = url.substring(0, url.indexOf('?'));
             }
-            callback({path:path.normalize(__dirname + '/browser/' + url)});
+            callback({path: path.normalize(__dirname + '/browser/' + url)});
         }, function(error) {
             if (!error) {
                 console.log('Protocol utfront registered successfully');
@@ -88,7 +88,5 @@ module.exports = function(config) {
 
         globalShortcut.register('F5', refresh);
         globalShortcut.register('CmdOrCtrl+R', refresh);
-
     });
-
 };

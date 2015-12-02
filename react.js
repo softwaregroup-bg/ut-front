@@ -61,7 +61,7 @@ module.exports = {
                     console.log(opcode, params, error);
                     if (self.bus.config.identity && error.code === self.bus.config.identity.errorCode) {
                         window.isc.warn((error.errorPrint || error.message) + ' Please relogin!', function() {
-                            location.reload();
+                            window.location.reload();
                         });
                         return when.reject(error);
                     } else {
@@ -91,9 +91,9 @@ module.exports = {
         if (items && Array.isArray(items)) {
             for (var key = 0, len = items.length; key < len; key += 1) {
                 if (items[key] && ((items[key].ut5Action && !this.checkPermission(items[key].ut5Action)))) {
-                    //items.splice(key, 1);
+                    // items.splice(key, 1);
                 } else if ((items[key].type === 'button' && !this.checkPermission(items[key].action))) {
-                    //items.splice(key, 1);
+                    // items.splice(key, 1);
                 } else {
                     permissions.push(items[key]);
                 }

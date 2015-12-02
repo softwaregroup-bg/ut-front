@@ -4,7 +4,8 @@
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "ut-lint .",
+    "test": "npm run lint"
   },
   "dependencies": {
     "inert": "~3.1.0",
@@ -17,7 +18,8 @@
   },
   "devDependencies": {
     "electron-packager": "^5.0.1",
-    "electron-prebuilt": "^0.29.2"
+    "electron-prebuilt": "^0.29.2",
+    "ut-tools": "~0.5.1"
   },
   "publishConfig": {
     "registry": "http://npm.softwaregroup-bg.com:5001"
