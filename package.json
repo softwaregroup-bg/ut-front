@@ -1,17 +1,22 @@
 {
   "name": "ut-front",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "ut-lint .",
+    "pre-commit": "npm run lint",
+    "pre-release": "ut-pre-release",
+    "release": "ut-release",
+    "post-release": "ut-post-release"
   },
   "dependencies":{
     "lasso": "^1.10.0"
   },
   "devDependencies": {
     "electron-packager": "^5.0.1",
-    "electron-prebuilt": "^0.29.2"
+    "electron-prebuilt": "^0.29.2",
+    "ut-tools": "1.0.0"
   },
   "author": "",
   "license": "ISC"
