@@ -22,6 +22,9 @@ module.exports = {
                 case 'Window':
                     props.items = members;
                     break;
+                case 'TabSet':
+                    props.tabs = members;
+                    break;
                 default:
                     props.members = members;
                     break;
