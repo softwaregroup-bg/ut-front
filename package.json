@@ -18,6 +18,9 @@
     "electron-prebuilt": "^0.29.2",
     "ut-tools": "1.0.0"
   },
+  "publishConfig": {
+    "registry": "http://npm.softwaregroup-bg.com:5001"
+  },
   "author": "",
   "license": "ISC"
 }
