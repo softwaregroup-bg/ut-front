@@ -1,12 +1,37 @@
 {
-  "name": "ut-front",
-  "version": "5.3.4",
-  "description": "Frontend module",
-  "main": "index.js",
-  "scripts": {
-    "lint": "ut-lint .",
-    "test": "npm run lint"
+  "_args": [
+    [
+      "ut-front@*",
+      "/home/zetxx/Desktop/impl-nbv-ussd"
+    ]
+  ],
+  "_from": "ut-front@*",
+  "_id": "ut-front@5.3.4",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/ut-front",
+  "_nodeVersion": "4.2.2",
+  "_npmUser": {},
+  "_npmVersion": "3.4.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "ut-front",
+    "raw": "ut-front@*",
+    "rawSpec": "*",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
   },
+  "_requiredBy": [
+    "/",
+    "/ut-run"
+  ],
+  "_resolved": "http://npm.softwaregroup-bg.com:5001/ut-front/-/ut-front-5.3.4.tgz",
+  "_shasum": "e66a58e2761f4fcce0e5b78ce438a1b7841ccb69",
+  "_shrinkwrap": null,
+  "_spec": "ut-front@*",
+  "_where": "/home/zetxx/Desktop/impl-nbv-ussd",
+  "author": "",
   "dependencies": {
     "inert": "~3.1.0",
     "lasso": "^1.12.1",
@@ -16,18 +41,31 @@
     "lasso-require": "^1.4.2",
     "react": "0.14.2"
   },
+  "description": "Frontend module",
   "devDependencies": {
     "electron-packager": "^5.0.1",
-    "electron-prebuilt": "^0.29.2",
-    "ut-tools": "~0.5.1"
+    "electron-prebuilt": "^0.29.2"
   },
+  "dist": {
+    "shasum": "e66a58e2761f4fcce0e5b78ce438a1b7841ccb69",
+    "tarball": "http://npm.softwaregroup-bg.com:5001/ut-front/-/ut-front-5.3.4.tgz"
+  },
+  "gitHead": "48601e468cd75c08844f2e25325215b776529731",
+  "license": "ISC",
+  "main": "index.js",
+  "name": "ut-front",
+  "optionalDependencies": {},
   "publishConfig": {
     "registry": "http://npm.softwaregroup-bg.com:5001"
   },
+  "readme": "ERROR: No README data found!",
+  "readmeFilename": "README.md",
   "repository": {
     "type": "git",
     "url": "git@git.softwaregroup-bg.com:ut5/ut-front.git"
   },
-  "author": "",
-  "license": "ISC"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "5.3.4"
 }
