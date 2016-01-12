@@ -2,6 +2,28 @@ var path = require('path');
 var lasso = require('lasso');
 var when = require('when');
 var assign = require('lodash/object/assign');
+var fs = require('fs');
+var serverRequire = require;
+
+function findRootDir(dirname) {
+    if (dirname === '' || dirname === '/') {
+        return null;
+    }
+
+    var packagePath = path.join(dirname, 'package.json');
+
+    if (dirname.indexOf('node_modules') === -1 && fs.existsSync(packagePath)) {
+        return dirname;
+    }
+
+    var parentDirname = path.dirname(dirname);
+
+    if (parentDirname !== dirname) {
+        return findRootDir(parentDirname);
+    } else {
+        return null;
+    }
+}
 
 module.exports = function(config) {
     var bus;
@@ -57,30 +79,33 @@ module.exports = function(config) {
         },
         pack: function(config) {
             var main = config.main;
+            var root = path.sep === '\\' ? findRootDir(serverRequire.resolve('lasso')).split('\\').join('/') : findRootDir(serverRequire.resolve('lasso'));
             delete config.main;
             lasso.configure(assign({
-                    plugins: [
-                        {
-                            plugin: 'lasso-require',
-                            config: {
-                                builtins: {
-                                    'os': 'os-browserify',
-                                    'fs': 'ut-bus/browser/fs'
-                                }
-                            }
-                        },
-                        'lasso-jsx',
-                        'lasso-marko'
-                    ],
-                    urlPrefix: '/s/cache',
-                    outputDir: cachePath,
-                    cacheDir: lassoCache,
-                    fingerprintsEnabled: false,
-                    minifyJS: true,
-                    resolveCssUrls: true,
-                    bundlingEnabled: true
-                }, config)
-            );
+                plugins: [
+                    {
+                        plugin: 'lasso-require',
+                        config: {
+                            builtins: {
+                                'os': 'os-browserify',
+                                'fs': require.resolve('ut-bus/browser/fs')
+                            },
+                            rootDir: root
+                        }
+                    },
+                    'lasso-jsx',
+                    'lasso-marko'
+                ],
+                urlPrefix: '/s/cache',
+                outputDir: cachePath,
+                cacheDir: lassoCache,
+                fingerprintsEnabled: false,
+                minifyJS: true,
+                resolveCssUrls: true,
+                projectRoot: root,
+                bundlingEnabled: true
+            }, config), root);
+
             return when.promise(function(resolve, reject) {
                 lasso.lassoPage({
                         name: 'app',
