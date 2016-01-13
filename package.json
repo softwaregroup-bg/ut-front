@@ -14,6 +14,8 @@
     "lasso-marko": "^2.0.4",
     "lasso-minify-js": "^1.1.4",
     "lasso-require": "^1.4.2",
+    "os-browserify": "^0.2",
+    "stream-browserify": "^2.0.1",
     "react": "0.14.2"
   },
   "devDependencies": {
