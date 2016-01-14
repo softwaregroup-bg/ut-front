@@ -9,14 +9,14 @@
   },
   "dependencies": {
     "inert": "~3.1.0",
-    "lasso": "^1.12.1",
-    "lasso-jsx": "^1.1.10",
-    "lasso-marko": "^2.0.4",
-    "lasso-minify-js": "^1.1.4",
-    "lasso-require": "^1.4.2",
-    "os-browserify": "^0.2",
-    "stream-browserify": "^2.0.1",
-    "react": "0.14.2"
+    "lasso": "1.13.2",
+    "lasso-jsx": "1.1.10",
+    "lasso-marko": "2.0.4",
+    "lasso-minify-js": "1.1.4",
+    "lasso-require": "1.4.6",
+    "os-browserify": "0.2.0",
+    "stream-browserify": "2.0.1",
+    "react": "0.14.6"
   },
   "devDependencies": {
     "electron-packager": "^5.0.1",

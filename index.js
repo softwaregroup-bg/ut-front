@@ -79,8 +79,9 @@ module.exports = function(moduleConfig) {
         },
         pack: function(config) {
             var main = config.main;
-            var root = path.sep === '\\' ? findRootDir(serverRequire.resolve('lasso')).split('\\').join('/') : findRootDir(serverRequire.resolve('lasso'));
+            var from = config.from;
             delete config.main;
+            delete config.from;
             lasso.configure(assign({
                 plugins: [
                     {
@@ -103,7 +104,7 @@ module.exports = function(moduleConfig) {
                 minifyJS: true,
                 resolveCssUrls: true,
                 bundlingEnabled: true
-            }, config), root);
+            }, config));
 
             return when.promise(function(resolve, reject) {
                 lasso.lassoPage({
@@ -111,7 +112,7 @@ module.exports = function(moduleConfig) {
                     dependencies: [
                         'require-run: ' + main
                     ],
-                    from: __dirname
+                    from: from || __dirname
                 },
                 function(err, results) {
                     if (err) {
