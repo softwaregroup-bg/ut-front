@@ -9,8 +9,10 @@ window.isc.RPCDataSource.addProperties({
     transformRequest: function(request) {
         var data = {};
         this.Super('transformRequest', arguments);
-        if (this.defaultParams) {
+        if (typeof this.defaultParams === 'string') {
             data = JSON.parse(this.defaultParams);
+        } else {
+            data = this.defaultParams;
         }
         data = _.assign({}, this.Super('transformRequest', arguments), data);
         request.dataProtocol = 'clientCustom';
