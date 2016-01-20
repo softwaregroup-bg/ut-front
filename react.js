@@ -32,8 +32,14 @@ module.exports = {
     createClass: function(spec) {
         return React.createClass(spec);
     },
+    createClassFactory: function(spec) {
+        var Class = React.createClass(spec);
+        return function() {
+            return Class;
+        };
+    },
     PropTypes: PropTypes,
-    createElement: function(type, props, children) {
+    createElement: function(Type, props, children) {
         if (props && (props.type === 'button' || props.ut5Action)) {
             if (!this.checkPermission(props.ut5Action || props.action)) {
                 return '';
@@ -44,7 +50,7 @@ module.exports = {
                 props = {};
             }
             var members = Array.prototype.slice.call(arguments, 2);
-            switch (type.Class) {
+            switch (Type.Class) {
                 case 'Window':
                     props.items = members;
                     break;
@@ -72,7 +78,7 @@ module.exports = {
             }
         }.bind(this));
 
-        var result = type.create ? type.create(props) : (new type(props)).render();
+        var result = Type.create ? Type.create(props) : (new Type(props)).render();
         props && props.ref && ((props.$owner.refs && Object.isFrozen(props.$owner.refs)) || (!props.$owner.refs)) && (props.$owner.refs = {});
         props && props.ref && (props.$owner.refs[props.ref] = result);
         return result;
@@ -84,7 +90,7 @@ module.exports = {
         if (navigator.onLine || this.bus.config.useAppOffline) {
             return this.bus.importMethod(opcode)(params)
                 .catch(function(error) {
-                    console.log(opcode, params, error);
+                    console.error(opcode, params, error);
                     if (module.exports.bus.config.identity && error.code === module.exports.bus.config.identity.errorCode) {
                         window.isc.warn((error.errorPrint || error.message) + ' Please relogin!', function() {
                             window.location.reload();
