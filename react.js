@@ -80,9 +80,16 @@ module.exports = {
             }
         }.bind(this));
 
-        var result = Type.create ? Type.create(props) : (new Type(props)).render();
+        var result;
+        var ref;
+        if (Type.create) {
+            ref = result = Type.create(props);
+        } else {
+            ref = new Type(props);
+            result = ref.render();
+        }
         props && props.ref && ((props.$owner.refs && Object.isFrozen(props.$owner.refs)) || (!props.$owner.refs)) && (props.$owner.refs = {});
-        props && props.ref && (props.$owner.refs[props.ref] = result);
+        props && props.ref && (props.$owner.refs[props.ref] = ref);
         return result;
     },
     frontEnd: function() {
