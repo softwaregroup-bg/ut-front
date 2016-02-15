@@ -16,7 +16,7 @@ window.isc.RPCDataSource.addProperties({
         }
         data = _.assign({}, this.Super('transformRequest', arguments), data);
         request.dataProtocol = 'clientCustom';
-        module.exports.request(this.dataURL + '.' + request.operationType, data)
+        module.exports.request(this.getDataURL(request.operationType) + '.' + request.operationType, data)
             .then(function(result) {
                 this.processResponse(request.requestId, {status: 0, data: (Array.isArray(result) && Array.isArray(result[0])) ? result[0] : result});
             }.bind(this))
