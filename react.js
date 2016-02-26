@@ -18,7 +18,25 @@ window.isc.RPCDataSource.addProperties({
         request.dataProtocol = 'clientCustom';
         module.exports.request(this.getDataURL(request.operationType) + '.' + request.operationType, data)
             .then(function(result) {
-                this.processResponse(request.requestId, {status: 0, data: (Array.isArray(result) && Array.isArray(result[0])) ? result[0] : result});
+                var dsResponse = {
+                    status: 0,
+                    data: result
+                };
+                if (Array.isArray(result) && result.length > 1) {
+                    result = result.filter(function(el) {
+                        var firstEl = (Array.isArray(el) && el.length) ? el[0] : el;
+                        if (firstEl && firstEl._class === 'DSResponse') {
+                            dsResponse = _.assign(dsResponse, firstEl);
+                            return false;
+                        }
+                        return true;
+                    });
+                    if (!dsResponse._class) {
+                        console.warn('No meta type definition found');
+                    }
+                }
+                dsResponse.data = (Array.isArray(result) && result.length === 1) ? result.shift() : result;
+                this.processResponse(request.requestId, dsResponse);
             }.bind(this))
             .catch(function(error) {
                 window.isc.warn(error.errorPrint || error.message);
