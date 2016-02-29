@@ -34,8 +34,8 @@ window.isc.RPCDataSource.addProperties({
                     if (!dsResponse._class) {
                         console.warn('No meta type definition found');
                     }
+                    dsResponse.data = (Array.isArray(result) && result.length === 1) ? result.shift() : result;
                 }
-                dsResponse.data = (Array.isArray(result) && result.length === 1) ? result.shift() : result;
                 this.processResponse(request.requestId, dsResponse);
             }.bind(this))
             .catch(function(error) {
