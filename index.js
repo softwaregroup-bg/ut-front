@@ -21,7 +21,8 @@ module.exports = function(moduleConfig) {
                     directory: {
                         path: path.join(__dirname, 'browser'),
                         listing: false,
-                        index: true
+                        index: true,
+                        lookupCompressed: true
                     }
                 }
             }, {
@@ -31,7 +32,8 @@ module.exports = function(moduleConfig) {
                     directory: {
                         path: cachePath,
                         listing: false,
-                        index: true
+                        index: true,
+                        lookupCompressed: true
                     }
                 }
 
@@ -107,8 +109,10 @@ module.exports = function(moduleConfig) {
                             '</script><script src="isomorphic/skins/Enterprise/load_skin.js">' +
                             '</script><meta charset="UTF-8"><script type="text/javascript">global=window;' +
                             '</script><title>UnderTree</title>' +
+                            '<link rel="stylesheet" type="text/css" href="css/ut5.css">' +
+                            '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">' +
                             results.getHeadHtml() +
-                            '</head><body>' +
+                            '</head><body class="ut5">' +
                             results.getBodyHtml() +
                             '</body></html>');
                     }
