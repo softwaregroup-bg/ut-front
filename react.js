@@ -22,20 +22,26 @@ window.isc.RPCDataSource.addProperties({
                     status: 0,
                     data: result
                 };
-                if (Array.isArray(result) && result.length > 1) {
-                    result = result.filter(function(el) {
-                        var firstEl = (Array.isArray(el) && el.length) ? el[0] : el;
-                        if (firstEl && firstEl._class === 'DSResponse') {
-                            dsResponse = _.assign(dsResponse, firstEl);
-                            return false;
+                if (Array.isArray(result)) {
+                    var rl = result.length;
+                    if (rl > 1) {
+                        result = result.filter(function(el) {
+                            var firstEl = (Array.isArray(el) && el.length) ? el[0] : el;
+                            if (firstEl && firstEl._class === 'DSResponse') {
+                                dsResponse = _.assign(dsResponse, firstEl);
+                                return false;
+                            }
+                            return true;
+                        });
+                        if (!dsResponse._class) {
+                            console.warn('No meta type definition found');
                         }
-                        return true;
-                    });
-                    if (!dsResponse._class) {
-                        console.warn('No meta type definition found');
+                        dsResponse.data = (Array.isArray(result) && result.length === 1) ? result.shift() : result;
+                    } else if (rl === 1) {
+                        dsResponse.data = result.shift();
                     }
-                    dsResponse.data = (Array.isArray(result) && result.length === 1) ? result.shift() : result;
                 }
+
                 this.processResponse(request.requestId, dsResponse);
             }.bind(this))
             .catch(function(error) {
