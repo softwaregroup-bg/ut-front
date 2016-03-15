@@ -86,7 +86,7 @@ module.exports = function(config) {
         globalShortcut.register('F12', devTools);
         globalShortcut.register(isOSX ? 'Cmd+Alt+I' : 'Ctrl+Shift+I', devTools);
 
-        globalShortcut.register('F5', refresh);
+        // globalShortcut.register('F5', refresh);
         globalShortcut.register('CmdOrCtrl+R', refresh);
     });
 };
