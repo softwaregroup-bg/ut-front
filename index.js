@@ -1,6 +1,7 @@
-var path = require('path');
-var lasso = require('lasso');
-var assign = require('lodash/object/assign');
+const path = require('path');
+const lasso = require('lasso');
+const assign = require('lodash/object/assign');
+const webpack = require('webpack')
 
 module.exports = function(moduleConfig) {
     var bus;
@@ -37,50 +38,43 @@ module.exports = function(moduleConfig) {
             }]);
         },
         pack: function(config) {
-            var lassoConfig = assign({
-                plugins: [{
-                    plugin: 'lasso-require',
-                    config: {
-                        builtins: {
-                            'os': 'os-browserify',
-                            'fs': require.resolve('ut-bus/browser/fs'),
-                            'stream': require.resolve('stream-browserify')
-                        }
-                    }
-                },
-                    'lasso-jsx',
-                    'lasso-marko'
-                ],
-                urlPrefix: '/s/cache',
-                outputDir: cachePath,
-                cacheDir: lassoCache,
-                fingerprintsEnabled: false,
-                minifyJS: true,
-                resolveCssUrls: true,
-                bundlingEnabled: true
-            }, moduleConfig, config);
-
-            var main = lassoConfig.main;
-            var from = lassoConfig.from;
-            delete lassoConfig.main;
-            delete lassoConfig.from;
-            lasso.configure(lassoConfig);
-
             return new Promise(function(resolve, reject) {
-                lasso.lassoPage({
-                    name: 'app',
-                    dependencies: [
-                        'require-run: ' + main
-                    ],
-                    from: from || __dirname
-                }, function(err, results) {
+                webpack({
+                    devtool: 'cheap-module-eval-source-map',
+                    entry: {
+                        index: './browser/index.js'
+                    },
+                    output: {
+                        filename: path.join(cachePath, '[name].js')
+                    },
+                    node: {
+                        cluster: 'empty',
+                        fs: 'empty',
+                        tls: 'empty',
+                        repl: 'empty'
+                    },
+                    resolve: {modulesDirectories: ['node_modules', 'dev']},
+                    module: {
+                        loaders: [
+                            {
+                                test: /\.jsx?$/,
+                                exclude: /(node_modules)/,
+                                loader: 'babel', // 'babel-loader' is also a legal name to reference
+                                query: {
+                                    presets: ['react', 'es2015']
+                                }
+                            },
+                            { test: /\.json$/, loader: 'json' }
+                        ]
+                    },
+                    plugins: [
+                        new webpack.IgnorePlugin(/^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi)$/)
+                    ]
+                }, function(err, stats) {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve({
-                            head: results.getHeadHtml(),
-                            body: results.getBodyHtml()
-                        });
+                        resolve(stats);
                     }
                 });
             });
