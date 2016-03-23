@@ -30,7 +30,7 @@ module.exports = function(moduleConfig) {
                 method: 'GET',
                 path: '/pack/{lib?}',
                 handler: function(request, reply) {
-                    result.pack()
+                    result.pack({packer: request.params.lib})
                         .then(function() {
                             reply.redirect('/s/' + (request.params.lib || 'sc') + '/index.html');
                         });
@@ -38,94 +38,94 @@ module.exports = function(moduleConfig) {
             }]);
         },
         pack: function(config) {
-            if (moduleConfig.loader && moduleConfig.loader === 'lasso') {
-                var lassoConfig = assign({
-                    plugins: [{
-                        plugin: 'lasso-require',
-                        config: {
-                            builtins: {
-                                'os': 'os-browserify',
-                                'fs': require.resolve('ut-bus/browser/fs'),
-                                'stream': require.resolve('stream-browserify')
-                            }
-                        }
-                    },
-                        'lasso-jsx',
-                        'lasso-marko'
-                    ],
-                    urlPrefix: '/s/cache',
-                    outputDir: cachePath,
-                    cacheDir: lassoCache,
-                    fingerprintsEnabled: false,
-                    minifyJS: true,
-                    resolveCssUrls: true,
-                    bundlingEnabled: true
-                }, moduleConfig, config);
-
-                var main = lassoConfig.main;
-                var from = lassoConfig.from;
-                delete lassoConfig.main;
-                delete lassoConfig.from;
-                lasso.configure(lassoConfig);
-
+            if (config.packer && config.packer === 'webpack') {
                 return new Promise(function(resolve, reject) {
-                    lasso.lassoPage({
-                        name: 'app',
-                        dependencies: [
-                            'require-run: ' + main
-                        ],
-                        from: from || __dirname
-                    }, function(err, results) {
+                    webpack({
+                        devtool: 'cheap-module-eval-source-map',
+                        entry: {
+                            index: './browser/index.js'
+                        },
+                        output: {
+                            filename: path.join(cachePath, '[name].js')
+                        },
+                        node: {
+                            cluster: 'empty',
+                            fs: 'empty',
+                            tls: 'empty',
+                            repl: 'empty'
+                        },
+                        resolve: {modulesDirectories: ['node_modules', 'dev']},
+                        module: {
+                            loaders: [
+                                {
+                                    test: /\.jsx?$/,
+                                    exclude: /(node_modules)/,
+                                    loader: 'babel',
+                                    query: {
+                                        presets: ['react', 'es2015-without-strict']
+                                    }
+                                },
+                                { test: /\.json$/, loader: 'json' }
+                            ]
+                        },
+                        plugins: [
+                            new webpack.IgnorePlugin(/^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi)$/)
+                        ]
+                    }, function(err, stats) {
                         if (err) {
                             reject(err);
                         } else {
                             resolve({
-                                loader: moduleConfig.loader,
-                                head: results.getHeadHtml(),
-                                body: results.getBodyHtml()
+                                packer: config.packer
                             });
                         }
                     });
                 });
             }
+            var lassoConfig = assign({
+                plugins: [{
+                    plugin: 'lasso-require',
+                    config: {
+                        builtins: {
+                            'os': 'os-browserify',
+                            'fs': require.resolve('ut-bus/browser/fs'),
+                            'stream': require.resolve('stream-browserify')
+                        }
+                    }
+                },
+                    'lasso-jsx',
+                    'lasso-marko'
+                ],
+                urlPrefix: '/s/cache',
+                outputDir: cachePath,
+                cacheDir: lassoCache,
+                fingerprintsEnabled: false,
+                minifyJS: true,
+                resolveCssUrls: true,
+                bundlingEnabled: true
+            }, moduleConfig, config);
+
+            var main = lassoConfig.main;
+            var from = lassoConfig.from;
+            delete lassoConfig.main;
+            delete lassoConfig.from;
+            lasso.configure(lassoConfig);
+
             return new Promise(function(resolve, reject) {
-                webpack({
-                    devtool: 'cheap-module-eval-source-map',
-                    entry: {
-                        index: './browser/index.js'
-                    },
-                    output: {
-                        filename: path.join(cachePath, '[name].js')
-                    },
-                    node: {
-                        cluster: 'empty',
-                        fs: 'empty',
-                        tls: 'empty',
-                        repl: 'empty'
-                    },
-                    resolve: {modulesDirectories: ['node_modules', 'dev']},
-                    module: {
-                        loaders: [
-                            {
-                                test: /\.jsx?$/,
-                                exclude: /(node_modules)/,
-                                loader: 'babel',
-                                query: {
-                                    presets: ['react', 'es2015']
-                                }
-                            },
-                            { test: /\.json$/, loader: 'json' }
-                        ]
-                    },
-                    plugins: [
-                        new webpack.IgnorePlugin(/^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi)$/)
-                    ]
-                }, function(err, stats) {
+                lasso.lassoPage({
+                    name: 'app',
+                    dependencies: [
+                        'require-run: ' + main
+                    ],
+                    from: from || __dirname
+                }, function(err, results) {
                     if (err) {
                         reject(err);
                     } else {
                         resolve({
-                            packer: moduleConfig.packer
+                            packer: config.packer,
+                            head: results.getHeadHtml(),
+                            body: results.getBodyHtml()
                         });
                     }
                 });
