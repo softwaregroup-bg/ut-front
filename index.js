@@ -38,6 +38,56 @@ module.exports = function(moduleConfig) {
             }]);
         },
         pack: function(config) {
+            if (moduleConfig.loader && moduleConfig.loader === 'lasso') {
+                var lassoConfig = assign({
+                    plugins: [{
+                        plugin: 'lasso-require',
+                        config: {
+                            builtins: {
+                                'os': 'os-browserify',
+                                'fs': require.resolve('ut-bus/browser/fs'),
+                                'stream': require.resolve('stream-browserify')
+                            }
+                        }
+                    },
+                        'lasso-jsx',
+                        'lasso-marko'
+                    ],
+                    urlPrefix: '/s/cache',
+                    outputDir: cachePath,
+                    cacheDir: lassoCache,
+                    fingerprintsEnabled: false,
+                    minifyJS: true,
+                    resolveCssUrls: true,
+                    bundlingEnabled: true
+                }, moduleConfig, config);
+
+                var main = lassoConfig.main;
+                var from = lassoConfig.from;
+                delete lassoConfig.main;
+                delete lassoConfig.from;
+                lasso.configure(lassoConfig);
+
+                return new Promise(function(resolve, reject) {
+                    lasso.lassoPage({
+                        name: 'app',
+                        dependencies: [
+                            'require-run: ' + main
+                        ],
+                        from: from || __dirname
+                    }, function(err, results) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve({
+                                loader: moduleConfig.loader,
+                                head: results.getHeadHtml(),
+                                body: results.getBodyHtml()
+                            });
+                        }
+                    });
+                });
+            }
             return new Promise(function(resolve, reject) {
                 webpack({
                     devtool: 'cheap-module-eval-source-map',
@@ -59,7 +109,7 @@ module.exports = function(moduleConfig) {
                             {
                                 test: /\.jsx?$/,
                                 exclude: /(node_modules)/,
-                                loader: 'babel', // 'babel-loader' is also a legal name to reference
+                                loader: 'babel',
                                 query: {
                                     presets: ['react', 'es2015']
                                 }
@@ -74,7 +124,9 @@ module.exports = function(moduleConfig) {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(stats);
+                        resolve({
+                            loader: moduleConfig.loader
+                        });
                     }
                 });
             });
