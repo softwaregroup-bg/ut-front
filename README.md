@@ -2,6 +2,6 @@
 
 ```javascript
 {
-    loader: 'webpack|lasso' // loader package, currently available: webpack and lasso
+    packer: 'webpack|lasso' // packer package, currently available: webpack and lasso
 }
 ```

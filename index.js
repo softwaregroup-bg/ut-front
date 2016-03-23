@@ -125,7 +125,7 @@ module.exports = function(moduleConfig) {
                         reject(err);
                     } else {
                         resolve({
-                            loader: moduleConfig.loader
+                            packer: moduleConfig.packer
                         });
                     }
                 });
