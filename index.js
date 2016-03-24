@@ -46,7 +46,8 @@ module.exports = function(moduleConfig) {
                             index: './browser/index.js'
                         },
                         output: {
-                            filename: path.join(cachePath, '[name].js')
+                            filename: '[name].js',
+                            path: cachePath
                         },
                         node: {
                             cluster: 'empty',
@@ -54,7 +55,9 @@ module.exports = function(moduleConfig) {
                             tls: 'empty',
                             repl: 'empty'
                         },
-                        resolve: {modulesDirectories: ['node_modules', 'dev']},
+                        resolve: {
+                            modules: ['node_modules', 'dev'] // https://github.com/webpack/webpack/issues/2119#issuecomment-190285660
+                        },
                         module: {
                             loaders: [
                                 {
