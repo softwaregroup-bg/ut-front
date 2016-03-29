@@ -1,13 +1,13 @@
 'use strict';
-const app = require('app');
-const BrowserWindow = require('browser-window');
-const globalShortcut = require('global-shortcut');
+const app = require('app'); // eslint-disable-line
+const BrowserWindow = require('browser-window'); // eslint-disable-line
+const globalShortcut = require('global-shortcut'); // eslint-disable-line
 var path = require('path');
 const isOSX = process.platform === 'darwin';
 
 module.exports = function(config) {
     // report crashes to the Electron project
-    require('crash-reporter').start();
+    require('crash-reporter').start(); // eslint-disable-line
 
     function createMainWindow() {
         const win = new BrowserWindow({
@@ -50,19 +50,15 @@ module.exports = function(config) {
     });
 
     app.on('ready', function() {
-        var protocol = require('protocol');
+        var protocol = require('protocol'); // eslint-disable-line
         protocol.registerFileProtocol('utfront', function(request, callback) {
             var url = request.url.substr(18);
             if (url.indexOf('?') !== -1) {
                 url = url.substring(0, url.indexOf('?'));
             }
-            callback({path: path.normalize(__dirname + '/browser/' + url)});
+            callback({path: path.normalize(path.join(__dirname, '/browser/', url))});
         }, function(error) {
-            if (!error) {
-                console.log('Protocol utfront registered successfully');
-            } else {
-                console.log('Failed to register utfront protocol');
-            }
+            throw error;
         });
 
         mainWindow = createMainWindow();
