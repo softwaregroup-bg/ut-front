@@ -1,6 +1,7 @@
-var path = require('path');
-var lasso = require('lasso');
-var assign = require('lodash/object/assign');
+const path = require('path');
+const lasso = require('lasso');
+const assign = require('lodash/object/assign');
+const webpack = require('webpack')
 
 module.exports = function(moduleConfig) {
     var bus;
@@ -29,7 +30,7 @@ module.exports = function(moduleConfig) {
                 method: 'GET',
                 path: '/pack/{lib?}',
                 handler: function(request, reply) {
-                    result.pack()
+                    result.pack({packer: request.params.lib})
                         .then(function() {
                             reply.redirect('/s/' + (request.params.lib || 'sc') + '/index.html');
                         });
@@ -37,6 +38,53 @@ module.exports = function(moduleConfig) {
             }]);
         },
         pack: function(config) {
+            if (config.packer && config.packer === 'webpack') {
+                return new Promise(function(resolve, reject) {
+                    webpack({
+                        devtool: 'cheap-module-eval-source-map',
+                        entry: {
+                            index: './browser/index.js'
+                        },
+                        output: {
+                            filename: '[name].js',
+                            path: cachePath
+                        },
+                        node: {
+                            cluster: 'empty',
+                            fs: 'empty',
+                            tls: 'empty',
+                            repl: 'empty'
+                        },
+                        resolve: {
+                            modules: ['node_modules', 'dev'] // https://github.com/webpack/webpack/issues/2119#issuecomment-190285660
+                        },
+                        module: {
+                            loaders: [
+                                {
+                                    test: /\.jsx?$/,
+                                    exclude: /(node_modules)/,
+                                    loader: 'babel',
+                                    query: {
+                                        presets: ['react', 'es2015-without-strict']
+                                    }
+                                },
+                                { test: /\.json$/, loader: 'json' }
+                            ]
+                        },
+                        plugins: [
+                            new webpack.IgnorePlugin(/^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi)$/)
+                        ]
+                    }, function(err, stats) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve({
+                                packer: config.packer
+                            });
+                        }
+                    });
+                });
+            }
             var lassoConfig = assign({
                 plugins: [{
                     plugin: 'lasso-require',
@@ -78,6 +126,7 @@ module.exports = function(moduleConfig) {
                         reject(err);
                     } else {
                         resolve({
+                            packer: config.packer,
                             head: results.getHeadHtml(),
                             body: results.getBodyHtml()
                         });
