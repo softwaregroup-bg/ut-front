@@ -5,10 +5,20 @@
   "main": "index.js",
   "scripts": {
     "lint": "ut-lint .",
-    "pre-commit": "npm run lint",
-    "pre-release": "ut-pre-release",
     "release": "ut-release",
-    "post-release": "ut-post-release"
+    "changelog": "ut-changelog",
+    "check": "ut-check",
+    "cover": "ut-cover",
+    "lint-js": "ut-lint-js .",
+    "postpublish": "ut-postpublish",
+    "postversion": "ut-postversion",
+    "precommit": "ut-precommit",
+    "prepublish": "ut-prepublish",
+    "prepush": "ut-prepush",
+    "pretest": "ut-pretest",
+    "preversion": "ut-preversion",
+    "test": "ut-test",
+    "version": "ut-version"
   },
   "dependencies": {
     "babel-core": "^6.7.2",
@@ -22,6 +32,7 @@
     "lasso-marko": "2.0.4",
     "lasso-minify-js": "1.1.4",
     "lasso-require": "1.4.6",
+    "lodash": "^3.5.0",
     "os-browserify": "0.2.0",
     "react": "^0.14.6",
     "react-redux": "^4.4.1",
@@ -34,10 +45,10 @@
   "devDependencies": {
     "electron-packager": "^5.0.1",
     "electron-prebuilt": "^0.29.2",
-    "ut-tools": "~1.0.4"
+    "ut-tools": "^5.3.1"
   },
   "publishConfig": {
-    "registry": "http://npm.softwaregroup-bg.com:5001"
+    "registry": "https://nexus.softwaregroup-bg.com/repository/npm-internal"
   },
   "repository": {
     "type": "git",
