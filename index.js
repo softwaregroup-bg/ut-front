@@ -42,14 +42,13 @@ module.exports = function(moduleConfig) {
         pack: function(config) {
             if (config.packer && config.packer === 'webpack') {
                 return new Promise(function(resolve, reject) {
-                    webpackStarted = true;
                     var webpackCfg = assign({}, webpackConfig);
                     webpackCfg.output.path = cachePath;
                     webpack(webpackCfg, function(err, stats) {
                         if (err) {
                             reject(err);
                         } else {
-                            resolve({packer: config.packer});
+                            resolve({packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/index.js"></script>'});
                         }
                     });
                 });
