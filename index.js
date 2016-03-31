@@ -8,7 +8,7 @@ module.exports = function(moduleConfig) {
     var bus;
     var cachePath;
     var lassoCache;
-    var webpackStarted = false;
+
     var result = {
         init: function(b) {
             bus = b;
@@ -42,20 +42,16 @@ module.exports = function(moduleConfig) {
         pack: function(config) {
             if (config.packer && config.packer === 'webpack') {
                 return new Promise(function(resolve, reject) {
-                    if (!webpackStarted) {
-                        webpackStarted = true;
-                        var webpackCfg = assign({}, webpackConfig);
-                        webpackCfg.output.path = cachePath;
-                        webpack(webpackCfg, function(err, stats) {
-                            if (err) {
-                                reject(err);
-                            } else {
-                                resolve({packer: config.packer});
-                            }
-                        });
-                    } else {
-                        resolve({packer: config.packer});
-                    }
+                    webpackStarted = true;
+                    var webpackCfg = assign({}, webpackConfig);
+                    webpackCfg.output.path = cachePath;
+                    webpack(webpackCfg, function(err, stats) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve({packer: config.packer});
+                        }
+                    });
                 });
             }
             var lassoConfig = assign({
