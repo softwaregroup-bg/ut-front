@@ -48,7 +48,7 @@ module.exports = function(moduleConfig) {
                         if (err) {
                             reject(err);
                         } else {
-                            resolve({packer: config.packer});
+                            resolve({packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/index.js"></script>'});
                         }
                     });
                 });
