@@ -1,8 +1,11 @@
 import React from 'react';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
+import { Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { Route } from 'react-router';
+import assign from 'lodash/object/assign';
+import PageNotFound from './common/PageNotFound.jsx';
 
 var store;
 var history;
@@ -10,21 +13,26 @@ var history;
 export class UtFront extends React.Component {
     constructor(props) {
         super(props);
-        store = createStore(combineReducers({
-            ...props.reducers,
+        var reducers = {
             routing: routerReducer
-        }));
-        history = syncHistoryWithStore(browserHistory, store);
+        };
+
+        if (Object.keys(props.reducers).length) {
+            reducers = assign({}, reducers, props.reducers);
+        }
+        store = createStore(combineReducers(reducers));
+        history = syncHistoryWithStore(hashHistory, store);
     }
     render() {
         return (
             <Provider store={store}>
-            <div>
-                <Router history={history}>
-                    {this.props.children}
-                </Router>
-            </div>
-        </Provider>
+                <div>
+                    <Router history={history}>
+                        {this.props.children}
+                        <Route path='*' component={PageNotFound}/>
+                    </Router>
+                </div>
+            </Provider>
         );
     }
 };

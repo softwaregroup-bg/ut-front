@@ -1,7 +1,7 @@
 const path = require('path');
 const lasso = require('lasso');
 const assign = require('lodash/object/assign');
-const webpack = require('webpack')
+const webpack = require('webpack');
 
 module.exports = function(moduleConfig) {
     var bus;
