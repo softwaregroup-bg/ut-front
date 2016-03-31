@@ -2,11 +2,13 @@ const path = require('path');
 const lasso = require('lasso');
 const assign = require('lodash/object/assign');
 const webpack = require('webpack');
+const webpackConfig = require('./webpack.config');
 
 module.exports = function(moduleConfig) {
     var bus;
     var cachePath;
     var lassoCache;
+
     var result = {
         init: function(b) {
             bus = b;
@@ -40,47 +42,13 @@ module.exports = function(moduleConfig) {
         pack: function(config) {
             if (config.packer && config.packer === 'webpack') {
                 return new Promise(function(resolve, reject) {
-                    webpack({
-                        devtool: 'cheap-module-eval-source-map',
-                        entry: {
-                            index: './browser/index.js'
-                        },
-                        output: {
-                            filename: '[name].js',
-                            path: cachePath
-                        },
-                        node: {
-                            cluster: 'empty',
-                            fs: 'empty',
-                            tls: 'empty',
-                            repl: 'empty'
-                        },
-                        resolve: {
-                            modules: ['node_modules', 'dev'] // https://github.com/webpack/webpack/issues/2119#issuecomment-190285660
-                        },
-                        module: {
-                            loaders: [
-                                {
-                                    test: /\.jsx?$/,
-                                    exclude: /(node_modules)/,
-                                    loader: 'babel',
-                                    query: {
-                                        presets: ['react', 'es2015-without-strict']
-                                    }
-                                },
-                                { test: /\.json$/, loader: 'json' }
-                            ]
-                        },
-                        plugins: [
-                            new webpack.IgnorePlugin(/^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi)$/)
-                        ]
-                    }, function(err, stats) {
+                    var webpackCfg = assign({}, webpackConfig);
+                    webpackCfg.output.path = cachePath;
+                    webpack(webpackCfg, function(err, stats) {
                         if (err) {
                             reject(err);
                         } else {
-                            resolve({
-                                packer: config.packer
-                            });
+                            resolve({packer: config.packer});
                         }
                     });
                 });

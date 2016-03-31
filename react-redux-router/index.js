@@ -5,7 +5,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Route } from 'react-router';
 import PageNotFound from './components/PageNotFound.jsx';
 import DevTools from './DevTools';
-import Store from './Store';
+import { Store } from './Store';
 
 var store;
 var history;
@@ -14,7 +14,7 @@ export class UtFront extends React.Component {
     constructor(props) {
         super(props);
 
-        store = Store(props.reducers);
+        store = Store(props.reducers, props.environment);
         history = syncHistoryWithStore(hashHistory, store);
     }
     render() {
@@ -25,7 +25,7 @@ export class UtFront extends React.Component {
                         {this.props.children}
                         <Route path='*' component={PageNotFound}/>
                     </Router>
-                    <DevTools/>
+                    {this.props.environment !== 'production' ? <DevTools/> : ''}
                 </div>
             </Provider>
         );
@@ -34,5 +34,6 @@ export class UtFront extends React.Component {
 
 UtFront.propTypes = {
     children: React.PropTypes.object,
+    environment: React.PropTypes.string,
     reducers: React.PropTypes.object
 };
