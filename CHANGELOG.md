@@ -1,3 +1,20 @@
+<a name="5.4.4"></a>
+## [5.4.4](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.3...v5.4.4) (2016-04-01)
+
+
+### Bug Fixes
+
+* **run:** revert to run on demand ([c3f6ca6](https://git.softwaregroup-bg.com/ut5/ut-front/commit/c3f6ca6))
+* **webpack:** cleanup ([39fcd4f](https://git.softwaregroup-bg.com/ut5/ut-front/commit/39fcd4f))
+* fix dependencies ([7ab406e](https://git.softwaregroup-bg.com/ut5/ut-front/commit/7ab406e))
+* use constant dependencies ([54e6c3a](https://git.softwaregroup-bg.com/ut5/ut-front/commit/54e6c3a))
+
+### Features
+
+* **ut-bus:** added utbus to be spred int context property ([d237e86](https://git.softwaregroup-bg.com/ut5/ut-front/commit/d237e86))
+
+
+
 <a name="5.4.3"></a>
 ## [5.4.3](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.1...v5.4.3) (2016-03-31)
 
