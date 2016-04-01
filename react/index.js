@@ -17,6 +17,9 @@ export class UtFront extends React.Component {
         store = Store(props.reducers, props.environment);
         history = syncHistoryWithStore(hashHistory, store);
     }
+    getChildContext() {
+        return {utBus: this.props.utBus};
+    }
     render() {
         return (
             <Provider store={store}>
@@ -34,6 +37,11 @@ export class UtFront extends React.Component {
 
 UtFront.propTypes = {
     children: React.PropTypes.object,
+    utBus: React.PropTypes.object,
     environment: React.PropTypes.string,
     reducers: React.PropTypes.object
+};
+
+UtFront.childContextTypes = {
+    utBus: React.PropTypes.object
 };
