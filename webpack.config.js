@@ -19,8 +19,8 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /\.jsx?$/, exclude: /(node_modules)/, loader: 'babel', query: {presets: ['react', 'es2015-without-strict']}},
-            { test: /\.json$/, loader: 'json' }
+            {test: /\.jsx?$/, exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/, loader: 'babel', query: {presets: ['react', 'es2015-without-strict']}},
+            {test: /\.json$/, loader: 'json'}
         ]
     },
     plugins: [
