@@ -3,6 +3,7 @@ const lasso = require('lasso');
 const assign = require('lodash/object/assign');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config');
+var webpackCfg = assign({}, webpackConfig);
 
 module.exports = function(moduleConfig) {
     var bus;
@@ -42,15 +43,27 @@ module.exports = function(moduleConfig) {
         pack: function(config) {
             if (config.packer && config.packer === 'webpack') {
                 return new Promise(function(resolve, reject) {
-                    var webpackCfg = assign({}, webpackConfig);
-                    webpackCfg.output.path = cachePath;
-                    webpack(webpackCfg, function(err, stats) {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve({packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/index.js"></script>'});
-                        }
-                    });
+                    if (!webpackCfg.output.path) {
+                        webpackCfg.output.path = cachePath;
+                        var compiler = webpack(webpackCfg);
+                        compiler.run(function(err, stats) {
+                            if (err) {
+                                reject(err);
+                            } else {
+                                resolve({packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/index.js"></script>'});
+                            }
+                        });
+                        compiler.watch({
+                            aggregateTimeout: 30,
+                            poll: true
+                        }, function(err, stats) {
+                            if (err) {
+                                throw err;
+                            }
+                        });
+                    } else {
+                        resolve({packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/index.js"></script>'});
+                    }
                 });
             }
             var lassoConfig = assign({
