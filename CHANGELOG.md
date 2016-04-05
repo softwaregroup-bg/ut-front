@@ -1,3 +1,13 @@
+<a name="5.4.6"></a>
+## [5.4.6](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.5...v5.4.6) (2016-04-05)
+
+
+### Features
+
+* **shortcuts:** change shortcut keys for react dev tool ([305ae72](https://git.softwaregroup-bg.com/ut5/ut-front/commit/305ae72))
+
+
+
 <a name="5.4.5"></a>
 ## [5.4.5](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.4...v5.4.5) (2016-04-01)
 
