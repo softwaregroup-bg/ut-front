@@ -1,3 +1,13 @@
+<a name="5.4.10"></a>
+## [5.4.10](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.9...v5.4.10) (2016-04-05)
+
+
+### Bug Fixes
+
+* **webpack:** building changes, hot reolad like ([4171570](https://git.softwaregroup-bg.com/ut5/ut-front/commit/4171570))
+
+
+
 <a name="5.4.9"></a>
 ## [5.4.9](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.8...v5.4.9) (2016-04-05)
 
