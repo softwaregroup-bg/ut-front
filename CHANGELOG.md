@@ -1,3 +1,13 @@
+<a name="5.4.8"></a>
+## [5.4.8](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.7...v5.4.8) (2016-04-05)
+
+
+### Bug Fixes
+
+* **js/jsx loader:** js/jsx loader to exclude everything in node_modules except ut-* and impl-* ([8b181b8](https://git.softwaregroup-bg.com/ut5/ut-front/commit/8b181b8))
+
+
+
 <a name="5.4.7"></a>
 ## [5.4.7](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.6...v5.4.7) (2016-04-05)
 
