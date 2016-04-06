@@ -12,6 +12,7 @@ module.exports = {
     node: {
         cluster: 'empty',
         fs: 'empty',
+        net: 'empty',
         tls: 'empty',
         repl: 'empty'
     },

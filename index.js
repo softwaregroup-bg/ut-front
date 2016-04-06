@@ -50,8 +50,6 @@ module.exports = function(moduleConfig) {
                             if (err) {
                                 reject(err);
                             } else {
-                                var fs = require('fs');
-                                fs.appendFileSync('/home/zetxx/Desktop/wb.txt', JSON.stringify(stats.toJson(), null, 2))
                                 resolve({packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/index.js"></script>'});
                             }
                         });
