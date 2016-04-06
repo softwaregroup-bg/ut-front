@@ -1,3 +1,13 @@
+<a name="5.4.12"></a>
+## [5.4.12](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.11...v5.4.12) (2016-04-06)
+
+
+### Features
+
+* improve es6 support ([cae6111](https://git.softwaregroup-bg.com/ut5/ut-front/commit/cae6111))
+
+
+
 <a name="5.4.11"></a>
 ## [5.4.11](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.10...v5.4.11) (2016-04-06)
 
