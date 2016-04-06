@@ -1,6 +1,6 @@
 {
   "name": "ut-front",
-  "version": "5.4.9",
+  "version": "5.4.13",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,6 @@
     "inert": "3.2.0",
     "json-loader": "0.5.4",
     "lasso": "1.13.2",
-    "lasso-jsx": "1.1.10",
     "lasso-marko": "2.0.4",
     "lasso-minify-js": "1.1.4",
     "lasso-require": "1.4.6",
