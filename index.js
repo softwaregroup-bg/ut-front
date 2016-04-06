@@ -74,10 +74,16 @@ module.exports = function(moduleConfig) {
                             'os': 'os-browserify',
                             'fs': require.resolve('ut-bus/browser/fs'),
                             'stream': require.resolve('stream-browserify')
+                        },
+                        babel: {
+                            extensions: ['es6', 'js', 'jsx'],
+                            presets: ['es2015', 'react'],
+                            only: /(\\|\/)(impl|ut)\-/,
+                            // sourceMaps: 'inline',
+                            babelrc: false
                         }
                     }
                 },
-                    'lasso-jsx',
                     'lasso-marko'
                 ],
                 urlPrefix: '/s/cache',
@@ -93,6 +99,7 @@ module.exports = function(moduleConfig) {
             var from = lassoConfig.from;
             delete lassoConfig.main;
             delete lassoConfig.from;
+            delete lassoConfig.packer;
             lasso.configure(lassoConfig);
 
             return new Promise(function(resolve, reject) {
@@ -109,7 +116,7 @@ module.exports = function(moduleConfig) {
                         resolve({
                             packer: config.packer,
                             head: results.getHeadHtml(),
-                            body: results.getBodyHtml()
+                            body: '<div id="utApp"></div>' + results.getBodyHtml()
                         });
                     }
                 });
