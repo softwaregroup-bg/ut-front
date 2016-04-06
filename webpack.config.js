@@ -1,7 +1,8 @@
 var webpack = require('webpack');
+var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin')
 
 module.exports = {
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'eval-source-map',
     entry: {
         index: './browser/index.js'
     },
@@ -24,6 +25,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.IgnorePlugin(/^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi)$/)
+        new webpack.IgnorePlugin(/^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi)$/),
+        new BellOnBundlerErrorPlugin()
     ]
 };
