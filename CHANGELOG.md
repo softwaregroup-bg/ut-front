@@ -1,3 +1,15 @@
+<a name="5.4.17"></a>
+## [5.4.17](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.16...v5.4.17) (2016-04-06)
+
+
+### Bug Fixes
+
+* **webpack:** blacklist net module ([1c04e86](https://git.softwaregroup-bg.com/ut5/ut-front/commit/1c04e86))
+* **webpack:** error handlingtrough plugins ([4c3f37a](https://git.softwaregroup-bg.com/ut5/ut-front/commit/4c3f37a))
+* **webpack:** source maps loading ([08ecabf](https://git.softwaregroup-bg.com/ut5/ut-front/commit/08ecabf))
+
+
+
 <a name="5.4.16"></a>
 ## [5.4.16](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.15...v5.4.16) (2016-04-06)
 
