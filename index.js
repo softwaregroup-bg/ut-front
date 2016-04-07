@@ -77,7 +77,7 @@ module.exports = function(moduleConfig) {
                         },
                         babel: {
                             extensions: ['es6', 'js', 'jsx'],
-                            presets: ['es2015', 'react'],
+                            presets: ['es2015-without-strict', 'react'],
                             only: /(\\|\/)(impl|ut)\-/,
                             // sourceMaps: 'inline',
                             babelrc: false
