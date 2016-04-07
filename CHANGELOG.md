@@ -1,3 +1,13 @@
+<a name="5.4.19"></a>
+## [5.4.19](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.18...v5.4.19) (2016-04-07)
+
+
+### Features
+
+* add dependencies to @kadira/storybook and react-css-modules along with 2 extra l ([2e07b50](https://git.softwaregroup-bg.com/ut5/ut-front/commit/2e07b50))
+
+
+
 <a name="5.4.18"></a>
 ## [5.4.18](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.17...v5.4.18) (2016-04-07)
 

@@ -1,6 +1,6 @@
 {
   "name": "ut-front",
-  "version": "5.4.18",
+  "version": "5.4.19",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
@@ -47,8 +47,8 @@
     "webpack": "2.1.0-beta.4",
     "@kadira/storybook": "1.4.0",
     "react-css-modules": "3.7.6",
-    "style-loader" : "0.13.1",
-    "css-loader" : "0.23.1"
+    "style-loader": "0.13.1",
+    "css-loader": "0.23.1"
   },
   "devDependencies": {
     "electron-packager": "5.0.1",
