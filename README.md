@@ -45,3 +45,11 @@
         }
     ```
   - `log` middleware(work in progress, still alpha): will watch for `{type: 'UT_LOG', text: '<text to log>'}` and dispatched message will not reach redux storage
+
+## Permission check
+  - add permission array with `permissionsSet` imported from ut-front/react
+  - wrap the current element within `PermitionCheck` imported from ut-front/react like this:
+
+  ```javascript
+  <PermitionCheck utAction='abc'><button>Button</button></PermitionCheck>
+  ```

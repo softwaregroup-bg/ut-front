@@ -19,7 +19,7 @@ export function Store(reducers, middlewares, environment) {
     var mixedReducers = {
         routing: routerReducer
     };
-    if (reducers && Object.keys(reducers).length) {
+    if (Object.keys(reducers).length) {
         mixedReducers = assign({}, mixedReducers, reducers);
     }
 
