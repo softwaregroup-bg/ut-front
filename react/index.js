@@ -79,4 +79,4 @@ PermitionCheck.propTypes = {
     ])
 };
 
-export const permissionsSet = set;
+export const setPermissions = set;
