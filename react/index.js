@@ -9,27 +9,24 @@ import { Store } from './Store';
 import UtFrontMiddlewares from './Middlewares';
 import { set, check } from './permissions';
 
-var store;
-var history;
-
 export class UtFront extends React.Component {
     constructor(props) {
         super(props);
-        store = Store(
+        this.store = Store(
             this.props.reducers,
             UtFrontMiddlewares(this.props.utBus).concat(this.props.middlewares),
             this.props.environment
         );
-        history = syncHistoryWithStore(hashHistory, store);
+        this.history = syncHistoryWithStore(hashHistory, this.store);
     }
     getChildContext() {
         return { utBus: this.props.utBus };
     }
     render() {
         return (
-            <Provider store={store}>
+            <Provider store={this.store}>
                 <div>
-                    <Router history={history}>
+                    <Router history={this.history}>
                         {this.props.children}
                         <Route path='*' component={PageNotFound}/>
                     </Router>
