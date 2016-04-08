@@ -6,6 +6,7 @@ import { Route } from 'react-router';
 import PageNotFound from './components/PageNotFound.jsx';
 import DevTools from './DevTools';
 import { Store } from './Store';
+import UtFrontMiddlewares from './Middlewares';
 
 var store;
 var history;
@@ -13,9 +14,13 @@ var history;
 export class UtFront extends React.Component {
     constructor(props) {
         super(props);
-
-        store = Store(props.reducers, props.environment);
-        history = syncHistoryWithStore(hashHistory, store);
+        this.init();
+    }
+    init() {
+        if (!store) {
+            store = Store(this.props.reducers, UtFrontMiddlewares(this.props.utBus).concat(this.props.middlewares || []), this.props.environment);
+            history = syncHistoryWithStore(hashHistory, store);
+        }
     }
     getChildContext() {
         return {utBus: this.props.utBus};
@@ -39,7 +44,8 @@ UtFront.propTypes = {
     children: React.PropTypes.object,
     utBus: React.PropTypes.object,
     environment: React.PropTypes.string,
-    reducers: React.PropTypes.object
+    reducers: React.PropTypes.object,
+    middlewares: React.PropTypes.array
 };
 
 UtFront.childContextTypes = {
