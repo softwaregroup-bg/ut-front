@@ -6,7 +6,7 @@ import { Route } from 'react-router';
 import PageNotFound from './components/PageNotFound.jsx';
 import DevTools from './DevTools';
 import { Store } from './Store';
-import UtFrontMiddlewares from './Middlewares';
+import UtFrontMiddleware from './middleware';
 import { set, check } from './permissions';
 
 export class UtFront extends React.Component {
@@ -14,13 +14,10 @@ export class UtFront extends React.Component {
         super(props);
         this.store = Store(
             this.props.reducers,
-            UtFrontMiddlewares(this.props.utBus).concat(this.props.middlewares),
+            UtFrontMiddleware(this.props.utBus).concat(this.props.middlewares),
             this.props.environment
         );
         this.history = syncHistoryWithStore(hashHistory, this.store);
-    }
-    getChildContext() {
-        return { utBus: this.props.utBus };
     }
     render() {
         return (
@@ -52,11 +49,7 @@ UtFront.defaultProps = {
     middlewares: []
 };
 
-UtFront.childContextTypes = {
-    utBus: React.PropTypes.object
-};
-
-export class PermitionCheck extends React.Component {
+export class PermissionCheck extends React.Component {
     render() {
         if (this.props && this.props.utAction && !check(this.props.utAction)) {
             return (
@@ -68,7 +61,7 @@ export class PermitionCheck extends React.Component {
     }
 };
 
-PermitionCheck.propTypes = {
+PermissionCheck.propTypes = {
     children: React.PropTypes.object,
     utAction: React.PropTypes.oneOfType([
         React.PropTypes.string,

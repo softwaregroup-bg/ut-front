@@ -1,4 +1,4 @@
-var permissions = {data: [], length: 0};
+var permissions = {data: []};
 
 function matcher(required) {
     return !!~permissions.data.indexOf(required);
@@ -10,7 +10,6 @@ export const check = function(actions) {
 };
 
 export const set = function(list) {
-    permissions = {data: [], length: 0};
+    permissions = {data: []};
     permissions.data = list;
-    permissions.length = list.length;
 };

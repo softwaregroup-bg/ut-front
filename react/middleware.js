@@ -1,28 +1,28 @@
 export default (utBus) => {
     const rpc = (store) => (next) => (action) => {
-        if (action.rpc) {
+        if (action.method) {
             utBus
-                .importMethod(action.rpc)(action.data)
+                .importMethod(action.method)(action.params)
                 .then((r) => {
-                    action.rpcRequestState = 'finished';
+                    action.methodRequestState = 'finished';
                     action.response = 'ok';
                     action.responseDetails = r;
                     next(action);
                 })
                 .catch((e) => {
-                    action.rpcRequestState = 'finished';
+                    action.methodRequestState = 'finished';
                     action.response = 'error';
                     action.responseDetails = e;
                     next(action);
                 });
-            action.data = undefined;
-            action.rpcRequestState = 'requested';
+            action.params = undefined;
+            action.methodRequestState = 'requested';
         }
         return next(action);
     };
 
     const utBuslogger = (store) => (next) => (action) => {
-        if (action.rpc) {
+        if (action.method) {
             // log the action
             return next(action);
         } else if (action.type === 'UT_LOG') {
