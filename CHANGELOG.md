@@ -1,3 +1,19 @@
+<a name="5.4.21"></a>
+## [5.4.21](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.20...v5.4.21) (2016-04-11)
+
+
+### Bug Fixes
+
+* fix dependencies ([adb572e](https://git.softwaregroup-bg.com/ut5/ut-front/commit/adb572e))
+* **encapsulation:** based on sash idea ([d765aa0](https://git.softwaregroup-bg.com/ut5/ut-front/commit/d765aa0))
+
+### Features
+
+* **middleware:** rpc and log middlewares was added ([976e14a](https://git.softwaregroup-bg.com/ut5/ut-front/commit/976e14a))
+* **permissionCheck:** added ability to check component permition ([572785e](https://git.softwaregroup-bg.com/ut5/ut-front/commit/572785e))
+
+
+
 <a name="5.4.20"></a>
 ## [5.4.20](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.19...v5.4.20) (2016-04-08)
 
