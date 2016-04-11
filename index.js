@@ -13,7 +13,7 @@ module.exports = function(moduleConfig) {
     var result = {
         init: function(b) {
             bus = b;
-            cachePath = path.resolve(bus.config.workDir, 'ut-front-cache');
+            cachePath = path.resolve(bus.config.workDir, 'ut-front');
             lassoCache = path.resolve(bus.config.workDir, 'lasso');
         },
         start: function() {
@@ -73,6 +73,7 @@ module.exports = function(moduleConfig) {
                         builtins: {
                             'os': 'os-browserify',
                             'fs': require.resolve('ut-bus/browser/fs'),
+                            'ws': require.resolve('ut-bus/browser/ws'),
                             'stream': require.resolve('stream-browserify')
                         },
                         babel: {

@@ -21,24 +21,23 @@
     "version": "ut-version"
   },
   "dependencies": {
-    "babel-core": "6.7.4",
+    "babel-core": "6.7.6",
     "babel-loader": "6.2.4",
     "babel-preset-es2015-without-strict": "0.0.2",
     "babel-preset-react": "6.5.0",
     "bell-on-bundler-error-plugin": "1.0.8",
     "inert": "3.2.0",
     "json-loader": "0.5.4",
-    "lasso": "1.13.2",
-    "lasso-marko": "2.0.4",
-    "lasso-minify-js": "1.1.4",
-    "lasso-require": "1.4.6",
+    "lasso": "2.1.4",
+    "lasso-marko": "2.0.7",
+    "lasso-minify-js": "1.2.0",
     "lodash": "3.10.1",
     "os-browserify": "0.2.1",
-    "react": "0.14.8",
-    "react-redux": "4.4.1",
+    "react": "15.0.1",
+    "react-redux": "4.4.2",
     "react-router": "2.0.1",
-    "react-router-redux": "4.0.1",
-    "redux": "3.3.1",
+    "react-router-redux": "4.0.2",
+    "redux": "3.4.0",
     "redux-thunk": "2.0.1",
     "stream-browserify": "2.0.1",
     "webpack": "2.1.0-beta.4",
@@ -47,13 +46,13 @@
     "css-loader": "0.23.1"
   },
   "devDependencies": {
-    "@kadira/storybook": "^1.5.0",
+    "@kadira/storybook": "^1.9.0",
     "electron-packager": "5.0.1",
     "electron-prebuilt": "0.34.5",
     "ut-tools": "^5.3.6",
-    "redux-devtools": "3.1.1",
-    "redux-devtools-dock-monitor": "1.1.0",
-    "redux-devtools-log-monitor": "1.0.5"
+    "redux-devtools": "3.2.0",
+    "redux-devtools-dock-monitor": "1.1.1",
+    "redux-devtools-log-monitor": "1.0.9"
   },
   "publishConfig": {
     "registry": "https://nexus.softwaregroup-bg.com/repository/npm-internal"
