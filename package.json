@@ -46,7 +46,7 @@
     "css-loader": "0.23.1"
   },
   "devDependencies": {
-    "@kadira/storybook": "^1.9.0",
+    "@kadira/storybook": "^1.8.0",
     "electron-packager": "5.0.1",
     "electron-prebuilt": "0.34.5",
     "ut-tools": "^5.3.6",
