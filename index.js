@@ -58,7 +58,7 @@ module.exports = function(moduleConfig) {
                             poll: true
                         }, function(err, stats) {
                             if (err) {
-                                    throw err;
+                                throw err;
                             }
                         });
                     } else {
