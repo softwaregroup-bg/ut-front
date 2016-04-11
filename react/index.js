@@ -6,25 +6,24 @@ import { Route } from 'react-router';
 import PageNotFound from './components/PageNotFound.jsx';
 import DevTools from './DevTools';
 import { Store } from './Store';
-
-var store;
-var history;
+import UtFrontMiddleware from './middleware';
+import { set, check } from './permissions';
 
 export class UtFront extends React.Component {
     constructor(props) {
         super(props);
-
-        store = Store(props.reducers, props.environment);
-        history = syncHistoryWithStore(hashHistory, store);
-    }
-    getChildContext() {
-        return {utBus: this.props.utBus};
+        this.store = Store(
+            this.props.reducers,
+            UtFrontMiddleware(this.props.utBus).concat(this.props.middlewares),
+            this.props.environment
+        );
+        this.history = syncHistoryWithStore(hashHistory, this.store);
     }
     render() {
         return (
-            <Provider store={store}>
+            <Provider store={this.store}>
                 <div>
-                    <Router history={history}>
+                    <Router history={this.history}>
                         {this.props.children}
                         <Route path='*' component={PageNotFound}/>
                     </Router>
@@ -37,11 +36,37 @@ export class UtFront extends React.Component {
 
 UtFront.propTypes = {
     children: React.PropTypes.object,
-    utBus: React.PropTypes.object,
+    utBus: React.PropTypes.object.isRequired,
     environment: React.PropTypes.string,
-    reducers: React.PropTypes.object
+    reducers: React.PropTypes.object,
+    middlewares: React.PropTypes.array
 };
 
-UtFront.childContextTypes = {
-    utBus: React.PropTypes.object
+UtFront.defaultProps = {
+    children: {},
+    environment: 'dev',
+    reducers: {},
+    middlewares: []
 };
+
+export class PermissionCheck extends React.Component {
+    render() {
+        if (this.props && this.props.utAction && !check(this.props.utAction)) {
+            return (
+                <div dangerouslySetInnerHTML={{__html: '<!-- not permitted -->'}}></div>
+            );
+        } else {
+            return this.props.children;
+        }
+    }
+};
+
+PermissionCheck.propTypes = {
+    children: React.PropTypes.object,
+    utAction: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.arrayOf(React.PropTypes.string)
+    ])
+};
+
+export const setPermissions = set;

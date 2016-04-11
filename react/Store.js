@@ -15,17 +15,18 @@ const enhancer = compose(
     )
 );
 
-export function Store(reducers, environment) {
+export function Store(reducers, middlewares, environment) {
     var mixedReducers = {
         routing: routerReducer
     };
-    if (reducers && Object.keys(reducers).length) {
+    if (Object.keys(reducers).length) {
         mixedReducers = assign({}, mixedReducers, reducers);
     }
 
+    var store = applyMiddleware.apply(null, middlewares)(createStore);
     if (environment === 'production') {
-        return createStore(combineReducers(mixedReducers), {});
+        return store(combineReducers(mixedReducers), {});
     } else {
-        return createStore(combineReducers(mixedReducers), {}, enhancer);
+        return store(combineReducers(mixedReducers), {}, enhancer);
     }
 };
