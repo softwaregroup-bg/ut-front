@@ -1,3 +1,17 @@
+<a name="5.4.22"></a>
+## [5.4.22](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.21...v5.4.22) (2016-04-11)
+
+
+### Bug Fixes
+
+* fix storybook version ([3884920](https://git.softwaregroup-bg.com/ut5/ut-front/commit/3884920))
+
+### Features
+
+* upgrade dependencies ([fd28507](https://git.softwaregroup-bg.com/ut5/ut-front/commit/fd28507))
+
+
+
 <a name="5.4.21"></a>
 ## [5.4.21](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.20...v5.4.21) (2016-04-11)
 
