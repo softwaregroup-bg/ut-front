@@ -1,3 +1,13 @@
+<a name="5.4.23"></a>
+## [5.4.23](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.22...v5.4.23) (2016-04-11)
+
+
+### Bug Fixes
+
+* fix accidental mistake ([8422ccf](https://git.softwaregroup-bg.com/ut5/ut-front/commit/8422ccf))
+
+
+
 <a name="5.4.22"></a>
 ## [5.4.22](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.21...v5.4.22) (2016-04-11)
 
