@@ -73,7 +73,6 @@ module.exports = function(moduleConfig) {
                         builtins: {
                             'os': 'os-browserify',
                             'fs': require.resolve('ut-bus/browser/fs'),
-                            'ws': require.resolve('ut-bus/browser/ws'),
                             'stream': require.resolve('stream-browserify')
                         },
                         babel: {
