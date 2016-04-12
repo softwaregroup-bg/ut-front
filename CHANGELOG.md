@@ -1,3 +1,9 @@
+<a name="5.4.29"></a>
+## [5.4.29](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.28...v5.4.29) (2016-04-12)
+
+
+
+
 <a name="5.4.28"></a>
 ## [5.4.28](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.27...v5.4.28) (2016-04-12)
 
