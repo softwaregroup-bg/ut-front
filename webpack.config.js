@@ -24,7 +24,7 @@ module.exports = {
     watch: true,
     module: {
         loaders: [
-            {test: /\.jsx?$/, exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/, loader: 'babel', query: {presets: ['react', 'es2015', 'stage-0']}},
+            {test: /\.jsx?$/, exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/, loader: 'babel', query: {presets: ['react', 'es2015-without-strict', 'stage-0']}},
             {test: /\.json$/, loader: 'json'},
             {test: /\.css$/, loader: extractTextPlugin.extract('style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[name]')}
         ]
