@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
-
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var extractTextPlugin = new ExtractTextPlugin('[name].css');
 module.exports = {
     // devtool: 'eval-inline-source-map',
     entry: {
@@ -20,15 +21,19 @@ module.exports = {
         modules: ['node_modules', 'dev'] // https://github.com/webpack/webpack/issues/2119#issuecomment-190285660
     },
     bail: true,
+    watch: true,
     module: {
         loaders: [
-            {test: /\.jsx?$/, exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/, loader: 'babel', query: {presets: ['react', 'es2015-without-strict']}},
-            {test: /\.json$/, loader: 'json'}
+            {test: /\.jsx?$/, exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/, loader: 'babel', query: {presets: ['react', 'es2015', 'stage-0']}},
+            {test: /\.json$/, loader: 'json'},
+            {test: /\.css$/, loader: extractTextPlugin.extract('style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[name]')}
         ]
     },
     plugins: [
         new webpack.SourceMapDevToolPlugin({filename: 'bundle.js.map', moduleFilenameTemplate: '[absolute-resource-path]', fallbackModuleFilenameTemplate: '[absolute-resource-path]'}),
+        new webpack.optimize.DedupePlugin(),
         new webpack.IgnorePlugin(/^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request)$/),
-        new BellOnBundlerErrorPlugin()
+        new BellOnBundlerErrorPlugin(),
+        extractTextPlugin
     ]
 };
