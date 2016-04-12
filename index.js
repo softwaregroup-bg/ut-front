@@ -53,10 +53,7 @@ module.exports = function(moduleConfig) {
                                 resolve({packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/index.js"></script>'});
                             }
                         });
-                        compiler.watch({
-                            aggregateTimeout: 30,
-                            poll: true
-                        }, function(err, stats) {
+                        compiler.watch({aggregateTimeout: 50, poll: true, watch: true}, function(err, stats) {
                             if (err) {
                                 throw err;
                             }
