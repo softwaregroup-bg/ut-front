@@ -1,7 +1,6 @@
 var webpack = require('webpack');
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var extractTextPlugin = new ExtractTextPlugin('[name].css');
+
 module.exports = {
     // devtool: 'eval-inline-source-map',
     entry: {
@@ -26,14 +25,13 @@ module.exports = {
         loaders: [
             {test: /\.jsx?$/, exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/, loader: 'babel', query: {presets: ['react', 'es2015-without-strict', 'stage-0']}},
             {test: /\.json$/, loader: 'json'},
-            {test: /\.css$/, loader: extractTextPlugin.extract('style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[name]')}
+            {test: /\.css$/, loaders: ['style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]']}
         ]
     },
     plugins: [
         new webpack.SourceMapDevToolPlugin({filename: 'bundle.js.map', moduleFilenameTemplate: '[absolute-resource-path]', fallbackModuleFilenameTemplate: '[absolute-resource-path]'}),
         new webpack.optimize.DedupePlugin(),
         new webpack.IgnorePlugin(/^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request)$/),
-        new BellOnBundlerErrorPlugin(),
-        extractTextPlugin
+        new BellOnBundlerErrorPlugin()
     ]
 };
