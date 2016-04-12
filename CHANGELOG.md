@@ -1,3 +1,14 @@
+<a name="5.4.30"></a>
+## [5.4.30](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.29...v5.4.30) (2016-04-12)
+
+
+### Bug Fixes
+
+* **webpack:** correctly compile css ([995d322](https://git.softwaregroup-bg.com/ut5/ut-front/commit/995d322))
+* **webpack:** dont use strict ([cd8f626](https://git.softwaregroup-bg.com/ut5/ut-front/commit/cd8f626))
+
+
+
 <a name="5.4.29"></a>
 ## [5.4.29](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.28...v5.4.29) (2016-04-12)
 
