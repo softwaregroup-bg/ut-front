@@ -1,3 +1,13 @@
+<a name="5.4.32"></a>
+## [5.4.32](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.31...v5.4.32) (2016-04-12)
+
+
+### Bug Fixes
+
+* **css-loader:** some deps removed, fix css loader class generator ([7265a28](https://git.softwaregroup-bg.com/ut5/ut-front/commit/7265a28))
+
+
+
 <a name="5.4.31"></a>
 ## [5.4.31](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.30...v5.4.31) (2016-04-12)
 
