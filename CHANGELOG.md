@@ -1,3 +1,13 @@
+<a name="5.4.27"></a>
+## [5.4.27](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.26...v5.4.27) (2016-04-12)
+
+
+### Bug Fixes
+
+* **version:** webpack bump ([059f072](https://git.softwaregroup-bg.com/ut5/ut-front/commit/059f072))
+
+
+
 <a name="5.4.26"></a>
 ## [5.4.26](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.25...v5.4.26) (2016-04-11)
 
