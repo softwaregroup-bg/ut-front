@@ -25,6 +25,7 @@
     "babel-loader": "6.2.4",
     "babel-preset-es2015-without-strict": "0.0.2",
     "babel-preset-react": "6.5.0",
+    "babel-preset-stage-0": "6.5.0",
     "bell-on-bundler-error-plugin": "1.0.8",
     "inert": "3.2.0",
     "json-loader": "0.5.4",
