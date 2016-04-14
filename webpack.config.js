@@ -4,7 +4,7 @@ var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 module.exports = {
     // devtool: 'eval-inline-source-map',
     entry: {
-        index: './browser/index.js'
+        index: ['./browser/index.js']
     },
     output: {
         filename: '[name].js'
@@ -23,7 +23,7 @@ module.exports = {
     watch: true,
     module: {
         loaders: [
-            {test: /\.jsx?$/, exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/, loader: 'babel', query: {presets: ['react', 'es2015-without-strict', 'stage-0']}},
+            {test: /\.jsx?$/, exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/, loaders: ['babel?{presets: [\'react\', \'es2015-without-strict\', \'stage-0\']}']},
             {test: /\.json$/, loader: 'json'},
             {test: /\.css$/, loaders: ['style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]']}
         ]
