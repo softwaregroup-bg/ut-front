@@ -42,26 +42,35 @@ module.exports = function(moduleConfig) {
         },
         pack: function(config) {
             if (config.packer && config.packer === 'webpack') {
+                var success = {packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/index.js"></script>'};
                 return new Promise(function(resolve, reject) {
                     if (!webpackCfg.output.path) {
                         webpackCfg.output.path = cachePath;
-                        var compiler = webpack(webpackCfg);
-                        compiler.run(function(err, stats) {
-                            if (err) {
-                                reject(err);
-                            } else {
-                                resolve({packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/index.js"></script>'});
-                            }
-                        });
-                        compiler.watch({aggregateTimeout: 50, poll: true, watch: true}, function(err, stats) {
-                            if (err) {
-                                throw err;
-                            }
-                        });
+                        if (this.config.hotReload) {
+                            webpackCfg.output.publicPath = '/s/cache/';
+                            return this.enableHotReload(webpackCfg)
+                                .then(function() {
+                                    resolve(success);
+                                });
+                        } else {
+                            var compiler = webpack(webpackCfg);
+                            compiler.run(function(err, stats) {
+                                if (err) {
+                                    reject(err);
+                                } else {
+                                    resolve(success);
+                                }
+                            });
+                            compiler.watch({aggregateTimeout: 50, poll: true, watch: true}, function(err, stats) {
+                                if (err) {
+                                    throw err;
+                                }
+                            });
+                        }
                     } else {
-                        resolve({packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/index.js"></script>'});
+                        resolve(success);
                     }
-                });
+                }.bind(this));
             }
             var lassoConfig = assign({
                 plugins: [{
