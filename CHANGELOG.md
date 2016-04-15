@@ -1,3 +1,16 @@
+<a name="5.4.34"></a>
+## [5.4.34](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.32...v5.4.34) (2016-04-15)
+
+
+### Features
+
+* add Gitlab-ci and Jenkins scripts ([b189824](https://git.softwaregroup-bg.com/ut5/ut-front/commit/b189824))
+* add hotReload possibility for webpack server ([205238e](https://git.softwaregroup-bg.com/ut5/ut-front/commit/205238e))
+* add support for ES stage-0 features ([760133f](https://git.softwaregroup-bg.com/ut5/ut-front/commit/760133f))
+* update dependencies ([ea0fef8](https://git.softwaregroup-bg.com/ut5/ut-front/commit/ea0fef8))
+
+
+
 <a name="5.4.33"></a>
 ## [5.4.33](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.32...v5.4.33) (2016-04-14)
 
