@@ -9,6 +9,8 @@
     "changelog": "ut-changelog",
     "check": "ut-check",
     "cover": "ut-cover",
+    "gitlab": "ut-gitlab",
+    "jenkins": "ut-jenkins",
     "lint-js": "ut-lint-js .",
     "postpublish": "ut-postpublish",
     "postversion": "ut-postversion",
@@ -50,7 +52,7 @@
     "@kadira/storybook": "^1.11.0",
     "electron-packager": "5.0.1",
     "electron-prebuilt": "0.34.5",
-    "ut-tools": "^5.3.6",
+    "ut-tools": "^5.3.13",
     "redux-devtools": "3.2.0",
     "redux-devtools-dock-monitor": "1.1.1",
     "redux-devtools-log-monitor": "1.0.9"
