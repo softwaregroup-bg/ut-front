@@ -15,7 +15,6 @@ export default (utBus) => {
                     action.responseDetails = e;
                     next(action);
                 });
-            action.params = undefined;
             action.methodRequestState = 'requested';
         }
         return next(action);
