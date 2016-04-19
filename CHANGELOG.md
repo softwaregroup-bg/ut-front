@@ -1,3 +1,13 @@
+<a name="5.4.37"></a>
+## [5.4.37](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.36...v5.4.37) (2016-04-19)
+
+
+### Bug Fixes
+
+* **refactor:** make logic more clear ([683e00f](https://git.softwaregroup-bg.com/ut5/ut-front/commit/683e00f))
+
+
+
 <a name="5.4.36"></a>
 ## [5.4.36](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.35...v5.4.36) (2016-04-19)
 
