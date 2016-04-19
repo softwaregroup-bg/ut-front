@@ -1,3 +1,13 @@
+<a name="5.4.36"></a>
+## [5.4.36](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.35...v5.4.36) (2016-04-19)
+
+
+### Bug Fixes
+
+* move babel/lasso dependencies to devDependencies ([a7575de](https://git.softwaregroup-bg.com/ut5/ut-front/commit/a7575de))
+
+
+
 <a name="5.4.35"></a>
 ## [5.4.35](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.34...v5.4.35) (2016-04-19)
 
