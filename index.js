@@ -20,6 +20,7 @@ module.exports = function(moduleConfig) {
             return this && this.registerRequestHandler && this.registerRequestHandler([{
                 method: 'GET',
                 path: '/s/cache/{p*}',
+                config: {auth: false},
                 handler: {
                     directory: {
                         path: cachePath,
@@ -32,6 +33,7 @@ module.exports = function(moduleConfig) {
             }, {
                 method: 'GET',
                 path: '/pack/{lib?}',
+                config: {auth: false},
                 handler: function(request, reply) {
                     result.pack({packer: request.params.lib})
                         .then(function() {
