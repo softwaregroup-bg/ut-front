@@ -1,3 +1,13 @@
+<a name="5.4.35"></a>
+## [5.4.35](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.34...v5.4.35) (2016-04-19)
+
+
+### Bug Fixes
+
+* preserve params and set dockMonitor's visibility to false by default ([82418c4](https://git.softwaregroup-bg.com/ut5/ut-front/commit/82418c4))
+
+
+
 <a name="5.4.34"></a>
 ## [5.4.34](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.32...v5.4.34) (2016-04-15)
 
