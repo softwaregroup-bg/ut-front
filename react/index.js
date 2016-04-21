@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, hashHistory } from 'react-router';
+import { Router, Route, useRouterHistory } from 'react-router';
+import { createHashHistory } from 'history';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { Route } from 'react-router';
 import PageNotFound from './components/PageNotFound.jsx';
 import DevTools from './DevTools';
 import { Store } from './Store';
@@ -17,7 +17,7 @@ export class UtFront extends React.Component {
             UtFrontMiddleware(this.props.utBus).concat(this.props.middlewares),
             this.props.environment
         );
-        this.history = syncHistoryWithStore(hashHistory, this.store);
+        this.history = syncHistoryWithStore(useRouterHistory(createHashHistory)({ queryKey: false }), this.store);
     }
     render() {
         return (
