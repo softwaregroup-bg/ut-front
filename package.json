@@ -23,18 +23,19 @@
     "version": "ut-version"
   },
   "dependencies": {
+    "history": "2.1.0",
     "inert": "3.2.0",
     "json-loader": "0.5.4",
     "lodash": "3.10.1",
     "os-browserify": "0.2.1",
     "react": "15.0.1",
+    "react-css-modules": "3.7.6",
     "react-redux": "4.4.2",
     "react-router": "2.0.1",
     "react-router-redux": "4.0.2",
     "redux": "3.4.0",
     "redux-thunk": "2.0.1",
-    "stream-browserify": "2.0.1",
-    "react-css-modules": "3.7.6"
+    "stream-browserify": "2.0.1"
   },
   "devDependencies": {
     "@kadira/storybook": "^1.11.0",
