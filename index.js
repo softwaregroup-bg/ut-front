@@ -45,7 +45,7 @@ module.exports = function(moduleConfig) {
         pack: function(config) {
             if (config.packer && config.packer === 'webpack') {
                 var success = {packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/index.js"></script>'};
-                return new Promise(function(resolve, reject) {
+                return new Promise((resolve, reject) => {
                     if (!webpackCfg.output.path) {
                         webpackCfg.output.path = cachePath;
                         if (this.config.hotReload) {
@@ -63,16 +63,17 @@ module.exports = function(moduleConfig) {
                                     resolve(success);
                                 }
                             });
-                            compiler.watch({aggregateTimeout: 50, poll: true, watch: true}, function(err, stats) {
+                            compiler.watch({aggregateTimeout: 50, poll: true, watch: true}, (err, stats) => {
                                 if (err) {
-                                    throw err;
+                                    this.log.error && this.log.error(err);
                                 }
+                                this.log.info && this.log.info(`>>> Webpack Compiled @${(new Date()).toTimeString()}`);
                             });
                         }
                     } else {
                         resolve(success);
                     }
-                }.bind(this));
+                });
             }
             var lassoConfig = assign({
                 plugins: [{
