@@ -1,3 +1,13 @@
+<a name="5.4.38"></a>
+## [5.4.38](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.37...v5.4.38) (2016-04-22)
+
+
+### Features
+
+* remove queryKey ([741aa0e](https://git.softwaregroup-bg.com/ut5/ut-front/commit/741aa0e))
+
+
+
 <a name="5.4.37"></a>
 ## [5.4.37](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.36...v5.4.37) (2016-04-19)
 
