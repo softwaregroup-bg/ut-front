@@ -43,7 +43,7 @@ module.exports = function(moduleConfig) {
         pack: function(config) {
             if (this.config.packer && this.config.packer.name === 'webpack') {
                 return new Promise((resolve, reject) => {
-                    var success = {packer: this.config.packer.name, head: '', body: `<div id="utApp"></div><script src="/s/cache/bundle.js"></script>`};
+                    var success = {packer: this.config.packer.name, head: '', body: '<div id="utApp"></div><script src="/s/cache/bundle.js"></script>'};
                     if (!this.webpack) {
                         this.webpack = require('./webpack.config')({
                             entryPoint: this.config.packer.entryPoint,
