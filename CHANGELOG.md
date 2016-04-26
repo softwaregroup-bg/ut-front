@@ -1,3 +1,13 @@
+<a name="5.4.43"></a>
+## [5.4.43](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.42...v5.4.43) (2016-04-26)
+
+
+### Bug Fixes
+
+* fix configuration for multiple http servers ([5ea3708](https://git.softwaregroup-bg.com/ut5/ut-front/commit/5ea3708))
+
+
+
 <a name="5.4.42"></a>
 ## [5.4.42](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.41...v5.4.42) (2016-04-26)
 
