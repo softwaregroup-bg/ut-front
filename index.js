@@ -17,6 +17,8 @@ module.exports = function(moduleConfig) {
             lassoCache = path.resolve(bus.config.workDir, 'lasso');
         },
         start: function() {
+            webpackCfg.entry[this.config.id] = this.config.packer.entryPoint;
+
             return this && this.registerRequestHandler && this.registerRequestHandler([{
                 method: 'GET',
                 path: '/s/cache/{p*}',
@@ -32,6 +34,11 @@ module.exports = function(moduleConfig) {
 
             }, {
                 method: 'GET',
+                path: '/s/cache/bundle.js',
+                config: {auth: false},
+                handler: { file: path.join(cachePath, `${this.config.id}.js`) }
+            }, {
+                method: 'GET',
                 path: '/pack/{lib?}',
                 config: {auth: false},
                 handler: function(request, reply) {
@@ -44,8 +51,8 @@ module.exports = function(moduleConfig) {
         },
         pack: function(config) {
             if (config.packer && config.packer === 'webpack') {
-                var success = {packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/index.js"></script>'};
                 return new Promise((resolve, reject) => {
+                    var success = {packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/bundle.js"></script>'};
                     if (!webpackCfg.output.path) {
                         webpackCfg.output.path = cachePath;
                         if (this.config.hotReload) {
