@@ -1,3 +1,13 @@
+<a name="5.4.44"></a>
+## [5.4.44](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.43...v5.4.44) (2016-04-26)
+
+
+### Bug Fixes
+
+* **hotReload:** additional configuration allowed ([c50db03](https://git.softwaregroup-bg.com/ut5/ut-front/commit/c50db03))
+
+
+
 <a name="5.4.43"></a>
 ## [5.4.43](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.42...v5.4.43) (2016-04-26)
 
