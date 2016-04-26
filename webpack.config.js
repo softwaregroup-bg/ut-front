@@ -3,9 +3,7 @@ var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 
 module.exports = {
     // devtool: 'eval-inline-source-map',
-    entry: {
-        index: ['./browser/index.js']
-    },
+    entry: {},
     output: {
         filename: '[name].js'
     },

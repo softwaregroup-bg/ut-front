@@ -25,9 +25,9 @@ export class UtFront extends React.Component {
                 <div>
                     <Router history={this.history}>
                         {this.props.children}
-                        <Route path='*' component={PageNotFound}/>
+                        <Route path='*' component={PageNotFound} />
                     </Router>
-                    {this.props.environment !== 'production' ? <DevTools/> : ''}
+                    {this.props.environment !== 'production' ? <DevTools /> : ''}
                 </div>
             </Provider>
         );
