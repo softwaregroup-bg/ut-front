@@ -50,9 +50,9 @@ module.exports = function(moduleConfig) {
             }]);
         },
         pack: function(config) {
-            if (config.packer && config.packer === 'webpack') {
+            if (this.config.packer && this.config.packer.name === 'webpack') {
                 return new Promise((resolve, reject) => {
-                    var success = {packer: config.packer, head: '', body: '<div id="utApp"></div><script src="/s/cache/bundle.js"></script>'};
+                    var success = {packer: this.config.packer.name, head: '', body: '<div id="utApp"></div><script src="/s/cache/bundle.js"></script>'};
                     if (!webpackCfg.output.path) {
                         webpackCfg.output.path = cachePath;
                         if (this.config.hotReload) {
