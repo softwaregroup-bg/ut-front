@@ -2,8 +2,6 @@ const path = require('path');
 const lasso = require('lasso');
 const assign = require('lodash/object/assign');
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.config');
-var webpackCfg = assign({}, webpackConfig);
 
 module.exports = function(moduleConfig) {
     var bus;
@@ -17,26 +15,19 @@ module.exports = function(moduleConfig) {
             lassoCache = path.resolve(bus.config.workDir, 'lasso');
         },
         start: function() {
-            webpackCfg.entry[this.config.id] = [this.config.packer.entryPoint];
-
             return this && this.registerRequestHandler && this.registerRequestHandler([{
                 method: 'GET',
                 path: '/s/cache/{p*}',
                 config: {auth: false},
                 handler: {
                     directory: {
-                        path: cachePath,
+                        path: path.join(cachePath, this.config.id),
                         listing: false,
                         index: true,
                         lookupCompressed: true
                     }
                 }
 
-            }, {
-                method: 'GET',
-                path: '/s/cache/bundle.js',
-                config: {auth: false},
-                handler: { file: path.join(cachePath, `${this.config.id}.js`) }
             }, {
                 method: 'GET',
                 path: '/pack/{lib?}',
@@ -53,16 +44,19 @@ module.exports = function(moduleConfig) {
             if (this.config.packer && this.config.packer.name === 'webpack') {
                 return new Promise((resolve, reject) => {
                     var success = {packer: this.config.packer.name, head: '', body: '<div id="utApp"></div><script src="/s/cache/bundle.js"></script>'};
-                    if (!webpackCfg.output.path) {
-                        webpackCfg.output.path = cachePath;
+                    if (!this.webpack) {
+                        this.webpack = require('./webpack.config')({
+                            entryPoint: this.config.packer.entryPoint,
+                            outputPath: path.join(cachePath, this.config.id)
+                        });
                         if (this.config.hotReload) {
-                            webpackCfg.output.publicPath = '/s/cache/';
-                            return this.enableHotReload(webpackCfg)
+                            this.webpack.output.publicPath = '/s/cache/';
+                            return this.enableHotReload(this.webpack)
                                 .then(function() {
                                     resolve(success);
                                 });
                         } else {
-                            var compiler = webpack(webpackCfg);
+                            var compiler = webpack(this.webpack);
                             compiler.run(function(err, stats) {
                                 if (err) {
                                     reject(err);
