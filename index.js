@@ -56,19 +56,14 @@ module.exports = function(moduleConfig) {
                                     resolve(success);
                                 });
                         } else {
-                            var compiler = webpack(this.webpack);
-                            compiler.run(function(err, stats) {
-                                if (err) {
-                                    reject(err);
-                                } else {
-                                    resolve(success);
-                                }
-                            });
-                            compiler.watch({aggregateTimeout: 50, poll: true, watch: true}, (err, stats) => {
+                            webpack(this.webpack, (err, stats) => {
                                 if (err) {
                                     this.log.error && this.log.error(err);
+                                    reject(err);
+                                } else {
+                                    this.log.info && this.log.info(`>>> Webpack Compiled @${(new Date()).toTimeString()}`);
+                                    resolve(success);
                                 }
-                                this.log.info && this.log.info(`>>> Webpack Compiled @${(new Date()).toTimeString()}`);
                             });
                         }
                     } else {
