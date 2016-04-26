@@ -17,7 +17,7 @@ module.exports = function(moduleConfig) {
             lassoCache = path.resolve(bus.config.workDir, 'lasso');
         },
         start: function() {
-            webpackCfg.entry[this.config.id] = this.config.packer.entryPoint;
+            webpackCfg.entry[this.config.id] = [this.config.packer.entryPoint];
 
             return this && this.registerRequestHandler && this.registerRequestHandler([{
                 method: 'GET',
