@@ -1,3 +1,14 @@
+<a name="5.4.41"></a>
+## [5.4.41](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.40...v5.4.41) (2016-04-26)
+
+
+### Bug Fixes
+
+* **config:** read config from proper place ([62bc647](https://git.softwaregroup-bg.com/ut5/ut-front/commit/62bc647))
+* entrypoints should be an array in order to be able to hook dev-middleware ([ea5850d](https://git.softwaregroup-bg.com/ut5/ut-front/commit/ea5850d))
+
+
+
 <a name="5.4.40"></a>
 ## [5.4.40](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.39...v5.4.40) (2016-04-26)
 
