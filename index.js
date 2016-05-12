@@ -15,7 +15,7 @@ module.exports = function(moduleConfig) {
             lassoCache = path.resolve(bus.config.workDir, 'lasso');
         },
         start: function() {
-            return this && this.registerRequestHandler && this.registerRequestHandler([{
+            var r = this && this.registerRequestHandler && this.registerRequestHandler([{
                 method: 'GET',
                 path: '/s/cache/{p*}',
                 config: {auth: false},
@@ -39,37 +39,30 @@ module.exports = function(moduleConfig) {
                         });
                 }
             }]);
+            if (this.config.packer && this.config.packer.name === 'webpack') {
+                var wb = require('./webpack.config')({
+                    entryPoint: this.config.packer.entryPoint,
+                    outputPath: path.join(cachePath, this.config.id)
+                });
+                wb.assetsConfig = this.config.packer.assets || {};
+                if (this.config.hotReload) {
+                    wb.output.publicPath = '/s/cache/';
+                    process.nextTick(() => (this.enableHotReload(wb)));
+                } else {
+                    webpack(wb, (err, stats) => {
+                        if (err) {
+                            this.log.error && this.log.error(err);
+                        } else {
+                            this.log.info && this.log.info(`>>> Webpack Compiled @${(new Date()).toTimeString()}`);
+                        }
+                    });
+                }
+            }
+            return r;
         },
         pack: function(config) {
             if (this.config.packer && this.config.packer.name === 'webpack') {
-                return new Promise((resolve, reject) => {
-                    var success = {packer: this.config.packer.name, head: '', body: '<div id="utApp"></div><script src="/s/cache/bundle.js"></script>'};
-                    if (!this.webpack) {
-                        this.webpack = require('./webpack.config')({
-                            entryPoint: this.config.packer.entryPoint,
-                            outputPath: path.join(cachePath, this.config.id)
-                        });
-                        if (this.config.hotReload) {
-                            this.webpack.output.publicPath = '/s/cache/';
-                            return this.enableHotReload(this.webpack)
-                                .then(function() {
-                                    resolve(success);
-                                });
-                        } else {
-                            webpack(this.webpack, (err, stats) => {
-                                if (err) {
-                                    this.log.error && this.log.error(err);
-                                    reject(err);
-                                } else {
-                                    this.log.info && this.log.info(`>>> Webpack Compiled @${(new Date()).toTimeString()}`);
-                                    resolve(success);
-                                }
-                            });
-                        }
-                    } else {
-                        resolve(success);
-                    }
-                });
+                return {packer: this.config.packer.name, head: '', body: '<div id="utApp"></div><script src="/s/cache/bundle.js"></script>'};
             }
             var lassoConfig = assign({
                 plugins: [{
