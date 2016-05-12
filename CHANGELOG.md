@@ -1,3 +1,13 @@
+<a name="5.4.45"></a>
+## [5.4.45](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.44...v5.4.45) (2016-05-12)
+
+
+### Features
+
+* add image-webpack-loader ([130a2f0](https://git.softwaregroup-bg.com/ut5/ut-front/commit/130a2f0))
+
+
+
 <a name="5.4.44"></a>
 ## [5.4.44](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.43...v5.4.44) (2016-04-26)
 
