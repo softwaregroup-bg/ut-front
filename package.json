@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "history": "2.1.0",
-    "image-webpack-loader": "^1.8.0",
+    "image-webpack-loader": "1.8.0",
     "inert": "3.2.0",
     "json-loader": "0.5.4",
     "lodash": "3.10.1",
