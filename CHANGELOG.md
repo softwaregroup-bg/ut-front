@@ -1,3 +1,13 @@
+<a name="5.4.47"></a>
+## [5.4.47](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.46...v5.4.47) (2016-05-16)
+
+
+### Bug Fixes
+
+* use result/error ([d8c94db](https://git.softwaregroup-bg.com/ut5/ut-front/commit/d8c94db))
+
+
+
 <a name="5.4.46"></a>
 ## [5.4.46](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.45...v5.4.46) (2016-05-12)
 
