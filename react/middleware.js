@@ -4,12 +4,10 @@ export default (utBus) => {
             utBus
                 .importMethod(action.method)(action.params)
                 .then((r) => {
-                    action.response = 'ok';
-                    action.responseDetails = r;
+                    action.result = r;
                 })
                 .catch((e) => {
-                    action.response = 'error';
-                    action.responseDetails = e;
+                    action.error = e;
                 })
                 .finally(() => {
                     action.methodRequestState = 'finished';
