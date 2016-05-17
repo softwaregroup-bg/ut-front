@@ -23,6 +23,7 @@
     "version": "ut-version"
   },
   "dependencies": {
+    "babel-polyfill": "^6.8.0",
     "history": "2.1.0",
     "image-webpack-loader": "1.8.0",
     "inert": "3.2.0",
