@@ -1,6 +1,6 @@
 {
   "name": "ut-front",
-  "version": "5.4.47",
+  "version": "5.4.48",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
