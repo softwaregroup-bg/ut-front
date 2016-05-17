@@ -44,7 +44,7 @@ after we receive the response action following action will be dispached:
 {
     type: 'LOGIN',
     methodRequestState: 'finished',
-    response: 'result',
+    result: 'result object',
     error: 'error object'
 }
 ```
