@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@kadira/storybook": "^1.11.0",
-    "babel-core": "6.7.6",
+    "babel-core": "6.8.0",
     "babel-loader": "6.2.4",
     "babel-preset-es2015-without-strict": "0.0.2",
     "babel-preset-react": "6.5.0",
@@ -53,12 +53,12 @@
     "lasso-marko": "2.0.7",
     "lasso-minify-js": "1.2.0",
     "ut-tools": "^5.3.13",
-    "redux-devtools": "3.2.0",
+    "redux-devtools": "3.3.1",
     "redux-devtools-dock-monitor": "1.1.1",
-    "redux-devtools-log-monitor": "1.0.9",
+    "redux-devtools-log-monitor": "1.0.11",
     "style-loader": "0.13.1",
     "css-loader": "0.23.1",
-    "webpack": "2.1.0-beta.5"
+    "webpack": "2.1.0-beta.7"
   },
   "publishConfig": {
     "registry": "https://nexus.softwaregroup-bg.com/repository/npm-internal"
