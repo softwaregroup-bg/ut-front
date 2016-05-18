@@ -5,7 +5,10 @@ module.exports = function(params) {
     return {
         devtool: 'eval-inline-source-map',
         entry: {
-            bundle: ['babel-polyfill', params.entryPoint]
+            bundle: [
+                'babel-polyfill', // ie8 >= support
+                params.entryPoint
+            ]
         },
         output: {
             filename: '[name].js',
