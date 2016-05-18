@@ -30,7 +30,7 @@ module.exports = function(params) {
                     exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/,
                     loader: 'babel',
                     query: {
-                        presets: ['react', 'es2015-without-strict', 'stage-0'],
+                        presets: ['es2015', 'stage-0', 'react', 'react-hmre'],
                         cacheDirectory: true
                     }
                 },
