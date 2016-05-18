@@ -1,3 +1,14 @@
+<a name="5.4.49"></a>
+## [5.4.49](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.48...v5.4.49) (2016-05-18)
+
+
+### Bug Fixes
+
+* dependecy update + babel cache ([7d5b51a](https://git.softwaregroup-bg.com/ut5/ut-front/commit/7d5b51a))
+* webpack rebuild performance ([349f122](https://git.softwaregroup-bg.com/ut5/ut-front/commit/349f122))
+
+
+
 <a name="5.4.48"></a>
 ## [5.4.48](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.47...v5.4.48) (2016-05-17)
 
