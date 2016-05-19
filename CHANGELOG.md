@@ -1,3 +1,13 @@
+<a name="5.4.50"></a>
+## [5.4.50](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.49...v5.4.50) (2016-05-19)
+
+
+### Features
+
+* embed fonts ([0e1d01c](https://git.softwaregroup-bg.com/ut5/ut-front/commit/0e1d01c))
+
+
+
 <a name="5.4.49"></a>
 ## [5.4.49](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.48...v5.4.49) (2016-05-18)
 
