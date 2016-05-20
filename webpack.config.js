@@ -60,11 +60,10 @@ module.exports = function(params, hotReload) {
                 moduleFilenameTemplate: '[absolute-resource-path]',
                 fallbackModuleFilenameTemplate: '[absolute-resource-path]'
             }),
-            // new webpack.optimize.DedupePlugin(),
             new webpack.IgnorePlugin(
                 /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request)$/
             ),
             new BellOnBundlerErrorPlugin()
-        ]
+        ].concat(hotReload ? [new webpack.optimize.DedupePlugin()] : [])
     };
 };
