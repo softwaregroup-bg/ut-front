@@ -9,17 +9,18 @@ module.exports = function(moduleConfig) {
     var result = {
         init: function(b) {
             bus = b;
-            cachePath = path.resolve(bus.config.workDir, 'ut-front');
-            lassoCache = path.resolve(bus.config.workDir, 'lasso');
         },
         start: function() {
+            cachePath = path.resolve(this.config.packer.cachePath || path.join(bus.config.workDir, 'ut-front', this.config.id));
+            lassoCache = path.resolve(bus.config.workDir, 'lasso');
+
             var r = this && this.registerRequestHandler && this.registerRequestHandler([{
                 method: 'GET',
                 path: '/s/cache/{p*}',
                 config: {auth: false},
                 handler: {
                     directory: {
-                        path: path.join(cachePath, this.config.id),
+                        path: cachePath,
                         listing: false,
                         index: true,
                         lookupCompressed: true
@@ -41,8 +42,8 @@ module.exports = function(moduleConfig) {
                 const webpack = require('webpack');
                 var wb = require('./webpack.config')({
                     entryPoint: this.config.packer.entryPoint,
-                    outputPath: path.join(cachePath, this.config.id)
-                });
+                    outputPath: cachePath
+                }, this.config.packer.hotReload);
                 wb.assetsConfig = this.config.packer.assets || {};
                 if (this.config.hotReload) {
                     wb.output.publicPath = '/s/cache/';
@@ -60,7 +61,7 @@ module.exports = function(moduleConfig) {
             return r;
         },
         pack: function(config) {
-            if (this.config.packer){
+            if (this.config.packer) {
                 if (this.config.packer.name === 'webpack') {
                     return {packer: this.config.packer.name, head: '', body: '<div id="utApp"></div><script src="/s/cache/bundle.js"></script>'};
                 } else if (this.config.packer.name === 'lasso') {

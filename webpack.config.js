@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 
-module.exports = function(params) {
+module.exports = function(params, hotReload) {
     return {
         devtool: 'eval-inline-source-map',
         entry: {
@@ -32,7 +32,7 @@ module.exports = function(params) {
                 exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/,
                 loader: 'babel',
                 query: {
-                    presets: ['es2015', 'stage-0', 'react', 'react-hmre'],
+                    presets: ['es2015', 'stage-0', 'react'].concat(hotReload ? ['react-hmre'] : []),
                     cacheDirectory: true
                 }
             }, {
@@ -46,7 +46,7 @@ module.exports = function(params) {
                 loader: 'json'
             }, {
                 test: /.*\.(gif|png|jpe?g|svg)$/i,
-                loaders: ['file?hash=sha512&digest=hex&name=[hash].[ext]',
+                loaders: ['url-loader?limit=30720000',
                     'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
                 ]
             }, {
