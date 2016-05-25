@@ -1,7 +1,5 @@
 const path = require('path');
-const lasso = require('lasso');
 const assign = require('lodash/object/assign');
-const webpack = require('webpack');
 
 module.exports = function(moduleConfig) {
     var bus;
@@ -11,17 +9,18 @@ module.exports = function(moduleConfig) {
     var result = {
         init: function(b) {
             bus = b;
-            cachePath = path.resolve(bus.config.workDir, 'ut-front');
-            lassoCache = path.resolve(bus.config.workDir, 'lasso');
         },
         start: function() {
+            cachePath = path.resolve(this.config.packer.cachePath || path.join(bus.config.workDir, 'ut-front', this.config.id));
+            lassoCache = path.resolve(bus.config.workDir, 'lasso');
+
             var r = this && this.registerRequestHandler && this.registerRequestHandler([{
                 method: 'GET',
                 path: '/s/cache/{p*}',
                 config: {auth: false},
                 handler: {
                     directory: {
-                        path: path.join(cachePath, this.config.id),
+                        path: cachePath,
                         listing: false,
                         index: true,
                         lookupCompressed: true
@@ -40,10 +39,11 @@ module.exports = function(moduleConfig) {
                 }
             }]);
             if (this.config.packer && this.config.packer.name === 'webpack') {
+                const webpack = require('webpack');
                 var wb = require('./webpack.config')({
                     entryPoint: this.config.packer.entryPoint,
-                    outputPath: path.join(cachePath, this.config.id)
-                });
+                    outputPath: cachePath
+                }, this.config.packer.hotReload);
                 wb.assetsConfig = this.config.packer.assets || {};
                 if (this.config.hotReload) {
                     wb.output.publicPath = '/s/cache/';
@@ -61,64 +61,68 @@ module.exports = function(moduleConfig) {
             return r;
         },
         pack: function(config) {
-            if (this.config.packer && this.config.packer.name === 'webpack') {
-                return {packer: this.config.packer.name, head: '', body: '<div id="utApp"></div><script src="/s/cache/bundle.js"></script>'};
-            }
-            var lassoConfig = assign({
-                plugins: [{
-                    plugin: 'lasso-require',
-                    config: {
-                        builtins: {
-                            'os': 'os-browserify',
-                            'fs': require.resolve('ut-bus/browser/fs'),
-                            'stream': require.resolve('stream-browserify')
+            if (this.config.packer) {
+                if (this.config.packer.name === 'webpack') {
+                    return {packer: this.config.packer.name, head: '', body: '<div id="utApp"></div><script src="/s/cache/bundle.js"></script>'};
+                } else if (this.config.packer.name === 'lasso') {
+                    const lasso = require('lasso');
+                    var lassoConfig = assign({
+                        plugins: [{
+                            plugin: 'lasso-require',
+                            config: {
+                                builtins: {
+                                    'os': 'os-browserify',
+                                    'fs': require.resolve('ut-bus/browser/fs'),
+                                    'stream': require.resolve('stream-browserify')
+                                },
+                                babel: {
+                                    extensions: ['es6', 'js', 'jsx'],
+                                    presets: ['es2015-without-strict', 'react', 'stage-0'],
+                                    only: /(\\|\/)(impl|ut)\-/,
+                                    // sourceMaps: 'inline',
+                                    babelrc: false
+                                }
+                            }
                         },
-                        babel: {
-                            extensions: ['es6', 'js', 'jsx'],
-                            presets: ['es2015-without-strict', 'react', 'stage-0'],
-                            only: /(\\|\/)(impl|ut)\-/,
-                            // sourceMaps: 'inline',
-                            babelrc: false
-                        }
-                    }
-                },
-                    'lasso-marko'
-                ],
-                urlPrefix: '/s/cache',
-                outputDir: cachePath,
-                cacheDir: lassoCache,
-                fingerprintsEnabled: false,
-                minifyJS: true,
-                resolveCssUrls: true,
-                bundlingEnabled: true
-            }, moduleConfig, config);
+                            'lasso-marko'
+                        ],
+                        urlPrefix: '/s/cache',
+                        outputDir: cachePath,
+                        cacheDir: lassoCache,
+                        fingerprintsEnabled: false,
+                        minifyJS: true,
+                        resolveCssUrls: true,
+                        bundlingEnabled: true
+                    }, moduleConfig, config);
 
-            var main = lassoConfig.main;
-            var from = lassoConfig.from;
-            delete lassoConfig.main;
-            delete lassoConfig.from;
-            delete lassoConfig.packer;
-            lasso.configure(lassoConfig);
+                    var main = lassoConfig.main;
+                    var from = lassoConfig.from;
+                    delete lassoConfig.main;
+                    delete lassoConfig.from;
+                    delete lassoConfig.packer;
+                    lasso.configure(lassoConfig);
 
-            return new Promise(function(resolve, reject) {
-                lasso.lassoPage({
-                    name: 'app',
-                    dependencies: [
-                        'require-run: ' + main
-                    ],
-                    from: from || __dirname
-                }, function(err, results) {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve({
-                            packer: config.packer,
-                            head: results.getHeadHtml(),
-                            body: '<div id="utApp"></div>' + results.getBodyHtml()
+                    return new Promise(function(resolve, reject) {
+                        lasso.lassoPage({
+                            name: 'app',
+                            dependencies: [
+                                'require-run: ' + main
+                            ],
+                            from: from || __dirname
+                        }, function(err, results) {
+                            if (err) {
+                                reject(err);
+                            } else {
+                                resolve({
+                                    packer: config.packer,
+                                    head: results.getHeadHtml(),
+                                    body: '<div id="utApp"></div>' + results.getBodyHtml()
+                                });
+                            }
                         });
-                    }
-                });
-            });
+                    });
+                }
+            }
         }
     };
     return result;
