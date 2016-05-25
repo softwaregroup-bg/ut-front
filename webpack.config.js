@@ -4,6 +4,20 @@ var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 module.exports = function(params, hotReload) {
     return {
         devtool: 'eval-inline-source-map',
+        closures: {
+            translate: function() {
+                return new Promise((resolve, reject) => {
+                    if (this.translateResult) {
+                        resolve(this.translateResult);
+                        return;
+                    }
+                    params.translate().then((result) => {
+                        this.translateResult = result;
+                        resolve(result);
+                    });
+                });
+            }
+        },
         entry: {
             bundle: [
                 'babel-polyfill', // ie8 >= support
@@ -35,7 +49,18 @@ module.exports = function(params, hotReload) {
                     presets: ['es2015', 'stage-0', 'react'].concat(hotReload ? ['react-hmre'] : []),
                     cacheDirectory: true
                 }
-            }, {
+            },
+            {
+                test: /\.translate$/,
+                loader: 'ut-translate-loader'},
+            {
+                test: /\.js$/,
+                loader: 'ut-po-loader',
+                query: {
+                    path: params.outputPath
+                }
+            },
+            {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: 'url-loader?limit=10000&minetype=application/font-woff'
             }, {

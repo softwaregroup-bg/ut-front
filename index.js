@@ -29,6 +29,19 @@ module.exports = function(moduleConfig) {
 
             }, {
                 method: 'GET',
+                path: '/s/cache/i18n/{p*}',
+                config: {auth: false},
+                handler: {
+                    directory: {
+                        path: path.join(cachePath),
+                        listing: false,
+                        index: true,
+                        lookupCompressed: true
+                    }
+                }
+
+            }, {
+                method: 'GET',
                 path: '/pack/{lib?}',
                 config: {auth: false},
                 handler: function(request, reply) {
@@ -42,7 +55,8 @@ module.exports = function(moduleConfig) {
                 const webpack = require('webpack');
                 var wb = require('./webpack.config')({
                     entryPoint: this.config.packer.entryPoint,
-                    outputPath: cachePath
+                    outputPath: cachePath,
+                    translate: bus.importMethod('core.translation.fetch')
                 }, this.config.packer.hotReload);
                 wb.assetsConfig = this.config.packer.assets || {};
                 if (this.config.hotReload) {
