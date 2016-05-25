@@ -38,7 +38,8 @@
     "react-router-redux": "4.0.2",
     "redux": "3.4.0",
     "redux-thunk": "2.0.1",
-    "stream-browserify": "2.0.1"
+    "stream-browserify": "2.0.1",
+    "ut-translate-loader": "^5.3.1"
   },
   "devDependencies": {
     "@kadira/storybook": "^1.11.0",
@@ -59,7 +60,8 @@
     "redux-devtools-dock-monitor": "1.1.1",
     "redux-devtools-log-monitor": "1.0.11",
     "style-loader": "0.13.1",
-    "webpack": "2.1.0-beta.7"
+    "webpack": "2.1.0-beta.7",
+    "ut-po-loader": "^5.3.1"
   },
   "peerDependencies": {
     "electron-packager": "5.0.1",
