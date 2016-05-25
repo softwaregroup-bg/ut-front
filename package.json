@@ -51,8 +51,6 @@
     "babel-preset-stage-0": "6.5.0",
     "bell-on-bundler-error-plugin": "1.0.8",
     "css-loader": "0.23.1",
-    "electron-packager": "5.0.1",
-    "electron-prebuilt": "0.34.5",
     "lasso": "2.1.4",
     "lasso-marko": "2.0.7",
     "lasso-minify-js": "1.2.0",
@@ -62,6 +60,10 @@
     "redux-devtools-log-monitor": "1.0.11",
     "style-loader": "0.13.1",
     "webpack": "2.1.0-beta.7"
+  },
+  "peerDependencies": {
+    "electron-packager": "5.0.1",
+    "electron-prebuilt": "0.34.5"
   },
   "publishConfig": {
     "registry": "https://nexus.softwaregroup-bg.com/repository/npm-internal"
