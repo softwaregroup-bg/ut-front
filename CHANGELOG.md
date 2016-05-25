@@ -1,3 +1,15 @@
+<a name="5.4.51"></a>
+## [5.4.51](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.50...v5.4.51) (2016-05-25)
+
+
+### Bug Fixes
+
+* **deps:** require deps only when needed, no default packer anymore, it was broking uat env ([20f17d5](https://git.softwaregroup-bg.com/ut5/ut-front/commit/20f17d5))
+* **webpack:** add dedup plugin when runing not in hotReload ([ee139ed](https://git.softwaregroup-bg.com/ut5/ut-front/commit/ee139ed))
+* **webpack:** bundling images, ability to save the bundle in configured folder ([bdfe137](https://git.softwaregroup-bg.com/ut5/ut-front/commit/bdfe137))
+
+
+
 <a name="5.4.50"></a>
 ## [5.4.50](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.49...v5.4.50) (2016-05-19)
 
