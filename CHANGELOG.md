@@ -1,3 +1,13 @@
+<a name="5.4.52"></a>
+## [5.4.52](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.51...v5.4.52) (2016-05-25)
+
+
+### Features
+
+* move electron as peer dependency ([6eb6c80](https://git.softwaregroup-bg.com/ut5/ut-front/commit/6eb6c80))
+
+
+
 <a name="5.4.51"></a>
 ## [5.4.51](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.50...v5.4.51) (2016-05-25)
 
