@@ -53,13 +53,13 @@ module.exports = function(moduleConfig) {
             }]);
             if (this.config.packer && this.config.packer.name === 'webpack') {
                 const webpack = require('webpack');
-                var wb = require('./webpack.config')({
+                var wb = require('./webpack/ut-front.config')({
                     entryPoint: this.config.packer.entryPoint,
                     outputPath: cachePath,
                     translate: bus.importMethod('core.translation.fetch')
                 }, this.config.packer.hotReload);
                 wb.assetsConfig = this.config.packer.assets || {};
-                if (this.config.hotReload) {
+                if (this.config.packer.hotReload) {
                     wb.output.publicPath = '/s/cache/';
                     process.nextTick(() => (this.enableHotReload(wb)));
                 } else {
