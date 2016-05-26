@@ -1,3 +1,20 @@
+<a name="5.4.53"></a>
+## [5.4.53](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.52...v5.4.53) (2016-05-26)
+
+
+### Bug Fixes
+
+* **Translation:** add dependency in package.json ([d085ee4](https://git.softwaregroup-bg.com/ut5/ut-front/commit/d085ee4))
+* **webpack:** env separation ([3a74c05](https://git.softwaregroup-bg.com/ut5/ut-front/commit/3a74c05))
+* **webpack:** env separation ([c0ca056](https://git.softwaregroup-bg.com/ut5/ut-front/commit/c0ca056))
+
+
+### Features
+
+* add translation ([3dca04b](https://git.softwaregroup-bg.com/ut5/ut-front/commit/3dca04b))
+
+
+
 <a name="5.4.52"></a>
 ## [5.4.52](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.51...v5.4.52) (2016-05-25)
 
