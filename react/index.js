@@ -19,6 +19,37 @@ export class UtFront extends React.Component {
         );
         this.history = syncHistoryWithStore(useRouterHistory(createHashHistory)({ queryKey: false }), this.store);
     }
+    getChildContext() {
+        return {
+            language: 'en',
+            translate: (text, language) => {
+                if (!this.props.translations[language] || !this.props.translations[language][text]) {
+                    return text;
+                }
+                return this.props.translations[language][text];
+            },
+            money: function(amount, currency, locale) {
+                if (!currency) currency = 'EUR';
+                if (!locale) locale = 'en-UK';
+                return new Intl.NumberFormat(locale, {
+                    style: 'currency',
+                    currency: currency,
+                    minimumFractionDigits: 2
+                }).format(amount);
+            },
+            date: function(date, locale) {
+                if (!locale) locale = 'en-UK';
+                return new Intl.DateTimeFormat(locale, {
+                    day: 'numeric',
+                    month: 'numeric',
+                    year: 'numeric'
+                }).format(new Date(date));
+            },
+            numberThousands: function(num) {
+                return num.toString().replace(/\B(?=(\d{3})+\b)/g, ',');
+            }
+        };
+    }
     render() {
         return (
             <Provider store={this.store}>
@@ -39,7 +70,8 @@ UtFront.propTypes = {
     utBus: React.PropTypes.object.isRequired,
     environment: React.PropTypes.string,
     reducers: React.PropTypes.object,
-    middlewares: React.PropTypes.array
+    middlewares: React.PropTypes.array,
+    translations: React.PropTypes.object
 };
 
 UtFront.defaultProps = {
@@ -47,6 +79,14 @@ UtFront.defaultProps = {
     environment: 'dev',
     reducers: {},
     middlewares: []
+};
+
+UtFront.childContextTypes = {
+    language: React.PropTypes.string,
+    translate: React.PropTypes.func,
+    money: React.PropTypes.func,
+    date: React.PropTypes.func,
+    numberThousands: React.PropTypes.func
 };
 
 export class PermissionCheck extends React.Component {

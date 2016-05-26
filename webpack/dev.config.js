@@ -3,6 +3,20 @@ var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 
 module.exports = (params) => ({
     devtool: 'eval-inline-source-map',
+    closures: {
+        translate: function() {
+            return new Promise((resolve, reject) => {
+                if (this.translateResult) {
+                    resolve(this.translateResult);
+                    return;
+                }
+                params.translate().then((result) => {
+                    this.translateResult = result;
+                    resolve(result);
+                });
+            });
+        }
+    },
     entry: {
         bundle: [
             'webpack-hot-middleware/client',
@@ -33,6 +47,15 @@ module.exports = (params) => ({
             query: {
                 presets: ['es2015', 'stage-0', 'react', 'react-hmre'],
                 cacheDirectory: true
+            }
+        }, {
+            test: /\.translate$/,
+            loader: 'ut-translate-loader'
+        }, {
+            test: /\.js$/,
+            loader: 'ut-po-loader',
+            query: {
+                path: params.outputPath
             }
         }, {
             test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
