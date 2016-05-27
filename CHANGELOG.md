@@ -1,3 +1,13 @@
+<a name="5.4.54"></a>
+## [5.4.54](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.53...v5.4.54) (2016-05-27)
+
+
+### Bug Fixes
+
+* do not break when no packer is configured ([55b9dc2](https://git.softwaregroup-bg.com/ut5/ut-front/commit/55b9dc2))
+
+
+
 <a name="5.4.53"></a>
 ## [5.4.53](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.52...v5.4.53) (2016-05-26)
 
