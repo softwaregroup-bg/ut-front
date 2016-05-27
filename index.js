@@ -11,7 +11,7 @@ module.exports = function(moduleConfig) {
             bus = b;
         },
         start: function() {
-            cachePath = path.resolve(this.config.packer.cachePath || path.join(bus.config.workDir, 'ut-front', this.config.id));
+            cachePath = path.resolve((this.config.packer && this.config.packer.cachePath) || path.join(bus.config.workDir, 'ut-front', this.config.id));
             lassoCache = path.resolve(bus.config.workDir, 'lasso');
 
             var r = this && this.registerRequestHandler && this.registerRequestHandler([{
