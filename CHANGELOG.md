@@ -1,3 +1,13 @@
+<a name="5.4.55"></a>
+## [5.4.55](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.54...v5.4.55) (2016-05-30)
+
+
+### Bug Fixes
+
+* refactor translations to work with new db schema ([09126e0](https://git.softwaregroup-bg.com/ut5/ut-front/commit/09126e0))
+
+
+
 <a name="5.4.54"></a>
 ## [5.4.54](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.53...v5.4.54) (2016-05-27)
 
