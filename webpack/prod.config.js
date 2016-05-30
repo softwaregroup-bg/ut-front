@@ -1,6 +1,13 @@
 var webpack = require('webpack');
 
 module.exports = (params) => ({
+    closures: {
+        translate: function() {
+            return new Promise((resolve, reject) => {
+                resolve(params.translate);
+            });
+        }
+    },
     entry: {
         bundle: [
             'babel-polyfill', // ie8 >= support
@@ -31,6 +38,9 @@ module.exports = (params) => ({
             query: {
                 presets: ['es2015', 'stage-0', 'react']
             }
+        }, {
+            test: /\.translate$/,
+            loader: 'ut-translate-loader'
         }, {
             test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
             loader: 'url-loader?limit=10000&minetype=application/font-woff'

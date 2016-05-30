@@ -21,12 +21,11 @@ export class UtFront extends React.Component {
     }
     getChildContext() {
         return {
-            language: 'en',
             translate: (text, language) => {
-                if (!this.props.translations[language] || !this.props.translations[language][text]) {
+                if (!this.props.translations || !this.props.translations[text]) {
                     return text;
                 }
-                return this.props.translations[language][text];
+                return this.props.translations[text];
             },
             money: function(amount, currency, locale) {
                 if (!currency) currency = 'EUR';
