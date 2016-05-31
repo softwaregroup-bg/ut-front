@@ -56,7 +56,8 @@ module.exports = function(moduleConfig) {
                 var wb = require('./webpack/ut-front.config')({
                     entryPoint: this.config.packer.entryPoint,
                     outputPath: cachePath,
-                    translate: bus.importMethod('core.translation.fetch')
+                    translate: bus.importMethod('core.translation.fetch'),
+                    languages: bus.importMethod('core.language.fetch')
                 }, this.config.packer.hotReload);
                 wb.assetsConfig = this.config.packer.assets || {};
                 if (this.config.packer.hotReload) {
