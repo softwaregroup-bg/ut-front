@@ -4,16 +4,30 @@ var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 module.exports = (params) => ({
     devtool: 'eval-inline-source-map',
     closures: {
-        translate: function() {
+        translate: function(config) {
             return new Promise((resolve, reject) => {
                 if (this.translateResult) {
                     resolve(this.translateResult);
                     return;
                 }
-                params.translate().then((result) => {
-                    this.translateResult = result;
-                    resolve(result);
-                });
+                if (config && config.language) {
+                    params.languages().then((languages) => {
+                        var languageId = languages[0].filter((language) => {
+                            return language.iso2Code === config.language;
+                        });
+                        params.translate({
+                            languageId: languageId[0].languageId
+                        }).then((result) => {
+                            this.translateResult = result;
+                            resolve(result);
+                        });
+                    });
+                } else {
+                    params.translate().then((result) => {
+                        this.translateResult = result;
+                        resolve(result);
+                    });
+                }
             });
         }
     },
