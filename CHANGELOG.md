@@ -1,3 +1,13 @@
+<a name="5.4.56"></a>
+## [5.4.56](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.55...v5.4.56) (2016-05-31)
+
+
+### Features
+
+* load only selected language translations ([e54b6f6](https://git.softwaregroup-bg.com/ut5/ut-front/commit/e54b6f6))
+
+
+
 <a name="5.4.55"></a>
 ## [5.4.55](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.54...v5.4.55) (2016-05-30)
 
