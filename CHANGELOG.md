@@ -1,3 +1,14 @@
+<a name="5.4.58"></a>
+## [5.4.58](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.57...v5.4.58) (2016-06-01)
+
+
+### Bug Fixes
+
+* load translations from database only in dev mode when hotReload is true ([3673a76](https://git.softwaregroup-bg.com/ut5/ut-front/commit/3673a76))
+* not crash when language table is empty ([948cf9f](https://git.softwaregroup-bg.com/ut5/ut-front/commit/948cf9f))
+
+
+
 <a name="5.4.57"></a>
 ## [5.4.57](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.56...v5.4.57) (2016-05-31)
 
