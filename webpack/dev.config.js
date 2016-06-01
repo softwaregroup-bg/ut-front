@@ -15,9 +15,13 @@ module.exports = (params) => ({
                         var languageId = languages[0].filter((language) => {
                             return language.iso2Code === config.language;
                         });
-                        params.translate({
-                            languageId: languageId[0].languageId
-                        }).then((result) => {
+                        var translateParams = {};
+                        if (languageId[0]) {
+                            translateParams = {
+                                languageId: languageId[0].languageId
+                            };
+                        }
+                        params.translate(translateParams).then((result) => {
                             this.translateResult = result;
                             resolve(result);
                         });
