@@ -39,9 +39,6 @@ module.exports = (params) => ({
                 presets: ['es2015', 'stage-0', 'react']
             }
         }, {
-            test: /\.translate$/,
-            loader: 'ut-translate-loader'
-        }, {
             test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
             loader: 'url-loader?limit=10000&minetype=application/font-woff'
         }, {

@@ -67,9 +67,6 @@ module.exports = (params) => ({
                 cacheDirectory: true
             }
         }, {
-            test: /\.translate$/,
-            loader: 'ut-translate-loader'
-        }, {
             test: /\.js$/,
             loader: 'ut-po-loader',
             query: {
