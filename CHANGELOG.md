@@ -1,3 +1,13 @@
+<a name="5.4.59"></a>
+## [5.4.59](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.58...v5.4.59) (2016-06-07)
+
+
+### Features
+
+* **i18n:** load translations from database ([c129abd](https://git.softwaregroup-bg.com/ut5/ut-front/commit/c129abd))
+
+
+
 <a name="5.4.58"></a>
 ## [5.4.58](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.57...v5.4.58) (2016-06-01)
 
