@@ -1,5 +1,5 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
-import assign from 'lodash/object/assign';
+import assign from 'lodash.assign';
 import { routerReducer } from 'react-router-redux';
 import { persistState } from 'redux-devtools';
 import thunk from 'redux-thunk';
