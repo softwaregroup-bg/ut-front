@@ -1,3 +1,15 @@
+<a name="5.4.60"></a>
+## [5.4.60](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.59...v5.4.60) (2016-06-08)
+
+
+### Bug Fixes
+
+* add missing dependency ([cc0c982](https://git.softwaregroup-bg.com/ut5/ut-front/commit/cc0c982))
+* update dependencies ([0e95750](https://git.softwaregroup-bg.com/ut5/ut-front/commit/0e95750))
+* upgrade lodash ([661ad31](https://git.softwaregroup-bg.com/ut5/ut-front/commit/661ad31))
+
+
+
 <a name="5.4.59"></a>
 ## [5.4.59](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.58...v5.4.59) (2016-06-07)
 
