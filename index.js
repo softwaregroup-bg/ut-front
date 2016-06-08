@@ -1,5 +1,5 @@
 const path = require('path');
-const assign = require('lodash/object/assign');
+const assign = require('lodash.assign');
 
 module.exports = function(moduleConfig) {
     var bus;

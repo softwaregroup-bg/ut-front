@@ -25,7 +25,7 @@
   "dependencies": {
     "history": "2.1.0",
     "inert": "3.2.0",
-    "lodash": "3.10.1",
+    "lodash.assign": "4.0.9",
     "os-browserify": "0.2.1",
     "react": "15.1.0",
     "react-css-modules": "3.7.6",
