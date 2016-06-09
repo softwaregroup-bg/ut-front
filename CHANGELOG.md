@@ -1,3 +1,13 @@
+<a name="5.4.61"></a>
+## [5.4.61](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.60...v5.4.61) (2016-06-09)
+
+
+### Bug Fixes
+
+* desiable image-webpack, as it breaks the windows build ([b9bb9f0](https://git.softwaregroup-bg.com/ut5/ut-front/commit/b9bb9f0))
+
+
+
 <a name="5.4.60"></a>
 ## [5.4.60](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.59...v5.4.60) (2016-06-08)
 
