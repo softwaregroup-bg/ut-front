@@ -67,12 +67,6 @@ module.exports = (params) => ({
                 cacheDirectory: true
             }
         }, {
-            test: /\.js$/,
-            loader: 'ut-po-loader',
-            query: {
-                path: params.outputPath
-            }
-        }, {
             test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
             loader: 'url-loader?limit=10000&minetype=application/font-woff'
         }, {
