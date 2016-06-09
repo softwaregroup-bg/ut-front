@@ -1,3 +1,14 @@
+<a name="5.4.62"></a>
+## [5.4.62](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.61...v5.4.62) (2016-06-09)
+
+
+### Bug Fixes
+
+* do not require lasso directly ([a98efb8](https://git.softwaregroup-bg.com/ut5/ut-front/commit/a98efb8))
+* remove electron and lasso, as implementation can opt to use them ([b6ed73d](https://git.softwaregroup-bg.com/ut5/ut-front/commit/b6ed73d))
+
+
+
 <a name="5.4.61"></a>
 ## [5.4.61](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.60...v5.4.61) (2016-06-09)
 
