@@ -80,7 +80,8 @@ module.exports = function(moduleConfig) {
                 if (this.config.packer.name === 'webpack') {
                     return {packer: this.config.packer.name, head: '', body: '<div id="utApp"></div><script src="/s/cache/bundle.js"></script>'};
                 } else if (this.config.packer.name === 'lasso') {
-                    const lasso = require('lasso');
+                    const serverRequire = require;
+                    const lasso = serverRequire('lasso');
                     var lassoConfig = assign({
                         plugins: [{
                             plugin: 'lasso-require',
