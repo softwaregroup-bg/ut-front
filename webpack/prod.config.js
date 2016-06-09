@@ -50,8 +50,9 @@ module.exports = (params) => ({
         }, {
             test: /.*\.(gif|png|jpe?g|svg)$/i,
             loaders: [
-                'url-loader?limit=30720000',
-                'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
+                'url-loader?limit=30720000'
+                // todo find why the below breaks on windows
+                // 'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
             ]
         }, {
             test: /\.css$/,
