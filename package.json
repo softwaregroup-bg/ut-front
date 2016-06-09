@@ -51,16 +51,18 @@
     "babel-preset-stage-0": "6.5.0",
     "bell-on-bundler-error-plugin": "1.0.8",
     "css-loader": "0.23.1",
-    "electron-packager": "5.0.1",
-    "electron-prebuilt": "0.34.5",
     "image-webpack-loader": "1.8.0",
     "json-loader": "0.5.4",
-    "lasso": "2.1.4",
-    "lasso-marko": "2.0.7",
-    "lasso-minify-js": "1.2.0",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
     "webpack": "2.1.0-beta.7"
+  },
+  "implDependencies": {
+    "electron-packager": "5.0.1",
+    "electron-prebuilt": "0.34.5",
+    "lasso": "2.1.4",
+    "lasso-marko": "2.0.7",
+    "lasso-minify-js": "1.2.0"
   },
   "publishConfig": {
     "registry": "https://nexus.softwaregroup-bg.com/repository/npm-internal"
