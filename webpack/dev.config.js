@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 
 module.exports = (params) => ({
-    devtool: 'eval-inline-source-map',
+    devtool: 'cheap-module-eval-source-map',
     closures: {
         translate: function(config) {
             return new Promise((resolve, reject) => {
@@ -36,16 +36,13 @@ module.exports = (params) => ({
         }
     },
     entry: {
-        bundle: [
-            'webpack-hot-middleware/client',
-            params.entryPoint
-        ]
+        bundle: [params.entryPoint]
     },
     output: {
         filename: '[name].js',
         path: params.outputPath
     },
-    name: 'browser',
+    target: 'web',
     node: {
         cluster: 'empty',
         fs: 'empty',
@@ -60,10 +57,14 @@ module.exports = (params) => ({
     module: {
         loaders: [{
             test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: 'react-hot'
+        }, {
+            test: /\.jsx?$/,
             exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/,
             loader: 'babel',
             query: {
-                presets: ['es2015', 'stage-0', 'react', 'react-hmre'],
+                presets: ['es2015', 'stage-0', 'react'],
                 cacheDirectory: true
             }
         }, {
