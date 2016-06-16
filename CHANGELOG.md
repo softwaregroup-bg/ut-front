@@ -1,3 +1,13 @@
+<a name="5.4.69"></a>
+## [5.4.69](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.68...v5.4.69) (2016-06-16)
+
+
+### Bug Fixes
+
+* **PermissionCheck:** function to check permissions improved ([9ed0c17](https://git.softwaregroup-bg.com/ut5/ut-front/commit/9ed0c17))
+
+
+
 <a name="5.4.68"></a>
 ## [5.4.68](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.67...v5.4.68) (2016-06-16)
 
