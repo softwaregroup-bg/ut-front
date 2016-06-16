@@ -1,3 +1,13 @@
+<a name="5.4.66"></a>
+## [5.4.66](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.65...v5.4.66) (2016-06-16)
+
+
+### Bug Fixes
+
+* remove image-webpack until proved stable on windows ([e016366](https://git.softwaregroup-bg.com/ut5/ut-front/commit/e016366))
+
+
+
 <a name="5.4.65"></a>
 ## [5.4.65](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.64...v5.4.65) (2016-06-16)
 
