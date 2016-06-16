@@ -1,3 +1,13 @@
+<a name="5.4.67"></a>
+## [5.4.67](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.66...v5.4.67) (2016-06-16)
+
+
+### Features
+
+* upgrade inert ([3a750d0](https://git.softwaregroup-bg.com/ut5/ut-front/commit/3a750d0))
+
+
+
 <a name="5.4.66"></a>
 ## [5.4.66](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.65...v5.4.66) (2016-06-16)
 
