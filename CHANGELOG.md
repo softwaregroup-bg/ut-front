@@ -1,3 +1,13 @@
+<a name="5.4.68"></a>
+## [5.4.68](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.67...v5.4.68) (2016-06-16)
+
+
+### Bug Fixes
+
+* **PermissionCheck:** changed inner component to inline span element ([dd936d9](https://git.softwaregroup-bg.com/ut5/ut-front/commit/dd936d9))
+
+
+
 <a name="5.4.67"></a>
 ## [5.4.67](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.66...v5.4.67) (2016-06-16)
 
