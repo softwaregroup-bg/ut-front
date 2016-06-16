@@ -57,7 +57,7 @@ export class PermissionCheck extends React.Component {
     render() {
         if (this.props && this.props.utAction && !check(this.props.utAction)) {
             return (
-                <div dangerouslySetInnerHTML={{__html: '<!-- not permitted -->'}}></div>
+                <span dangerouslySetInnerHTML={{__html: '<!-- not permitted -->'}}></span>
             );
         } else {
             return this.props.children;
