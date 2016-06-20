@@ -1,3 +1,13 @@
+<a name="5.4.70"></a>
+## [5.4.70](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.69...v5.4.70) (2016-06-20)
+
+
+### Features
+
+* support prebuilt bundles in dist folder ([2810aec](https://git.softwaregroup-bg.com/ut5/ut-front/commit/2810aec))
+
+
+
 <a name="5.4.69"></a>
 ## [5.4.69](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.68...v5.4.69) (2016-06-16)
 
