@@ -35,11 +35,10 @@ module.exports = (params) => ({
             });
         }
     },
-    entry: {
-        bundle: [params.entryPoint]
-    },
+    entry: params.entry,
     output: {
         filename: '[name].js',
+        publicPath: '/s/cache/',
         path: params.outputPath
     },
     target: 'web',

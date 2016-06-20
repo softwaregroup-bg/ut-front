@@ -8,14 +8,10 @@ module.exports = (params) => ({
             });
         }
     },
-    entry: {
-        bundle: [
-            'babel-polyfill', // ie8 >= support
-            params.entryPoint
-        ]
-    },
+    entry: params.entry,
     output: {
         filename: '[name].js',
+        publicPath: '/s/cache/',
         path: params.outputPath
     },
     name: 'browser',
