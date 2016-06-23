@@ -1,3 +1,13 @@
+<a name="5.4.71"></a>
+## [5.4.71](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.70...v5.4.71) (2016-06-23)
+
+
+### Bug Fixes
+
+* permission login ([93775de](https://git.softwaregroup-bg.com/ut5/ut-front/commit/93775de))
+
+
+
 <a name="5.4.70"></a>
 ## [5.4.70](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.69...v5.4.70) (2016-06-20)
 
