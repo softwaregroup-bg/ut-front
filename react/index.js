@@ -53,21 +53,23 @@ UtFront.childContextTypes = {
     language: React.PropTypes.string
 };
 
-export class PermissionCheck extends React.Component {
-    render() {
-        if (this.props && this.props.utAction && !check(this.props.utAction)) {
-            return (
-                <span dangerouslySetInnerHTML={{__html: '<!-- not permitted -->'}}></span>
-            );
-        } else {
-            return this.props.children;
-        }
+export function PermissionCheck({children, utAction, deniedUtAction}) {
+    if ((utAction && !check(utAction)) || (deniedUtAction && check(deniedUtAction))) {
+        return (
+            <span dangerouslySetInnerHTML={{__html: '<!-- not permitted -->'}}></span>
+        );
+    } else {
+        return children;
     }
 };
 
 PermissionCheck.propTypes = {
     children: React.PropTypes.object,
     utAction: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.arrayOf(React.PropTypes.string)
+    ]),
+    deniedUtAction: React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.arrayOf(React.PropTypes.string)
     ])
