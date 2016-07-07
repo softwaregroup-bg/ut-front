@@ -25,7 +25,6 @@
   "dependencies": {
     "history": "2.1.0",
     "inert": "4.0.0",
-    "lodash.assign": "4.0.9",
     "os-browserify": "0.2.1",
     "react": "15.1.0",
     "react-css-modules": "3.7.6",
@@ -37,10 +36,7 @@
     "stream-browserify": "2.0.1"
   },
   "devDependencies": {
-    "ut-tools": "^5.3.13",
-    "redux-devtools": "3.3.1",
-    "redux-devtools-dock-monitor": "1.1.1",
-    "redux-devtools-log-monitor": "1.0.11"
+    "ut-tools": "^5.3.13"
   },
   "peerDependencies": {
     "babel-loader": "6.2.4",

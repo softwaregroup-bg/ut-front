@@ -58,3 +58,7 @@ after we receive the response action following action will be dispached:
 ```javascript
 <PermissionCheck utAction='abc'><button>Button</button></PermissionCheck>
 ```
+
+## Using Redux DevTools
+Redux DevTools component was removed and replaced by browser extension.
+More info here: https://github.com/zalmoxisus/redux-devtools-extension

@@ -4,7 +4,6 @@ import { Router, Route, useRouterHistory } from 'react-router';
 import { createHashHistory } from 'history';
 import { syncHistoryWithStore } from 'react-router-redux';
 import PageNotFound from './components/PageNotFound.jsx';
-import DevTools from './DevTools';
 import { Store } from './Store';
 import UtFrontMiddleware from './middleware';
 import { set, check } from './permissions';
@@ -27,7 +26,6 @@ export class UtFront extends React.Component {
                         {this.props.children}
                         <Route path='*' component={PageNotFound} />
                     </Router>
-                    {this.props.environment !== 'production' ? <DevTools /> : ''}
                 </div>
             </Provider>
         );
