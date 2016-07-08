@@ -10,6 +10,12 @@ module.exports = (params) => ({
                     resolve(this.translateResult);
                     return;
                 }
+                if (this.loading) {
+                    return this.translate(config).then((result) => {
+                        resolve(result);
+                    });
+                }
+                this.loading = true;
                 if (config && config.language) {
                     params.languages().then((languages) => {
                         var languageId = languages[0].filter((language) => {
