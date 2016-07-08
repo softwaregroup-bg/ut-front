@@ -1,3 +1,15 @@
+<a name="5.4.73"></a>
+## [5.4.73](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.72...v5.4.73) (2016-07-08)
+
+
+### Features
+
+* **redux-devtools-extension:** removed redux devtools component and added support for the extension, this improves dev performance and allows debugging in production ([be6c1bc](https://git.softwaregroup-bg.com/ut5/ut-front/commit/be6c1bc))
+* call translate procedure once ([e5ae245](https://git.softwaregroup-bg.com/ut5/ut-front/commit/e5ae245))
+* call translate procedure once ([c0538ae](https://git.softwaregroup-bg.com/ut5/ut-front/commit/c0538ae))
+
+
+
 <a name="5.4.72"></a>
 ## [5.4.72](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.71...v5.4.72) (2016-06-29)
 
