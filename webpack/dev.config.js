@@ -11,9 +11,7 @@ module.exports = (params) => ({
                     return;
                 }
                 if (this.loading) {
-                    return this.translate(config).then((result) => {
-                        resolve(result);
-                    });
+                    return this.translate(config);
                 }
                 this.loading = true;
                 if (config && config.language) {
