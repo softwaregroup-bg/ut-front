@@ -1,3 +1,13 @@
+<a name="5.5.1"></a>
+## [5.5.1](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.73...v5.5.1) (2016-07-11)
+
+
+### Features
+
+* upgrade dependencies ([89e20cf](https://git.softwaregroup-bg.com/ut5/ut-front/commit/89e20cf))
+
+
+
 <a name="5.4.73"></a>
 ## [5.4.73](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.72...v5.4.73) (2016-07-08)
 
