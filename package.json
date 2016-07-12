@@ -23,7 +23,7 @@
     "version": "ut-version"
   },
   "dependencies": {
-    "history": "3.0.0",
+    "history": "2.1.2",
     "inert": "4.0.1",
     "lodash.assign": "4.0.9",
     "os-browserify": "0.2.1",
