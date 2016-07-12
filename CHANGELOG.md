@@ -1,3 +1,14 @@
+<a name="5.5.2"></a>
+## [5.5.2](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.5.1...v5.5.2) (2016-07-12)
+
+
+### Bug Fixes
+
+* downgrade history ([336b744](https://git.softwaregroup-bg.com/ut5/ut-front/commit/336b744))
+* fix path ([48989ec](https://git.softwaregroup-bg.com/ut5/ut-front/commit/48989ec))
+
+
+
 <a name="5.5.1"></a>
 ## [5.5.1](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.4.73...v5.5.1) (2016-07-11)
 
