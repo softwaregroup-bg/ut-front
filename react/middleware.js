@@ -1,3 +1,5 @@
+import thunk from 'redux-thunk';
+
 export default (utBus) => {
     const rpc = (store) => (next) => (action) => {
         if (action.method) {
@@ -28,5 +30,5 @@ export default (utBus) => {
         }
         return next(action);
     };
-    return [rpc, utBuslogger];
+    return [thunk, rpc, utBuslogger];
 };

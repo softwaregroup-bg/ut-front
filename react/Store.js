@@ -1,9 +1,7 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import thunk from 'redux-thunk';
 
 const enhancer = compose(
-    applyMiddleware(thunk),
     typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
 );
 
