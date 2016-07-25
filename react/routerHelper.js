@@ -19,11 +19,11 @@ export const getRoute = (name) => {
     return routes[name].path;
 };
 
-export const traceParrent = (list, parrent) => {
+export const traceParent = (list, parrent) => {
     if (parrent) {
         list.push(routes[parrent].path);
         if (routes[parrent].parrent) {
-            return traceParrent(list, routes[parrent].parrent);
+            return traceParent(list, routes[parrent].parrent);
         }
     }
     return list;
@@ -58,7 +58,7 @@ export const getLink = (name, params) => {
     if (!routes[name]) {
         return;
     }
-    var route = traceParrent([routes[name].path], routes[name].parrent)
+    var route = traceParent([routes[name].path], routes[name].parrent)
         .reverse()
         .map((el) => {
             if (el.startsWith(':')) {
