@@ -2,7 +2,16 @@ import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 const enhancer = compose(
-    typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
+    window && window.devToolsExtension
+        ? window.devToolsExtension({
+            actionsFilter: (action) => {
+                if (typeof action.type === 'symbol') {
+                    action.type = action.type.toString();
+                }
+                return action;
+            }
+        })
+        : f => f
 );
 
 export function Store(reducers, middlewares, environment) {
