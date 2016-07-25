@@ -4,9 +4,9 @@ var routes = {};
 export const registerRoute = (name) => {
     routes[name] = {
         r: {
-            up: () => { return routes[routes[name].parrent].r; },
+            up: () => { return routes[routes[name].parent].r; },
             path: (path) => { routes[name].path = path; return routes[name].r; },
-            parrent: (parrent) => { routes[name].parrent = parrent; return routes[name].r; }
+            parent: (parent) => { routes[name].parent = parent; return routes[name].r; }
         }
     };
     return routes[name].r;
@@ -19,11 +19,11 @@ export const getRoute = (name) => {
     return routes[name].path;
 };
 
-export const traceParent = (list, parrent) => {
-    if (parrent) {
-        list.push(routes[parrent].path);
-        if (routes[parrent].parrent) {
-            return traceParent(list, routes[parrent].parrent);
+export const traceParent = (list, parent) => {
+    if (parent) {
+        list.push(routes[parent].path);
+        if (routes[parent].parent) {
+            return traceParent(list, routes[parent].parent);
         }
     }
     return list;
@@ -32,8 +32,8 @@ export const traceParent = (list, parrent) => {
 export function getBreadcrumbs(name, result) {
     let currentBreadcrumb = routes[name];
     if (currentBreadcrumb) {
-        if (currentBreadcrumb.parrent) {
-            getBreadcrumbs(currentBreadcrumb.parrent, result);
+        if (currentBreadcrumb.parent) {
+            getBreadcrumbs(currentBreadcrumb.parent, result);
         }
 
         let currentPath = currentBreadcrumb.path;
@@ -58,7 +58,7 @@ export const getLink = (name, params) => {
     if (!routes[name]) {
         return;
     }
-    var route = traceParent([routes[name].path], routes[name].parrent)
+    var route = traceParent([routes[name].path], routes[name].parent)
         .reverse()
         .map((el) => {
             if (el.startsWith(':')) {
