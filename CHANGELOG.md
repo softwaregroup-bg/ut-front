@@ -1,3 +1,19 @@
+<a name="5.5.4"></a>
+## [5.5.4](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.5.3...v5.5.4) (2016-07-25)
+
+
+
+<a name="5.5.3"></a>
+## [5.5.3](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.5.2...v5.5.3) (2016-07-25)
+
+
+### Bug Fixes
+
+* **redux-thunk:** trigger requests via ut-bus ([0f3efa4](https://git.softwaregroup-bg.com/ut5/ut-front/commit/0f3efa4))
+* set actionsFilter in order to dynamically transform action type from Symbol to String so that it could be properly shown in react devtools extension interface ([0c35362](https://git.softwaregroup-bg.com/ut5/ut-front/commit/0c35362))
+
+
+
 <a name="5.5.2"></a>
 ## [5.5.2](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.5.1...v5.5.2) (2016-07-12)
 
