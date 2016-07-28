@@ -1,3 +1,13 @@
+<a name="5.6.0"></a>
+# [5.6.0](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.5.5...v5.6.0) (2016-07-28)
+
+
+### Features
+
+* ability to match over a whole url (#4) ([a9090c9](https://git.softwaregroup-bg.com/ut5/ut-front/commit/a9090c9))
+
+
+
 <a name="5.5.5"></a>
 ## [5.5.5](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.5.4...v5.5.5) (2016-07-25)
 
