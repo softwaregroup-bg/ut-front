@@ -22,7 +22,7 @@ export const getRoute = (name) => {
 export const traceParent = (list, parent) => {
     if (parent) {
         if (!routes[parent] || !routes[parent].path) {
-            throw new Error(`Missing or inncorect "parent": ${parent}`);
+            throw new Error(`Missing or incorrect "parent": ${parent}`);
         }
         list.push(routes[parent].path);
         if (routes[parent].parent) {
