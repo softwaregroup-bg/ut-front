@@ -21,12 +21,47 @@ export const getRoute = (name) => {
 
 export const traceParent = (list, parent) => {
     if (parent) {
+        if (!routes[parent] || !routes[parent].path) {
+            throw new Error(`Missing or incorrect "parent": ${parent}`);
+        }
         list.push(routes[parent].path);
         if (routes[parent].parent) {
             return traceParent(list, routes[parent].parent);
         }
     }
     return list;
+};
+
+export const getLink = (name, params) => {
+    if (!routes[name]) {
+        return;
+    }
+    var route = traceParent([routes[name].path], routes[name].parent)
+        .reverse()
+        .map((el) => {
+            if (el.startsWith(':')) {
+                let k = el.substr(1);
+                let v = params[k] || '';
+                delete params[k];
+                return v;
+            }
+            return el;
+        });
+    let path = route.join('/');
+    if (params) {
+        Object.keys(params)
+            .sort((a, b) => {
+                return a.length < b.length;
+            })
+            .reduce((prev, key) => {
+                let part = prev.split(`:${key}`);
+                if (part.length === 2) {
+                    path = part.join(params[key]);
+                }
+                return path;
+            }, path);
+    }
+    return path;
 };
 
 export function getBreadcrumbs(name, result) {
@@ -52,19 +87,4 @@ export function getBreadcrumbsString(name) {
     getBreadcrumbs(name, breadcrumbs);
     let breadcrumbsString = map(breadcrumbs, 'name').join('/');
     return breadcrumbsString;
-}
-
-export const getLink = (name, params) => {
-    if (!routes[name]) {
-        return;
-    }
-    var route = traceParent([routes[name].path], routes[name].parent)
-        .reverse()
-        .map((el) => {
-            if (el.startsWith(':')) {
-                return params[el.substr(1)] || '';
-            }
-            return el;
-        });
-    return route.join('/');
 };
