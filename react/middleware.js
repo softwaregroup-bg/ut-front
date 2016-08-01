@@ -4,27 +4,17 @@ export default (utBus) => {
     const rpc = (store) => (next) => (action) => {
         if (action.method) {
             action.methodRequestState = 'requested';
-
-            // This is to prevent circular references (and potential memory leak): action -> promise -> action
-            // "As of 2012, all modern browsers ship a mark-and-sweep garbage-collector"
-            // However, we can't rely on the user that he doesn't use browser with reference-counting garbage-collector
-            const resultAction = {
-                result: undefined,
-                error: undefined,
-                ...action
-            };
-
-            action.promise = utBus
-                .importMethod(action.method)(action.params)
+            next(action);
+            return utBus.importMethod(action.method)(action.params)
                 .then(result => {
-                    resultAction.result = result;
+                    action.result = result;
                 })
                 .catch(error => {
-                    resultAction.error = error;
+                    action.error = error;
                 })
                 .then(() => {
-                    resultAction.methodRequestState = 'finished';
-                    return next(resultAction);
+                    action.methodRequestState = 'finished';
+                    return next(action);
                 });
         }
         return next(action);

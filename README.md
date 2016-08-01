@@ -28,17 +28,17 @@
 }
 ```
 
-this will be cough by method middleware, it will send the request and will pass following object to redux store:
+this will be cought by method middleware, it will send the request, return promise and will pass following object to redux store:
 
 ```javascript
 {
     type: 'LOGIN',
-    methodRequestState: 'requested',
+    methodRequestState: 'requested'
     // ..... if there is some extra data it will reside here, but field data and method will be removed or altered!!!
 }
 ```
 
-after we receive the response action following action will be dispached:
+after we receive the response action following objject will be resolved in promise and dispached to redux store:
 
 ```javascript
 {
@@ -48,6 +48,8 @@ after we receive the response action following action will be dispached:
     error: 'error object'
 }
 ```
+
+The return value of the dispatcher will be promise
 
   - `log` middleware(work in progress, still alpha): will watch for `{type: 'UT_LOG', text: '<text to log>'}` and dispatched message will not reach redux storage
 
