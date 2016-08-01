@@ -38,7 +38,7 @@ this will be cought by method middleware, it will send the request, return promi
 }
 ```
 
-after we receive the response action following objject will be resolved in promise and dispached to redux store:
+after we receive the response action following object will be resolved in promise and dispached to redux store:
 
 ```javascript
 {
@@ -48,8 +48,6 @@ after we receive the response action following objject will be resolved in promi
     error: 'error object'
 }
 ```
-
-The return value of the dispatcher will be promise
 
   - `log` middleware(work in progress, still alpha): will watch for `{type: 'UT_LOG', text: '<text to log>'}` and dispatched message will not reach redux storage
 
