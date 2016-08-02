@@ -1,3 +1,13 @@
+<a name="5.7.0"></a>
+# [5.7.0](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.6.0...v5.7.0) (2016-08-02)
+
+
+### Features
+
+* **action-promise:** added promise to the action (#5) ([445becf](https://git.softwaregroup-bg.com/ut5/ut-front/commit/445becf))
+
+
+
 <a name="5.6.0"></a>
 # [5.6.0](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.5.5...v5.6.0) (2016-07-28)
 
