@@ -1,3 +1,13 @@
+<a name="5.7.1"></a>
+## [5.7.1](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.7.0...v5.7.1) (2016-08-04)
+
+
+### Bug Fixes
+
+* **devtools-action-filter:** return new action object instead of mutating the original ([f50c685](https://git.softwaregroup-bg.com/ut5/ut-front/commit/f50c685))
+
+
+
 <a name="5.7.0"></a>
 # [5.7.0](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.6.0...v5.7.0) (2016-08-02)
 
