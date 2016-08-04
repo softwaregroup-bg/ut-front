@@ -6,7 +6,9 @@ const enhancer = compose(
         ? window.devToolsExtension({
             actionsFilter: (action) => {
                 if (typeof action.type === 'symbol') {
-                    action.type = action.type.toString();
+                    const actionCopy = {...action}; // Don't change the original action
+                    actionCopy.type = action.type.toString(); // DevTools doesn't work with Symbols
+                    return actionCopy;
                 }
                 return action;
             }
