@@ -13,6 +13,7 @@ export class UtFront extends React.Component {
         super(props);
         this.store = Store(
             this.props.reducers,
+            this.props.resetAction,
             UtFrontMiddleware(this.props.utBus).concat(this.props.middlewares),
             this.props.environment
         );
@@ -37,6 +38,7 @@ UtFront.propTypes = {
     utBus: React.PropTypes.object.isRequired,
     environment: React.PropTypes.string,
     reducers: React.PropTypes.object,
+    resetAction: React.PropTypes.any,
     middlewares: React.PropTypes.array
 };
 

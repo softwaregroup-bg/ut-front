@@ -1,6 +1,18 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
+const resetStore = (reducer, resetAction) => {
+    return (state, action) => {
+        if (action.type) {
+            switch (action.type) {
+                case resetAction:
+                    return reducer({}, action);
+            }
+        }
+        return reducer(state, action);
+    };
+};
+
 const enhancer = compose(
     window && window.devToolsExtension
         ? window.devToolsExtension({
@@ -16,11 +28,11 @@ const enhancer = compose(
         : f => f
 );
 
-export function Store(reducers, middlewares, environment) {
-    const mixedReducers = {
+export function Store(reducers, resetAction, middlewares, environment) {
+    const mixedReducers = combineReducers({
         routing: routerReducer,
         ...reducers
-    };
+    });
     const store = applyMiddleware(...middlewares)(createStore);
-    return store(combineReducers(mixedReducers), {}, enhancer);
+    return store(resetStore(mixedReducers, resetAction), {}, enhancer);
 };
