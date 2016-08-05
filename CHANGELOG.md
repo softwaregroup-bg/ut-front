@@ -1,3 +1,13 @@
+<a name="5.8.0"></a>
+# [5.8.0](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.7.2...v5.8.0) (2016-08-05)
+
+
+### Features
+
+* reset global state ([85e3553](https://git.softwaregroup-bg.com/ut5/ut-front/commit/85e3553))
+
+
+
 <a name="5.7.2"></a>
 ## [5.7.2](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.7.1...v5.7.2) (2016-08-05)
 
