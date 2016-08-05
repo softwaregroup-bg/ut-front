@@ -32,7 +32,8 @@ export const traceParent = (list, parent) => {
     return list;
 };
 
-export const getLink = (name, params) => {
+export const getLink = (name, paramsOrigin) => {
+    let params = Object.assign({}, paramsOrigin);
     if (!routes[name]) {
         return;
     }
