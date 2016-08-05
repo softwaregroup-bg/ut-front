@@ -1,3 +1,13 @@
+<a name="5.7.2"></a>
+## [5.7.2](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.7.1...v5.7.2) (2016-08-05)
+
+
+### Bug Fixes
+
+* pass by reference underlook ([7d2d8a4](https://git.softwaregroup-bg.com/ut5/ut-front/commit/7d2d8a4))
+
+
+
 <a name="5.7.1"></a>
 ## [5.7.1](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.7.0...v5.7.1) (2016-08-04)
 
