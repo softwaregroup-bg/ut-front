@@ -56,7 +56,6 @@ module.exports = (params) => ({
     resolve: {
         modules: ['node_modules', 'dev'] // https://github.com/webpack/webpack/issues/2119#issuecomment-190285660
     },
-    bail: true,
     module: {
         loaders: [{
             test: /\.jsx?$/,
