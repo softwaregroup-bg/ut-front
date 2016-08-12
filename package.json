@@ -38,7 +38,7 @@
     "lodash.map": "4.4.0"
   },
   "devDependencies": {
-    "ut-tools": "^5.3.53"
+    "ut-tools": "^5.6.0"
   },
   "peerDependencies": {
     "babel-loader": "6.2.4",
@@ -61,13 +61,10 @@
     "lasso-marko": "2.0.7",
     "lasso-minify-js": "1.2.0"
   },
-  "publishConfig": {
-    "registry": "https://nexus.softwaregroup-bg.com/repository/npm-internal"
-  },
   "repository": {
     "type": "git",
-    "url": "git@git.softwaregroup-bg.com:ut5/ut-front.git"
+    "url": "git@github.com:softwaregroup-bg/ut-front.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "Apache-2.0"
 }
