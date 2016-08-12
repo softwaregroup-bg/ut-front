@@ -1,3 +1,13 @@
+<a name="5.8.2"></a>
+## [5.8.2](https://github.com/softwaregroup-bg/ut-front/compare/v5.8.1...v5.8.2) (2016-08-12)
+
+
+### Bug Fixes
+
+* publish to npm ([d4691f4](https://github.com/softwaregroup-bg/ut-front/commit/d4691f4))
+
+
+
 <a name="5.8.1"></a>
 ## [5.8.1](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.8.0...v5.8.1) (2016-08-12)
 
