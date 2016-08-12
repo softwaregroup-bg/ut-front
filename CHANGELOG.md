@@ -1,3 +1,13 @@
+<a name="5.8.1"></a>
+## [5.8.1](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.8.0...v5.8.1) (2016-08-12)
+
+
+### Bug Fixes
+
+* remove bail for dev env ([49b2108](https://git.softwaregroup-bg.com/ut5/ut-front/commit/49b2108))
+
+
+
 <a name="5.8.0"></a>
 # [5.8.0](https://git.softwaregroup-bg.com/ut5/ut-front/compare/v5.7.2...v5.8.0) (2016-08-05)
 
