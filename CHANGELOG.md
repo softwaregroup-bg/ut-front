@@ -1,3 +1,13 @@
+<a name="5.8.3"></a>
+## [5.8.3](https://github.com/softwaregroup-bg/ut-front/compare/v5.8.2...v5.8.3) (2016-08-31)
+
+
+### Bug Fixes
+
+* empty compiled file with 1 undefined in it when debug clause present ([1aee3bd](https://github.com/softwaregroup-bg/ut-front/commit/1aee3bd))
+
+
+
 <a name="5.8.2"></a>
 ## [5.8.2](https://github.com/softwaregroup-bg/ut-front/compare/v5.8.1...v5.8.2) (2016-08-12)
 
