@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 
 module.exports = (params) => ({
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'eval-source-map',
     closures: {
         translate: function(config) {
             return new Promise((resolve, reject) => {
