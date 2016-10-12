@@ -55,6 +55,7 @@ module.exports = function(moduleConfig) {
             if (this.config.packer && this.config.packer.name === 'webpack') {
                 const webpack = require('webpack');
                 var wb = require('./webpack/ut-front.config')({
+                    sharedVars: {'process.env': {NODE_ENV: `'${this.bus.config.params.env}'`}},
                     entry: this.config.packer.entry,
                     outputPath: cachePath,
                     translate: this.config.packer.hotReload ? bus.importMethod('core.translation.fetch') : this.config.packer.translate,
