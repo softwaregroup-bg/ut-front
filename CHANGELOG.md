@@ -1,3 +1,13 @@
+<a name="5.9.0"></a>
+# [5.9.0](https://github.com/softwaregroup-bg/ut-front/compare/v5.8.4...v5.9.0) (2016-10-13)
+
+
+### Features
+
+* pass node env through webpack ([#11](https://github.com/softwaregroup-bg/ut-front/issues/11)) ([a202f84](https://github.com/softwaregroup-bg/ut-front/commit/a202f84))
+
+
+
 <a name="5.8.4"></a>
 ## [5.8.4](https://github.com/softwaregroup-bg/ut-front/compare/v5.8.3...v5.8.4) (2016-09-20)
 
