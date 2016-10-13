@@ -87,14 +87,10 @@ module.exports = (params) => ({
         }]
     },
     plugins: [
-        // new webpack.SourceMapDevToolPlugin({
-        //     filename: 'bundle.js.map',
-        //     moduleFilenameTemplate: '[absolute-resource-path]',
-        //     fallbackModuleFilenameTemplate: '[absolute-resource-path]'
-        // }),
         new webpack.IgnorePlugin(
             /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request)$/
         ),
-        new BellOnBundlerErrorPlugin()
+        new BellOnBundlerErrorPlugin(),
+        new webpack.DefinePlugin(params.sharedVars)
     ]
 });
