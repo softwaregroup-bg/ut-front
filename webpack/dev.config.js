@@ -63,7 +63,7 @@ module.exports = (params) => ({
             loader: 'react-hot'
         }, {
             test: /\.jsx?$/,
-            exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/,
+            exclude: /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)\-).)/,
             loader: 'babel',
             query: {
                 presets: ['es2015', 'stage-0', 'react'],
