@@ -1,3 +1,15 @@
+<a name="5.9.1"></a>
+## [5.9.1](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.0...v5.9.1) (2016-10-18)
+
+
+### Bug Fixes
+
+* add possibility to provide custom jsx exclude regexp ([3db47a1](https://github.com/softwaregroup-bg/ut-front/commit/3db47a1))
+* change babel loader exclude regex to work for leveloneproject implementations ([f80e78b](https://github.com/softwaregroup-bg/ut-front/commit/f80e78b))
+* fix linting ([73fcb71](https://github.com/softwaregroup-bg/ut-front/commit/73fcb71))
+
+
+
 <a name="5.9.0"></a>
 # [5.9.0](https://github.com/softwaregroup-bg/ut-front/compare/v5.8.4...v5.9.0) (2016-10-13)
 
