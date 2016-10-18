@@ -29,7 +29,7 @@ module.exports = (params) => ({
     module: {
         loaders: [{
             test: /\.jsx?$/,
-            exclude: /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)\-).)/,
+            exclude: params.jsxExclude,
             loader: 'babel',
             query: {
                 presets: ['es2015', 'stage-0', 'react']
