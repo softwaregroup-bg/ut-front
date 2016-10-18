@@ -8,9 +8,11 @@ export default (utBus) => {
             return utBus.importMethod(action.method)(action.params)
                 .then(result => {
                     action.result = result;
+                    return result;
                 })
                 .catch(error => {
                     action.error = error;
+                    return error;
                 })
                 .then(() => {
                     action.methodRequestState = 'finished';

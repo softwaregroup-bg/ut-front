@@ -56,7 +56,7 @@ UtFront.childContextTypes = {
 export function PermissionCheck({children, utAction, deniedUtAction}) {
     if ((utAction && !check(utAction)) || (deniedUtAction && check(deniedUtAction))) {
         return (
-            <span dangerouslySetInnerHTML={{__html: '<!-- not permitted -->'}}></span>
+            <span dangerouslySetInnerHTML={{__html: '<!-- not permitted -->'}} />
         );
     } else {
         return children;

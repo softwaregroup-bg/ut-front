@@ -15,7 +15,7 @@ module.exports = (params) => ({
                 }
                 this.loading = true;
                 if (config && config.language) {
-                    params.languages().then((languages) => {
+                    return params.languages().then((languages) => {
                         var languageId = languages[0].filter((language) => {
                             return language.iso2Code === config.language;
                         });
@@ -25,15 +25,15 @@ module.exports = (params) => ({
                                 languageId: languageId[0].languageId
                             };
                         }
-                        params.translate(translateParams).then((result) => {
+                        return params.translate(translateParams).then((result) => {
                             this.translateResult = result;
-                            resolve(result);
+                            return resolve(result);
                         });
                     });
                 } else {
-                    params.translate().then((result) => {
+                    return params.translate().then((result) => {
                         this.translateResult = result;
-                        resolve(result);
+                        return resolve(result);
                     });
                 }
             });

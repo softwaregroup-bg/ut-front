@@ -46,9 +46,10 @@ module.exports = function(moduleConfig) {
                 path: '/pack/{lib?}',
                 config: {auth: false},
                 handler: function(request, reply) {
-                    result.pack({packer: request.params.lib})
-                        .then(function() {
+                    return result.pack({packer: request.params.lib})
+                        .then(function(result) {
                             reply.redirect('/s/' + (request.params.lib || 'sc') + '/index.html');
+                            return result;
                         });
                 }
             }]);
