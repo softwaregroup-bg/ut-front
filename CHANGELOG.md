@@ -1,3 +1,13 @@
+<a name="5.9.2"></a>
+## [5.9.2](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.1...v5.9.2) (2016-10-19)
+
+
+### Bug Fixes
+
+* combine babel and react-hot jsx loaders into one ([8c369f9](https://github.com/softwaregroup-bg/ut-front/commit/8c369f9))
+
+
+
 <a name="5.9.1"></a>
 ## [5.9.1](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.0...v5.9.1) (2016-10-18)
 
