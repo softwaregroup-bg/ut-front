@@ -57,6 +57,7 @@ module.exports = (params) => ({
         modules: ['node_modules', 'dev'] // https://github.com/webpack/webpack/issues/2119#issuecomment-190285660
     },
     module: {
+        exprgContextCritical: false,
         loaders: [
             {
                 test: /\.jsx?$/,
