@@ -58,34 +58,29 @@ module.exports = (params) => ({
     },
     module: {
         exprContextCritical: false,
-        loaders: [{
-            test: /\.jsx?$/,
-            exclude: params.jsxExclude,
-            loader: 'react-hot'
-        }, {
-            test: /\.jsx?$/,
-            exclude: params.jsxExclude,
-            loader: 'babel',
-            query: {
-                presets: ['es2015', 'stage-0', 'react'],
-                cacheDirectory: true
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                exclude: params.jsxExclude,
+                loader: 'react-hot!babel?presets[]=es2015&presets[]=stage-0&presets[]=react&cacheDirectory=true'
+            },
+            {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'url-loader?limit=10000&minetype=application/font-woff'
+            }, {
+                test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'file-loader'
+            }, {
+                test: /\.json$/,
+                loader: 'json'
+            }, {
+                test: /.*\.(gif|png|jpe?g|svg)$/i,
+                loaders: ['url-loader?limit=30720000']
+            }, {
+                test: /\.css$/,
+                loaders: ['style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]']
             }
-        }, {
-            test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            loader: 'url-loader?limit=10000&minetype=application/font-woff'
-        }, {
-            test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            loader: 'file-loader'
-        }, {
-            test: /\.json$/,
-            loader: 'json'
-        }, {
-            test: /.*\.(gif|png|jpe?g|svg)$/i,
-            loaders: ['url-loader?limit=30720000']
-        }, {
-            test: /\.css$/,
-            loaders: ['style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]']
-        }]
+        ]
     },
     plugins: [
         new webpack.IgnorePlugin(
