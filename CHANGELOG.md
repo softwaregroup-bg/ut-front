@@ -1,3 +1,13 @@
+<a name="5.9.7"></a>
+## [5.9.7](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.6...v5.9.7) (2016-10-21)
+
+
+### Bug Fixes
+
+* jsx exclude regexp ([4e1ece4](https://github.com/softwaregroup-bg/ut-front/commit/4e1ece4))
+
+
+
 <a name="5.9.6"></a>
 ## [5.9.6](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.5...v5.9.6) (2016-10-21)
 
