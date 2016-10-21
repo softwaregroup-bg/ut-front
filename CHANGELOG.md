@@ -1,3 +1,13 @@
+<a name="5.9.5"></a>
+## [5.9.5](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.4...v5.9.5) (2016-10-21)
+
+
+### Bug Fixes
+
+* ignore node_modules for production ([5596bca](https://github.com/softwaregroup-bg/ut-front/commit/5596bca))
+
+
+
 <a name="5.9.4"></a>
 ## [5.9.4](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.3...v5.9.4) (2016-10-21)
 
