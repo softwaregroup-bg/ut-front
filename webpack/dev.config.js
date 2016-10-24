@@ -1,8 +1,22 @@
 var webpack = require('webpack');
+var path = require('path');
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 
 module.exports = (params) => ({
     devtool: 'eval-source-map',
+    entry: params.entry,
+    output: {
+        filename: '[name].js',
+        publicPath: '/s/cache/',
+        path: params.outputPath
+    },
+    node: {
+        cluster: 'empty',
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+        repl: 'empty'
+    },
     closures: {
         translate: function(config) {
             return new Promise((resolve, reject) => {
@@ -39,25 +53,28 @@ module.exports = (params) => ({
             });
         }
     },
-    entry: params.entry,
-    output: {
-        filename: '[name].js',
-        publicPath: '/s/cache/',
-        path: params.outputPath
-    },
-    target: 'web',
-    node: {
-        cluster: 'empty',
-        fs: 'empty',
-        net: 'empty',
-        tls: 'empty',
-        repl: 'empty'
-    },
-    resolve: {
-        modules: ['node_modules', 'dev'] // https://github.com/webpack/webpack/issues/2119#issuecomment-190285660
-    },
+    plugins: [
+        new webpack.IgnorePlugin(
+            /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request)$/
+        ),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                context: __dirname,
+                postcss: [
+                    require('postcss-import')({
+                        path: path.join('../', params.implName, 'themes', params.themeName)
+                    })
+                ]
+            }
+        }),
+        new webpack.DefinePlugin(params.sharedVars)
+    ],
     module: {
         loaders: [{
+            test: /\.js$/,
+            exclude: /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)\-).)/,
+            loaders: ['react-hot', 'babel']
+        }, {
             test: /\.jsx?$/,
             exclude: /node_modules/,
             loader: 'react-hot'
@@ -83,14 +100,17 @@ module.exports = (params) => ({
             loaders: ['url-loader?limit=30720000']
         }, {
             test: /\.css$/,
-            loaders: ['style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]']
+            loaders: [
+                'style-loader', {
+                    loader: 'css-loader',
+                    query: {
+                        modules: true,
+                        importLoaders: 1,
+                        localIdentName: '[test]__[style]___[hash:base64:5]'
+                    }
+                },
+                'postcss-loader'
+            ]
         }]
-    },
-    plugins: [
-        new webpack.IgnorePlugin(
-            /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request)$/
-        ),
-        new BellOnBundlerErrorPlugin(),
-        new webpack.DefinePlugin(params.sharedVars)
-    ]
+    }
 });

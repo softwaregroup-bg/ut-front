@@ -54,12 +54,15 @@ module.exports = function(moduleConfig) {
             }]);
             if (this.config.packer && this.config.packer.name === 'webpack') {
                 const webpack = require('webpack');
+                // TODO: extract themenName and implName to a config file
                 var wb = require('./webpack/ut-front.config')({
                     sharedVars: {'process.env': {NODE_ENV: `'${this.bus.config.params.env}'`}},
                     entry: this.config.packer.entry,
                     outputPath: cachePath,
                     translate: this.config.packer.hotReload ? bus.importMethod('core.translation.fetch') : this.config.packer.translate,
-                    languages: bus.importMethod('core.language.fetch')
+                    languages: bus.importMethod('core.language.fetch'),
+                    themeName: 'light',
+                    implName: 'impl-microcred'
                 }, this.config.packer.hotReload);
                 wb.assetsConfig = this.config.packer.assets || {};
                 if (this.config.packer.hotReload) {
