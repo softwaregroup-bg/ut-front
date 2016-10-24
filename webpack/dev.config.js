@@ -57,6 +57,7 @@ module.exports = (params) => ({
         modules: ['node_modules', 'dev'] // https://github.com/webpack/webpack/issues/2119#issuecomment-190285660
     },
     module: {
+        exprContextCritical: false,
         loaders: [
             {
                 test: /\.jsx?$/,
@@ -74,10 +75,10 @@ module.exports = (params) => ({
                 loader: 'json'
             }, {
                 test: /.*\.(gif|png|jpe?g|svg)$/i,
-                loaders: ['url-loader?limit=30720000']
+                loader: 'url?limit=30720000'
             }, {
                 test: /\.css$/,
-                loaders: ['style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]']
+                loader: 'style?sourceMap!css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
             }
         ]
     },
