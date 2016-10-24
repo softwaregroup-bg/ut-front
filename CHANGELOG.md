@@ -1,3 +1,14 @@
+<a name="5.9.8"></a>
+## [5.9.8](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.7...v5.9.8) (2016-10-24)
+
+
+### Bug Fixes
+
+* dependencies ([#14](https://github.com/softwaregroup-bg/ut-front/issues/14)) ([87dbb1d](https://github.com/softwaregroup-bg/ut-front/commit/87dbb1d))
+* unify the way loaders are written and add exprContextCritical property for suppressing warnings ([#13](https://github.com/softwaregroup-bg/ut-front/issues/13)) ([f7a03ae](https://github.com/softwaregroup-bg/ut-front/commit/f7a03ae))
+
+
+
 <a name="5.9.7"></a>
 ## [5.9.7](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.6...v5.9.7) (2016-10-21)
 
