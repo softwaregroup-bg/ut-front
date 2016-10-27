@@ -5,8 +5,7 @@ module.exports = function(moduleConfig) {
     var bus;
     var cachePath;
     var lassoCache;
-    var themeName = 'default';
-    var implName = 'impl-microcred';
+    var themeName = 'dark';
 
     var result = {
         init: function(b) {
@@ -63,8 +62,7 @@ module.exports = function(moduleConfig) {
                     outputPath: cachePath,
                     translate: this.config.packer.hotReload ? bus.importMethod('core.translation.fetch') : this.config.packer.translate,
                     languages: bus.importMethod('core.language.fetch'),
-                    themeName,
-                    implName
+                    themeName
                 }, this.config.packer.hotReload);
                 wb.assetsConfig = this.config.packer.assets || {};
                 if (this.config.packer.hotReload) {
