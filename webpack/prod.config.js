@@ -28,7 +28,7 @@ module.exports = (params) => ({
                     require('postcss-import')({
                         addDependencyTo: webpack,
                         // where to look for files when @import [filename].css is used in another css file
-                        path: [themePath, configPath]
+                        path: [(params.themePath || ''), (params.configPath || '')]
                     }),
                     // Transforms CSS specs into more compatible CSS so you don’t need to wait for browser support
                     require('postcss-cssnext')
