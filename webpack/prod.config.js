@@ -1,6 +1,6 @@
 var webpack = require('webpack');
-var path = require('path');
 
+// TODO: Add ExtractTextPlugin in order to extract all styles in a styles.css file, which should be uglified, minified, etc.
 module.exports = (params) => ({
     entry: params.entry,
     output: {
