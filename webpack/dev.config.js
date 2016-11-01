@@ -31,7 +31,7 @@ module.exports = (params) => ({
                 }
                 this.loading = true;
                 if (config && config.language) {
-                    params.languages().then((languages) => {
+                    return params.languages().then((languages) => {
                         var languageId = languages[0].filter((language) => {
                             return language.iso2Code === config.language;
                         });
@@ -41,15 +41,15 @@ module.exports = (params) => ({
                                 languageId: languageId[0].languageId
                             };
                         }
-                        params.translate(translateParams).then((result) => {
+                        return params.translate(translateParams).then((result) => {
                             this.translateResult = result;
-                            resolve(result);
+                            return resolve(result);
                         });
                     });
                 } else {
-                    params.translate().then((result) => {
+                    return params.translate().then((result) => {
                         this.translateResult = result;
-                        resolve(result);
+                        return resolve(result);
                     });
                 }
             });
@@ -81,18 +81,11 @@ module.exports = (params) => ({
         new BellOnBundlerErrorPlugin()
     ],
     module: {
+        exprContextCritical: false,
         loaders: [{
             test: /\.jsx?$/,
-            exclude: /node_modules/,
-            loader: 'react-hot'
-        }, {
-            test: /\.jsx?$/,
-            exclude: /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)\-).)/,
-            loader: 'babel',
-            query: {
-                presets: ['es2015', 'stage-0', 'react'],
-                cacheDirectory: true
-            }
+            exclude: params.jsxExclude,
+            loader: 'react-hot!babel?presets[]=es2015&presets[]=stage-0&presets[]=react&cacheDirectory=true'
         }, {
             test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
             loader: 'url-loader?limit=10000&minetype=application/font-woff'
@@ -104,7 +97,7 @@ module.exports = (params) => ({
             loader: 'json'
         }, {
             test: /.*\.(gif|png|jpe?g|svg)$/i,
-            loaders: ['url-loader?limit=30720000']
+            loader: 'url?limit=30720000'
         }, {
             test: /\.css$/,
             loader: 'style?sourceMap!css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss-loader'

@@ -46,9 +46,10 @@ module.exports = function(moduleConfig) {
                 path: '/pack/{lib?}',
                 config: {auth: false},
                 handler: function(request, reply) {
-                    result.pack({packer: request.params.lib})
-                        .then(function() {
+                    return result.pack({packer: request.params.lib})
+                        .then(function(result) {
                             reply.redirect('/s/' + (request.params.lib || 'sc') + '/index.html');
+                            return result;
                         });
                 }
             }]);
@@ -59,6 +60,11 @@ module.exports = function(moduleConfig) {
                     sharedVars: {'process.env': {NODE_ENV: `'${this.bus.config.params.env}'`}},
                     entry: this.config.packer.entry,
                     outputPath: cachePath,
+                    jsxExclude: this.config.packer.jsxExclude
+                                ? this.config.packer.jsxExclude.constructor.name === 'RegExp'
+                                    ? this.config.packer.jsxExclude
+                                    : new RegExp(this.config.packer.jsxExclude)
+                                : /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)\-).)/,
                     translate: this.config.packer.hotReload ? bus.importMethod('core.translation.fetch') : this.config.packer.translate,
                     languages: bus.importMethod('core.language.fetch'),
                     themePath: moduleConfig.themePath,

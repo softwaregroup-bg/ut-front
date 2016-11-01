@@ -1,3 +1,71 @@
+<a name="5.9.8"></a>
+## [5.9.8](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.7...v5.9.8) (2016-10-24)
+
+
+### Bug Fixes
+
+* dependencies ([#14](https://github.com/softwaregroup-bg/ut-front/issues/14)) ([87dbb1d](https://github.com/softwaregroup-bg/ut-front/commit/87dbb1d))
+* unify the way loaders are written and add exprContextCritical property for suppressing warnings ([#13](https://github.com/softwaregroup-bg/ut-front/issues/13)) ([f7a03ae](https://github.com/softwaregroup-bg/ut-front/commit/f7a03ae))
+
+
+
+<a name="5.9.7"></a>
+## [5.9.7](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.6...v5.9.7) (2016-10-21)
+
+
+### Bug Fixes
+
+* jsx exclude regexp ([4e1ece4](https://github.com/softwaregroup-bg/ut-front/commit/4e1ece4))
+
+
+
+<a name="5.9.6"></a>
+## [5.9.6](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.5...v5.9.6) (2016-10-21)
+
+
+
+<a name="5.9.5"></a>
+## [5.9.5](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.4...v5.9.5) (2016-10-21)
+
+
+### Bug Fixes
+
+* ignore node_modules for production ([5596bca](https://github.com/softwaregroup-bg/ut-front/commit/5596bca))
+
+
+
+<a name="5.9.4"></a>
+## [5.9.4](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.3...v5.9.4) (2016-10-21)
+
+
+
+<a name="5.9.3"></a>
+## [5.9.3](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.2...v5.9.3) (2016-10-21)
+
+
+
+<a name="5.9.2"></a>
+## [5.9.2](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.1...v5.9.2) (2016-10-19)
+
+
+### Bug Fixes
+
+* combine babel and react-hot jsx loaders into one ([8c369f9](https://github.com/softwaregroup-bg/ut-front/commit/8c369f9))
+
+
+
+<a name="5.9.1"></a>
+## [5.9.1](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.0...v5.9.1) (2016-10-18)
+
+
+### Bug Fixes
+
+* add possibility to provide custom jsx exclude regexp ([3db47a1](https://github.com/softwaregroup-bg/ut-front/commit/3db47a1))
+* change babel loader exclude regex to work for leveloneproject implementations ([f80e78b](https://github.com/softwaregroup-bg/ut-front/commit/f80e78b))
+* fix linting ([73fcb71](https://github.com/softwaregroup-bg/ut-front/commit/73fcb71))
+
+
+
 <a name="5.9.0"></a>
 # [5.9.0](https://github.com/softwaregroup-bg/ut-front/compare/v5.8.4...v5.9.0) (2016-10-13)
 
