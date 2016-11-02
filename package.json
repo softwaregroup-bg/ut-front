@@ -38,7 +38,10 @@
     "lodash.map": "4.4.0"
   },
   "devDependencies": {
-    "ut-tools": "^5.10.2"
+    "ut-tools": "^5.10.2",
+    "postcss-cssnext": "2.8.0",
+    "postcss-import": "8.0.2",
+    "postcss-loader": "0.13.0"
   },
   "peerDependencies": {
     "babel-loader": "6.2.4",
