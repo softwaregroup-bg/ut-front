@@ -1,3 +1,13 @@
+<a name="5.10.0"></a>
+# [5.10.0](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.8...v5.10.0) (2016-11-02)
+
+
+### Features
+
+* add postCSS loader ([#16](https://github.com/softwaregroup-bg/ut-front/issues/16)) ([318db3b](https://github.com/softwaregroup-bg/ut-front/commit/318db3b))
+
+
+
 <a name="5.9.8"></a>
 ## [5.9.8](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.7...v5.9.8) (2016-10-24)
 
