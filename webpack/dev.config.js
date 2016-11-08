@@ -19,6 +19,8 @@ module.exports = (params) => ({
     resolve: {
         modules: ['node_modules', 'dev'] // https://github.com/webpack/webpack/issues/2119#issuecomment-190285660
     },
+    // pass this option to postcss.config.js
+    postcssImportConfigPaths: [params.configPath || '', params.themePath || ''],
     closures: {
         translate: function(config) {
             return new Promise((resolve, reject) => {
@@ -59,24 +61,6 @@ module.exports = (params) => ({
         new webpack.IgnorePlugin(
             /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request)$/
         ),
-        // Injects options object per loader (Webpack 2 specific)
-        new webpack.LoaderOptionsPlugin({
-            /*
-               PostCSS configuration: list of plugins used to gain features and functionality
-               postcss-import: can consume files at given paths and inline them when requested in other css files (should be first in the array if possible)
-             */
-            options: {
-                postcss: [
-                    require('postcss-import')({
-                        addDependencyTo: webpack,
-                        // where to look for files when @import [filename].css is used in another css file
-                        path: [(params.themePath || ''), (params.configPath || '')]
-                    }),
-                    // Transforms CSS specs into more compatible CSS so you don’t need to wait for browser support
-                    require('postcss-cssnext')
-                ]
-            }
-        }),
         new webpack.DefinePlugin(params.sharedVars),
         new BellOnBundlerErrorPlugin()
     ],
@@ -100,7 +84,11 @@ module.exports = (params) => ({
             loader: 'url?limit=30720000'
         }, {
             test: /\.css$/,
-            loader: 'style?sourceMap!css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss-loader'
+            loaders: [
+                'style-loader',
+                'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+                'postcss-loader'
+            ]
         }]
     }
 });

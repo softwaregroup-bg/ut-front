@@ -55,7 +55,6 @@ module.exports = function(moduleConfig) {
             }]);
             if (this.config.packer && this.config.packer.name === 'webpack') {
                 const webpack = require('webpack');
-                // TODO: extract themenName and implName to a config file
                 var wb = require('./webpack/ut-front.config')({
                     sharedVars: {'process.env': {NODE_ENV: `'${this.bus.config.params.env}'`}},
                     entry: this.config.packer.entry,
