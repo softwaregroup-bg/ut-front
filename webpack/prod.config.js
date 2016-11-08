@@ -70,12 +70,5 @@ module.exports = (params) => ({
                 'postcss-loader'
             ]
         }]
-    },
-    closures: {
-        translate: function() {
-            return new Promise((resolve, reject) => {
-                resolve(params.translate);
-            });
-        }
     }
 });

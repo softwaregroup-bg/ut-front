@@ -64,8 +64,6 @@ module.exports = function(moduleConfig) {
                                     ? this.config.packer.jsxExclude
                                     : new RegExp(this.config.packer.jsxExclude)
                                 : /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)\-).)/,
-                    translate: this.config.packer.hotReload ? bus.importMethod('core.translation.fetch') : this.config.packer.translate,
-                    languages: bus.importMethod('core.language.fetch'),
                     themePath: moduleConfig.themePath,
                     configPath: moduleConfig.configPath
                 }, this.config.packer.hotReload);

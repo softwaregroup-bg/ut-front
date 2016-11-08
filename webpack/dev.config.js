@@ -21,42 +21,6 @@ module.exports = (params) => ({
     },
     // pass this option to postcss.config.js
     postcssImportConfigPaths: [params.configPath || '', params.themePath || ''],
-    closures: {
-        translate: function(config) {
-            return new Promise((resolve, reject) => {
-                if (this.translateResult) {
-                    resolve(this.translateResult);
-                    return;
-                }
-                if (this.loading) {
-                    return this.translate(config);
-                }
-                this.loading = true;
-                if (config && config.language) {
-                    return params.languages().then((languages) => {
-                        var languageId = languages[0].filter((language) => {
-                            return language.iso2Code === config.language;
-                        });
-                        var translateParams = {};
-                        if (languageId[0]) {
-                            translateParams = {
-                                languageId: languageId[0].languageId
-                            };
-                        }
-                        return params.translate(translateParams).then((result) => {
-                            this.translateResult = result;
-                            return resolve(result);
-                        });
-                    });
-                } else {
-                    return params.translate().then((result) => {
-                        this.translateResult = result;
-                        return resolve(result);
-                    });
-                }
-            });
-        }
-    },
     plugins: [
         new webpack.IgnorePlugin(
             /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request)$/
