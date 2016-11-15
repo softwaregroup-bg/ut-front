@@ -1,6 +1,5 @@
 var webpack = require('webpack');
 
-// TODO: Add ExtractTextPlugin in order to extract all styles in a styles.css file, which should be uglified, minified, etc.
 module.exports = (params) => ({
     entry: params.entry,
     output: {
@@ -20,21 +19,9 @@ module.exports = (params) => ({
         modules: ['node_modules', 'dev'] // https://github.com/webpack/webpack/issues/2119#issuecomment-190285660
     },
     bail: true,
+    // pass this option to postcss.config.js
+    postcssImportConfigPaths: [params.configPath || '', params.themePath || ''],
     plugins: [
-        // Injects options object per loader (Webpack 2 specific)
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                postcss: [
-                    require('postcss-import')({
-                        addDependencyTo: webpack,
-                        // where to look for files when @import [filename].css is used in another css file
-                        path: [(params.themePath || ''), (params.configPath || '')]
-                    }),
-                    // Transforms CSS specs into more compatible CSS so you don’t need to wait for browser support
-                    require('postcss-cssnext')
-                ]
-            }
-        }),
         new webpack.IgnorePlugin(
             /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request)$/
         ),
@@ -77,14 +64,7 @@ module.exports = (params) => ({
             ]
         }, {
             test: /\.css$/,
-            loader: 'style?sourceMap!css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss-loader'
+            loader: 'style-loader?sourceMap!css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss-loader'
         }]
-    },
-    closures: {
-        translate: function() {
-            return new Promise((resolve, reject) => {
-                resolve(params.translate);
-            });
-        }
     }
 });
