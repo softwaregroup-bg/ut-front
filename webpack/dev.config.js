@@ -23,7 +23,7 @@ module.exports = (params) => ({
     postcssImportConfigPaths: [params.configPath || '', params.themePath || ''],
     plugins: [
         new webpack.IgnorePlugin(
-            /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request)$/
+            /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser\-request|dtrace\-provider)$/
         ),
         new webpack.DefinePlugin(params.sharedVars),
         new BellOnBundlerErrorPlugin()
