@@ -57,7 +57,7 @@ module.exports = (params) => ({
     },
     plugins: [
         new webpack.IgnorePlugin(
-            /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request)$/
+            /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser\-request|dtrace\-provider)$/
         ),
         // Injects options object per loader (Webpack 2 specific)
         new webpack.LoaderOptionsPlugin({
