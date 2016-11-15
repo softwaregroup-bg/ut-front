@@ -1,3 +1,23 @@
+<a name="5.10.3"></a>
+## [5.10.3](https://github.com/softwaregroup-bg/ut-front/compare/v5.10.2...v5.10.3) (2016-11-15)
+
+
+
+<a name="5.10.2"></a>
+## [5.10.2](https://github.com/softwaregroup-bg/ut-front/compare/v5.10.1...v5.10.2) (2016-11-15)
+
+
+
+<a name="5.10.1"></a>
+## [5.10.1](https://github.com/softwaregroup-bg/ut-front/compare/v5.10.0...v5.10.1) (2016-11-15)
+
+
+### Bug Fixes
+
+* version bump ([ac2e181](https://github.com/softwaregroup-bg/ut-front/commit/ac2e181))
+
+
+
 <a name="5.10.0"></a>
 # [5.10.0](https://github.com/softwaregroup-bg/ut-front/compare/v5.9.8...v5.10.0) (2016-11-02)
 
