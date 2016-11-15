@@ -1,3 +1,13 @@
+<a name="5.10.5"></a>
+## [5.10.5](https://github.com/softwaregroup-bg/ut-front/compare/v5.10.4...v5.10.5) (2016-11-15)
+
+
+### Bug Fixes
+
+* added package to wb ignore ([40a8945](https://github.com/softwaregroup-bg/ut-front/commit/40a8945))
+
+
+
 <a name="5.10.4"></a>
 ## [5.10.4](https://github.com/softwaregroup-bg/ut-front/compare/v5.10.3...v5.10.4) (2016-11-15)
 
