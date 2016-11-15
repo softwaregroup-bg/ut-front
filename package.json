@@ -24,18 +24,18 @@
   },
   "dependencies": {
     "history": "2.1.2",
-    "inert": "4.0.1",
-    "lodash.assign": "4.0.9",
+    "inert": "4.0.2",
+    "lodash.assign": "4.2.0",
     "os-browserify": "0.2.1",
-    "react": "15.2.1",
+    "react": "15.3.2",
     "react-css-modules": "3.7.7",
-    "react-redux": "4.4.5",
+    "react-redux": "4.4.6",
     "react-router": "2.5.2",
-    "react-router-redux": "4.0.5",
-    "redux": "3.5.2",
+    "react-router-redux": "4.0.7",
+    "redux": "3.6.0",
     "redux-thunk": "2.1.0",
     "stream-browserify": "2.0.1",
-    "lodash.map": "4.4.0"
+    "lodash.map": "4.6.0"
   },
   "devDependencies": {
     "ut-tools": "^5.10.2",
