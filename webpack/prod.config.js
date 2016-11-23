@@ -3,8 +3,8 @@ var webpack = require('webpack');
 module.exports = (params) => ({
     entry: params.entry,
     output: {
-        filename: '[name].js',
-        publicPath: '/s/cache/',
+        filename: params.bundleName || '[name].js',
+        publicPath: '/static/lib/',
         path: params.outputPath
     },
     name: 'browser',
