@@ -1,3 +1,18 @@
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/softwaregroup-bg/ut-front/compare/v5.10.5...v6.0.0) (2016-11-23)
+
+
+### Bug Fixes
+
+* remove some old paths ([2db19e5](https://github.com/softwaregroup-bg/ut-front/commit/2db19e5))
+
+
+### BREAKING CHANGES
+
+* /s/cache paths are renamed to /static/lib
+
+
+
 <a name="5.10.5"></a>
 ## [5.10.5](https://github.com/softwaregroup-bg/ut-front/compare/v5.10.4...v5.10.5) (2016-11-15)
 
