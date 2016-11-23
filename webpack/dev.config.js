@@ -5,8 +5,8 @@ module.exports = (params) => ({
     devtool: 'eval-source-map',
     entry: params.entry,
     output: {
-        filename: '[name].js',
-        publicPath: '/s/cache/',
+        filename: params.bundleName || '[name].js',
+        publicPath: '/static/lib/',
         path: params.outputPath
     },
     node: {

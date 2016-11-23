@@ -11,6 +11,7 @@ module.exports = function(moduleConfig) {
             bus = b;
         },
         start: function() {
+            this.bundleName = `${this.config.bundle || 'bundle'}.js`;
             cachePath = path.resolve(
                 ((this.config.packer && this.config.packer.name) ? this.config.packer.cachePath : this.config.dist) ||
                 path.join(bus.config.workDir, 'ut-front', this.config.id));
@@ -18,7 +19,7 @@ module.exports = function(moduleConfig) {
 
             var r = this && this.registerRequestHandler && this.registerRequestHandler([{
                 method: 'GET',
-                path: '/s/cache/{p*}',
+                path: '/static/lib/{p*}',
                 config: {auth: false},
                 handler: {
                     directory: {
@@ -28,30 +29,6 @@ module.exports = function(moduleConfig) {
                         lookupCompressed: true
                     }
                 }
-            }, {
-                method: 'GET',
-                path: '/s/cache/i18n/{p*}',
-                config: {auth: false},
-                handler: {
-                    directory: {
-                        path: path.join(cachePath),
-                        listing: false,
-                        index: true,
-                        lookupCompressed: true
-                    }
-                }
-
-            }, {
-                method: 'GET',
-                path: '/pack/{lib?}',
-                config: {auth: false},
-                handler: function(request, reply) {
-                    return result.pack({packer: request.params.lib})
-                        .then(function(result) {
-                            reply.redirect('/s/' + (request.params.lib || 'sc') + '/index.html');
-                            return result;
-                        });
-                }
             }]);
             if (this.config.packer && this.config.packer.name === 'webpack') {
                 const webpack = require('webpack');
@@ -59,6 +36,7 @@ module.exports = function(moduleConfig) {
                     sharedVars: {'process.env': {NODE_ENV: `'${this.bus.config.params.env}'`}},
                     entry: this.config.packer.entry,
                     outputPath: cachePath,
+                    bundleName: this.bundleName,
                     jsxExclude: this.config.packer.jsxExclude
                                 ? this.config.packer.jsxExclude.constructor.name === 'RegExp'
                                     ? this.config.packer.jsxExclude
@@ -69,7 +47,7 @@ module.exports = function(moduleConfig) {
                 }, this.config.packer.hotReload);
                 wb.assetsConfig = this.config.packer.assets || {};
                 if (this.config.packer.hotReload) {
-                    wb.output.publicPath = '/s/cache/';
+                    wb.output.publicPath = '/static/lib/';
                     process.nextTick(() => (this.enableHotReload(wb)));
                 } else {
                     webpack(wb, (err, stats) => {
@@ -85,7 +63,7 @@ module.exports = function(moduleConfig) {
         },
         pack: function(config) {
             if (config.packer && config.packer.name === 'webpack') {
-                return {head: '', body: '<div id="utApp"></div><script src="/s/cache/bundle.js"></script>'};
+                return {head: '', body: `<div id="utApp"></div><script src="/static/lib/${this.bundleName}"></script>`};
             } else if (config.packer && config.packer.name === 'lasso') {
                 const serverRequire = require;
                 const lasso = serverRequire('lasso');
@@ -109,7 +87,7 @@ module.exports = function(moduleConfig) {
                     },
                         'lasso-marko'
                     ],
-                    urlPrefix: '/s/cache',
+                    urlPrefix: '/static/lib',
                     outputDir: cachePath,
                     cacheDir: lassoCache,
                     fingerprintsEnabled: false,
@@ -145,7 +123,7 @@ module.exports = function(moduleConfig) {
                     });
                 });
             } else {
-                return {head: '', body: `<div id="utApp"></div><script src="/s/cache/${config.bundle || 'bundle'}.js"></script>`};
+                return {head: '', body: `<div id="utApp"></div><script src="/static/lib/${this.bundleName}"></script>`};
             }
         }
     };
