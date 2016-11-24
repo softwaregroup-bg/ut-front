@@ -11,7 +11,7 @@ module.exports = function(moduleConfig) {
             bus = b;
         },
         start: function() {
-            this.bundleName = `${this.config.bundle || 'bundle'}.js`;
+            this.bundleName = `${Object.keys(this.config.packer.entry).pop()}.js`;
             cachePath = path.resolve(
                 ((this.config.packer && this.config.packer.name) ? this.config.packer.cachePath : this.config.dist) ||
                 path.join(bus.config.workDir, 'ut-front', this.config.id));
