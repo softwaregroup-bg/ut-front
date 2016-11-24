@@ -1,70 +1,14 @@
 var webpack = require('webpack');
+var common = require('./common.config');
 
-module.exports = (params) => ({
-    entry: params.entry,
-    output: {
-        filename: params.bundleName || '[name].js',
-        publicPath: '/static/lib/',
-        path: params.outputPath
-    },
-    name: 'browser',
-    node: {
-        cluster: 'empty',
-        fs: 'empty',
-        net: 'empty',
-        tls: 'empty',
-        repl: 'empty'
-    },
-    resolve: {
-        modules: ['node_modules', 'dev'] // https://github.com/webpack/webpack/issues/2119#issuecomment-190285660
-    },
-    bail: true,
-    // pass this option to postcss.config.js
-    postcssImportConfigPaths: [params.configPath || '', params.themePath || ''],
-    plugins: [
-        new webpack.IgnorePlugin(
-            /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request)$/
-        ),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
-    ],
-    module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/,
-            loader: 'babel',
-            query: {
-                presets: ['es2015', 'stage-0', 'react']
-            }
-        }, {
-            test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            loader: 'url-loader?limit=10000&minetype=application/font-woff'
-        }, {
-            test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            loader: 'file-loader'
-        }, {
-            test: /\.json$/,
-            loader: 'json'
-        }, {
-            test: /.*\.(gif|png|jpe?g|svg)$/i,
-            loaders: [
-                'url-loader?limit=30720000'
-                // todo find why the below breaks on windows
-                // 'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
-            ]
-        }, {
-            test: /\.css$/,
-            loader: 'style-loader?sourceMap!css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss-loader'
-        }]
-    }
-});
+module.exports = (params) => {
+    var conf = common(params);
+    conf.bail = true;
+    conf.name = 'browser';
+    conf.module.loaders.unshift({test: /\.jsx?$/, exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/, loaders: ['babel-loader?presets[]=es2015&presets[]=stage-0&presets[]=react']});
+    conf.plugins.push(new webpack.optimize.DedupePlugin());
+    conf.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
+    conf.plugins.push(new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify('production')}}));
+    conf.plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
+    return conf;
+};
