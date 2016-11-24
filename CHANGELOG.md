@@ -1,3 +1,14 @@
+<a name="6.0.1"></a>
+## [6.0.1](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.0...v6.0.1) (2016-11-24)
+
+
+### Bug Fixes
+
+* refactor ([dfff3e5](https://github.com/softwaregroup-bg/ut-front/commit/dfff3e5))
+* typo + cleanup ([d2bbef8](https://github.com/softwaregroup-bg/ut-front/commit/d2bbef8))
+
+
+
 <a name="6.0.0"></a>
 # [6.0.0](https://github.com/softwaregroup-bg/ut-front/compare/v5.10.5...v6.0.0) (2016-11-23)
 
