@@ -45,7 +45,7 @@ module.exports = function(moduleConfig) {
                     themePath: moduleConfig.themePath,
                     configPath: moduleConfig.configPath
                 }, this.config.packer.hotReload);
-                wb.assetsConfig = this.config.packer.assets || {};
+
                 if (this.config.packer.hotReload) {
                     wb.output.publicPath = '/static/lib/';
                     process.nextTick(() => (this.enableHotReload(wb)));
