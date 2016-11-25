@@ -1,3 +1,13 @@
+<a name="6.0.3"></a>
+## [6.0.3](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.2...v6.0.3) (2016-11-25)
+
+
+### Bug Fixes
+
+* undefined ([e421373](https://github.com/softwaregroup-bg/ut-front/commit/e421373))
+
+
+
 <a name="6.0.2"></a>
 ## [6.0.2](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.1...v6.0.2) (2016-11-25)
 
