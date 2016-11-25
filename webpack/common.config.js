@@ -1,22 +1,22 @@
 var webpack = require('webpack');
-var path = require('path');
 
-module.exports = (params) => {
-    var sourceDir = path.dirname(require.main.filename);
-    if (params && params.entry) {
-        params.entry = Object.keys(params.entry).reduce((prev, bundleName) => {
-            if (prev[bundleName] && prev[bundleName] instanceof Array) {
-                prev[bundleName] = prev[bundleName].map((p) => {
-                    return path.join(sourceDir, p);
-                });
-            }
-            return prev;
-        }, params.entry);
+function isExternal(module) {
+    var userRequest = module.userRequest;
+
+    if (typeof userRequest !== 'string') {
+        return false;
     }
 
+    return userRequest.indexOf('node_modules') >= 0;
+}
+
+module.exports = (params) => {
+    var entry = {};
+    entry[params.bundleName] = [params.entryPoint];
+
     return {
-        devtool: 'eval-source-map',
-        entry: params.entry,
+        devtool: 'cheap-module-eval-source-map',
+        entry,
         output: {
             filename: '[name].js',
             publicPath: '/static/lib/',
@@ -36,7 +36,13 @@ module.exports = (params) => {
         plugins: [
             new webpack.IgnorePlugin(
                 /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request|dtrace\-provider)$/
-            )
+            ),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor',
+                filename: 'vendor.bundle.js',
+                minChunks: function(module) {
+                    return isExternal(module);
+                }})
         ],
         module: {
             loaders: [
