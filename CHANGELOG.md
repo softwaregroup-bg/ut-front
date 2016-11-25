@@ -1,3 +1,13 @@
+<a name="6.0.5"></a>
+## [6.0.5](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.4...v6.0.5) (2016-11-25)
+
+
+### Bug Fixes
+
+* bundle name comes from port id ([9125f52](https://github.com/softwaregroup-bg/ut-front/commit/9125f52))
+
+
+
 <a name="6.0.4"></a>
 ## [6.0.4](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.3...v6.0.4) (2016-11-25)
 
