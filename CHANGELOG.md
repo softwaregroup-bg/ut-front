@@ -1,3 +1,13 @@
+<a name="6.0.4"></a>
+## [6.0.4](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.3...v6.0.4) (2016-11-25)
+
+
+### Bug Fixes
+
+* entry conf ([485be24](https://github.com/softwaregroup-bg/ut-front/commit/485be24))
+
+
+
 <a name="6.0.3"></a>
 ## [6.0.3](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.2...v6.0.3) (2016-11-25)
 
