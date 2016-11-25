@@ -3,14 +3,16 @@ var path = require('path');
 
 module.exports = (params) => {
     var sourceDir = path.dirname(require.main.filename);
-    params.entry = Object.keys(params.entry).reduce((prev, bundleName) => {
-        if (prev[bundleName] && prev[bundleName] instanceof Array) {
-            prev[bundleName] = prev[bundleName].map((p) => {
-                return path.join(sourceDir, p);
-            });
-        }
-        return prev;
-    }, params.entry);
+    if (params && params.entry) {
+        params.entry = Object.keys(params.entry).reduce((prev, bundleName) => {
+            if (prev[bundleName] && prev[bundleName] instanceof Array) {
+                prev[bundleName] = prev[bundleName].map((p) => {
+                    return path.join(sourceDir, p);
+                });
+            }
+            return prev;
+        }, params.entry);
+    }
 
     return {
         devtool: 'eval-source-map',
