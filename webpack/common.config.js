@@ -39,7 +39,7 @@ module.exports = (params) => {
             ),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'vendor',
-                filename: 'vendor.bundle.js',
+                filename: `vendor.${params.bundleName}.js`,
                 minChunks: function(module) {
                     return isExternal(module);
                 }})

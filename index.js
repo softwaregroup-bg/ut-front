@@ -1,5 +1,6 @@
 const path = require('path');
 const assign = require('lodash.assign');
+const crypto = require('crypto');
 
 module.exports = function(moduleConfig) {
     var bus;
@@ -36,7 +37,7 @@ module.exports = function(moduleConfig) {
                     sharedVars: {'process.env': {NODE_ENV: `'${env}'`}},
                     entry: this.config.packer.entry,
                     outputPath: cachePath,
-                    bundleName: this.config.id,
+                    bundleName: crypto.createHash('sha256').update(this.config.id).digest('hex'),
                     entryPoint: this.config.entryPoint,
                     jsxExclude: this.config.packer.jsxExclude
                                 ? this.config.packer.jsxExclude.constructor.name === 'RegExp'
