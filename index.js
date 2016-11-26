@@ -1,6 +1,5 @@
 const path = require('path');
 const assign = require('lodash.assign');
-const crypto = require('crypto');
 
 module.exports = function(moduleConfig) {
     var bus;
