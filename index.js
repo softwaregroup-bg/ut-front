@@ -65,7 +65,7 @@ module.exports = function(moduleConfig) {
         },
         pack: function(config) {
             if (config.packer && config.packer.name === 'webpack') {
-                return {head: '', body: `<div id="utApp"></div><script src="/static/lib/vendor.${this.bundleName}.js"></script><script src="/static/lib/${this.bundleName}.js"></script>`};
+                return {head: '', body: `<div id="utApp"></div><script src="/static/lib/vendor.bundle.js"></script><script src="/static/lib/${this.bundleName}.js"></script>`};
             } else if (config.packer && config.packer.name === 'lasso') {
                 const serverRequire = require;
                 const lasso = serverRequire('lasso');
@@ -125,7 +125,7 @@ module.exports = function(moduleConfig) {
                     });
                 });
             } else {
-                return {head: '', body: `<div id="utApp"></div><script src="/static/lib/vendor.${this.bundleName}.js"></script><script src="/static/lib/${this.bundleName}.js"></script>`};
+                return {head: '', body: `<div id="utApp"></div><script src="/static/lib/vendor.bundle.js"></script><script src="/static/lib/${this.bundleName}.js"></script>`};
             }
         }
     };
