@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 
 function isExternal(module) {
     var userRequest = module.userRequest;
@@ -12,7 +13,14 @@ function isExternal(module) {
 
 module.exports = (params) => {
     var entry = {};
-    entry[params.bundleName] = [params.entryPoint];
+    if (params.entryPoint instanceof Array) {
+        entry = params.entryPoint.reduce((prev, item) => {
+            prev[path.basename(item, '.js')] = [item];
+            return prev;
+        }, {});
+    } else if (typeof params.entryPoint === 'string') {
+        entry[path.basename(params.entryPoint, '.js')] = [params.entryPoint];
+    }
 
     return {
         devtool: 'cheap-module-eval-source-map',
@@ -39,7 +47,7 @@ module.exports = (params) => {
             ),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'vendor',
-                filename: `vendor.${params.bundleName}.js`,
+                filename: `vendor.bundle.js`,
                 minChunks: function(module) {
                     return isExternal(module);
                 }})
