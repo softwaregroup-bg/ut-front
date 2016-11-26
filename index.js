@@ -12,6 +12,7 @@ module.exports = function(moduleConfig) {
             bus = b;
         },
         start: function() {
+            this.bundleName = crypto.createHash('sha256').update(this.config.id).digest('hex');
             cachePath = path.resolve(
                 ((this.config.packer && this.config.packer.name) ? this.config.packer.cachePath : this.config.dist) ||
                 path.join(bus.config.workDir, 'ut-front', this.config.id));
@@ -37,7 +38,7 @@ module.exports = function(moduleConfig) {
                     sharedVars: {'process.env': {NODE_ENV: `'${env}'`}},
                     entry: this.config.packer.entry,
                     outputPath: cachePath,
-                    bundleName: crypto.createHash('sha256').update(this.config.id).digest('hex'),
+                    bundleName: this.bundleName,
                     entryPoint: this.config.entryPoint,
                     jsxExclude: this.config.packer.jsxExclude
                                 ? this.config.packer.jsxExclude.constructor.name === 'RegExp'
@@ -65,7 +66,7 @@ module.exports = function(moduleConfig) {
         },
         pack: function(config) {
             if (config.packer && config.packer.name === 'webpack') {
-                return {head: '', body: `<div id="utApp"></div><script src="/static/lib/vendor.bundle.js"></script><script src="/static/lib/${this.config.id}.js"></script>`};
+                return {head: '', body: `<div id="utApp"></div><script src="/static/lib/vendor.${this.bundleName}.js"></script><script src="/static/lib/${this.bundleName}.js"></script>`};
             } else if (config.packer && config.packer.name === 'lasso') {
                 const serverRequire = require;
                 const lasso = serverRequire('lasso');
@@ -125,7 +126,7 @@ module.exports = function(moduleConfig) {
                     });
                 });
             } else {
-                return {head: '', body: `<div id="utApp"></div><script src="/static/lib/vendor.bundle.js"></script><script src="/static/lib/${this.config.id}.js"></script>`};
+                return {head: '', body: `<div id="utApp"></div><script src="/static/lib/vendor.${this.bundleName}.js"></script><script src="/static/lib/${this.bundleName}.js"></script>`};
             }
         }
     };
