@@ -1,3 +1,16 @@
+<a name="6.0.8"></a>
+## [6.0.8](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.7...v6.0.8) (2016-11-26)
+
+
+### Bug Fixes
+
+* cleanup ([c4ca32a](https://github.com/softwaregroup-bg/ut-front/commit/c4ca32a))
+* entry point is passed as array ([374d0ff](https://github.com/softwaregroup-bg/ut-front/commit/374d0ff))
+* entry should hold array ([72dff05](https://github.com/softwaregroup-bg/ut-front/commit/72dff05))
+* entry should hold array ([5f35d2b](https://github.com/softwaregroup-bg/ut-front/commit/5f35d2b))
+
+
+
 <a name="6.0.7"></a>
 ## [6.0.7](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.6...v6.0.7) (2016-11-26)
 
