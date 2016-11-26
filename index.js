@@ -12,7 +12,8 @@ module.exports = function(moduleConfig) {
             bus = b;
         },
         start: function() {
-            this.bundleName = crypto.createHash('sha256').update(this.config.id).digest('hex');
+            this.bundleName = path.basename(this.config.entryPoint, '.js');
+
             cachePath = path.resolve(
                 ((this.config.packer && this.config.packer.name) ? this.config.packer.cachePath : this.config.dist) ||
                 path.join(bus.config.workDir, 'ut-front', this.config.id));
@@ -36,9 +37,7 @@ module.exports = function(moduleConfig) {
                 var env = (this.bus.config && this.bus.config.params && this.bus.config.params.env) || 'production';
                 var wb = require('./webpack/ut-front.config')({
                     sharedVars: {'process.env': {NODE_ENV: `'${env}'`}},
-                    entry: this.config.packer.entry,
                     outputPath: cachePath,
-                    bundleName: this.bundleName,
                     entryPoint: this.config.entryPoint,
                     jsxExclude: this.config.packer.jsxExclude
                                 ? this.config.packer.jsxExclude.constructor.name === 'RegExp'
