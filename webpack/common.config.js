@@ -15,11 +15,11 @@ module.exports = (params) => {
     var entry = {};
     if (params.entryPoint instanceof Array) {
         entry = params.entryPoint.reduce((prev, item) => {
-            prev[path.basename(item, '.js')] = item;
+            prev[path.basename(item, '.js')] = [item];
             return prev;
         }, {});
     } else if (typeof params.entryPoint === 'string') {
-        entry[path.basename(params.entryPoint, '.js')] = params.entryPoint;
+        entry[path.basename(params.entryPoint, '.js')] = [params.entryPoint];
     }
 
     return {
