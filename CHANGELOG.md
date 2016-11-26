@@ -1,3 +1,13 @@
+<a name="6.0.7"></a>
+## [6.0.7](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.6...v6.0.7) (2016-11-26)
+
+
+### Bug Fixes
+
+* require name ([e9b25a6](https://github.com/softwaregroup-bg/ut-front/commit/e9b25a6))
+
+
+
 <a name="6.0.6"></a>
 ## [6.0.6](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.5...v6.0.6) (2016-11-25)
 
