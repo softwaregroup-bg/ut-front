@@ -23,7 +23,6 @@ module.exports = (params) => {
     }
 
     return {
-        devtool: 'cheap-module-eval-source-map',
         entry,
         output: {
             filename: '[name].js',
