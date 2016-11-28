@@ -1,3 +1,13 @@
+<a name="6.0.12"></a>
+## [6.0.12](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.11...v6.0.12) (2016-11-28)
+
+
+### Bug Fixes
+
+* babel packages upgrade ([5790467](https://github.com/softwaregroup-bg/ut-front/commit/5790467))
+
+
+
 <a name="6.0.11"></a>
 ## [6.0.11](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.10...v6.0.11) (2016-11-28)
 
