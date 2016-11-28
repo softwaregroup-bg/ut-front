@@ -1,3 +1,13 @@
+<a name="6.0.13"></a>
+## [6.0.13](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.12...v6.0.13) (2016-11-28)
+
+
+### Bug Fixes
+
+* webpack devtool ([f8031b9](https://github.com/softwaregroup-bg/ut-front/commit/f8031b9))
+
+
+
 <a name="6.0.12"></a>
 ## [6.0.12](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.11...v6.0.12) (2016-11-28)
 
