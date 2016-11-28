@@ -41,11 +41,11 @@
     "ut-tools": "^5.10.8"
   },
   "peerDependencies": {
-    "babel-loader": "6.2.4",
-    "babel-preset-es2015-without-strict": "0.0.2",
-    "babel-preset-es2015": "6.9.0",
-    "babel-preset-react": "6.11.1",
-    "babel-preset-stage-0": "6.5.0",
+    "babel-loader": "6.2.8",
+    "babel-preset-es2015-without-strict": "0.0.4",
+    "babel-preset-es2015": "6.18.0",
+    "babel-preset-react": "6.16.0",
+    "babel-preset-stage-0": "6.16.0",
     "bell-on-bundler-error-plugin": "1.0.8",
     "babel-plugin-add-module-exports": "0.2.1",
     "css-loader": "0.23.1",
