@@ -3,6 +3,7 @@ var common = require('./common.config');
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 
 module.exports = (params) => {
+    params.hashLabel = '[hash].[id]';
     var conf = common(params);
     conf.devtool = 'eval-source-map';
     conf.resolve.modules.push('dev');

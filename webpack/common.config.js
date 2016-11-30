@@ -1,33 +1,41 @@
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
-
-function isExternal(module) {
-    var userRequest = module.userRequest;
-
-    if (typeof userRequest !== 'string') {
-        return false;
-    }
-
-    return userRequest.indexOf('node_modules') >= 0;
-}
 
 module.exports = (params) => {
     var entry = {};
-    if (params.entryPoint instanceof Array) {
-        entry = params.entryPoint.reduce((prev, item) => {
-            prev[path.basename(item, '.js')] = [item];
-            return prev;
-        }, {});
-    } else if (typeof params.entryPoint === 'string') {
-        entry[path.basename(params.entryPoint, '.js')] = [params.entryPoint];
+    var plugins = [];
+    if (typeof params.entryPoint === 'string') {
+        params.entryPoint = [params.entryPoint];
     }
+
+    entry = params.entryPoint.reduce((prev, item) => {
+        var name = path.basename(item, '.js');
+        prev[name] = [item];
+        plugins.push(new HtmlWebpackPlugin({
+            title: params.title,
+            chunksSortMode: (a, b) => (a.files.filter((e) => (e.indexOf(name) >= 0)).length),
+            template: path.join(__dirname, 'template.html'),
+            filename: `${name}.html`,
+            chunks: ['vendor', 'manifest', name]})
+        );
+        return prev;
+    }, {});
+    entry['vendor'] = ['react', 'material-ui', 'reactstrap', 'lodash', 'when', 'xml2js', 'source-map', 'redux', 'redux-form', 'react-router', 'engine.io-client', 'engine.io-parser', 'xmlbuilder', 'moment', 'socket.io-parser', 'socket.io-client', 'redux-thunk'];
+
+    plugins.push(new webpack.IgnorePlugin(
+        /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request|dtrace\-provider)$/
+    ));
+
+    plugins.push(new webpack.optimize.CommonsChunkPlugin({names: ['manifest', 'vendor'], filename: `[name].${params.hashLabel}.js`}));
 
     return {
         entry,
         output: {
-            filename: '[name].js',
-            publicPath: '/static/lib/',
-            path: params.outputPath
+            filename: `[name].${params.hashLabel}.js`,
+            chunkFilename: `${params.hashLabel}.js`,
+            path: params.outputPath,
+            publicPath: '/'
         },
         node: {
             cluster: 'empty',
@@ -40,17 +48,7 @@ module.exports = (params) => {
             modules: ['node_modules']
         },
         postcssImportConfigPaths: [params.configPath || '', params.themePath || ''],
-        plugins: [
-            new webpack.IgnorePlugin(
-                /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request|dtrace\-provider)$/
-            ),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'vendor',
-                filename: `vendor.bundle.js`,
-                minChunks: function(module) {
-                    return isExternal(module);
-                }})
-        ],
+        plugins,
         module: {
             loaders: [
                 {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loaders: ['url-loader?limit=10000&minetype=application/font-woff']},

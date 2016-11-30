@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var common = require('./common.config');
 
 module.exports = (params) => {
+    params.hashLabel = '[chunkhash]';
     var conf = common(params);
     conf.bail = true;
     conf.name = 'browser';
