@@ -1,0 +1,23 @@
+module.exports = [
+    'babel-polyfill',
+    'react',
+    'react-dom',
+    'react-router',
+    'react-redux',
+    'react-tap-event-plugin',
+    'reactstrap',
+    'redux',
+    'redux-form',
+    'redux-thunk',
+    'material-ui',
+    'lodash',
+    'when',
+    'xml2js',
+    'source-map',
+    'engine.io-client',
+    'engine.io-parser',
+    'xmlbuilder',
+    'moment',
+    'socket.io-parser',
+    'socket.io-client'
+];

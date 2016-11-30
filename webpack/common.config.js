@@ -5,6 +5,7 @@ var path = require('path');
 module.exports = (params) => {
     var entry = {};
     var plugins = [];
+    var hashLabel = params.hashLabel.join('.');
     if (typeof params.entryPoint === 'string') {
         params.entryPoint = [params.entryPoint];
     }
@@ -21,19 +22,19 @@ module.exports = (params) => {
         );
         return prev;
     }, {});
-    entry['vendor'] = ['react', 'material-ui', 'reactstrap', 'lodash', 'when', 'xml2js', 'source-map', 'redux', 'redux-form', 'react-router', 'engine.io-client', 'engine.io-parser', 'xmlbuilder', 'moment', 'socket.io-parser', 'socket.io-client', 'redux-thunk'];
+    entry['vendor'] = require('./vendor');
 
     plugins.push(new webpack.IgnorePlugin(
         /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request|dtrace\-provider)$/
     ));
 
-    plugins.push(new webpack.optimize.CommonsChunkPlugin({names: ['manifest', 'vendor'], filename: `[name].${params.hashLabel}.js`}));
+    plugins.push(new webpack.optimize.CommonsChunkPlugin({names: ['manifest', 'vendor'], filename: `[name].${hashLabel}.js`}));
 
     return {
         entry,
         output: {
-            filename: `[name].${params.hashLabel}.js`,
-            chunkFilename: `${params.hashLabel}.js`,
+            filename: `[name].${params.hashLabel[0]}.js`,
+            chunkFilename: `${hashLabel}.js`,
             path: params.outputPath,
             publicPath: '/'
         },
