@@ -8,6 +8,8 @@ module.exports = (params) => {
     var hashLabel = params.hashLabel.join('.');
     if (typeof params.entryPoint === 'string') {
         params.entryPoint = [params.entryPoint];
+    } else if (!(params.entryPoint instanceof Array)) {
+        throw new Error('"entryPoint" should be one of: Array|String');
     }
 
     entry = params.entryPoint.reduce((prev, item) => {
@@ -15,29 +17,37 @@ module.exports = (params) => {
         prev[name] = [item];
         plugins.push(new HtmlWebpackPlugin({
             title: params.title,
-            chunksSortMode: (a, b) => (a.files.filter((e) => (e.indexOf(name) >= 0)).length),
+            chunksSortMode: (a, b) => {
+                if (a.files.filter((e) => (e.indexOf('manifest') >= 0)).length) {
+                    return -1;
+                } else if (b.files.filter((e) => (e.indexOf('manifest') >= 0)).length) {
+                    return 1;
+                }
+                return a.files.filter((e) => (e.indexOf(name) >= 0)).length;
+            },
             template: path.join(__dirname, 'template.html'),
             filename: `${name}.html`,
             chunks: ['vendor', 'manifest', name]})
         );
         return prev;
-    }, {});
+    }, entry);
     entry['vendor'] = require('./vendor');
 
     plugins.push(new webpack.IgnorePlugin(
         /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request|dtrace\-provider)$/
     ));
 
-    plugins.push(new webpack.optimize.CommonsChunkPlugin({names: ['manifest', 'vendor'], filename: `[name].${hashLabel}.js`}));
+    plugins.push(new webpack.optimize.CommonsChunkPlugin({names: ['vendor', 'manifest'], filename: `[name].${hashLabel}.js`}));
+    var output = {
+        filename: `[name].${params.hashLabel[0]}.js`,
+        chunkFilename: `${hashLabel}.js`,
+        path: params.outputPath,
+        publicPath: '/'
+    };
 
     return {
         entry,
-        output: {
-            filename: `[name].${params.hashLabel[0]}.js`,
-            chunkFilename: `${hashLabel}.js`,
-            path: params.outputPath,
-            publicPath: '/'
-        },
+        output,
         node: {
             cluster: 'empty',
             fs: 'empty',
