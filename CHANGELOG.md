@@ -1,3 +1,13 @@
+<a name="6.0.14"></a>
+## [6.0.14](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.13...v6.0.14) (2016-12-02)
+
+
+### Bug Fixes
+
+* version bump ([2d6a644](https://github.com/softwaregroup-bg/ut-front/commit/2d6a644))
+
+
+
 <a name="6.0.13"></a>
 ## [6.0.13](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.12...v6.0.13) (2016-11-28)
 
