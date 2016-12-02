@@ -1,3 +1,14 @@
+<a name="6.0.15"></a>
+## [6.0.15](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.14...v6.0.15) (2016-12-02)
+
+
+### Bug Fixes
+
+* add default ext ([dcdcc9e](https://github.com/softwaregroup-bg/ut-front/commit/dcdcc9e))
+* webpack to not to resolve symlinks ([e7277cf](https://github.com/softwaregroup-bg/ut-front/commit/e7277cf))
+
+
+
 <a name="6.0.14"></a>
 ## [6.0.14](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.13...v6.0.14) (2016-12-02)
 
