@@ -37,7 +37,8 @@ module.exports = (params) => {
             repl: 'empty'
         },
         resolve: {
-            modules: ['node_modules']
+            modules: ['node_modules'],
+            extensions: ['.js', '.jsx']
         },
         postcssImportConfigPaths: [params.configPath || '', params.themePath || ''],
         plugins: [
