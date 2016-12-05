@@ -57,7 +57,7 @@ module.exports = (params) => {
                 {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loaders: ['url-loader?limit=10000&minetype=application/font-woff']},
                 {test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loaders: ['file-loader']},
                 {test: /\.json$/, loaders: ['json-loader']},
-                {test: /.*\.(gif|png|jpe?g|svg)$/i, loaders: ['url-loader?limit=30720000']},
+                {test: /.*\.(gif|png|jpe?g|svg|ico)$/i, loaders: ['url-loader?limit=30720000']},
                 {test: /\.css$/, loaders: ['style-loader?sourceMap', 'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss-loader']}
             ]
         }
