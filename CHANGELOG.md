@@ -1,3 +1,13 @@
+<a name="6.0.16"></a>
+## [6.0.16](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.15...v6.0.16) (2016-12-05)
+
+
+### Bug Fixes
+
+* added ico support ([7f3e93e](https://github.com/softwaregroup-bg/ut-front/commit/7f3e93e))
+
+
+
 <a name="6.0.15"></a>
 ## [6.0.15](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.14...v6.0.15) (2016-12-02)
 
