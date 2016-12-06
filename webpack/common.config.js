@@ -41,6 +41,7 @@ module.exports = (params) => {
             extensions: ['.js', '.jsx']
         },
         postcssImportConfigPaths: [params.configPath || '', params.themePath || ''],
+        loadPaths: params.loadPaths,
         plugins: [
             new webpack.IgnorePlugin(
                 /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request|dtrace\-provider)$/
