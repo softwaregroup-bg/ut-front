@@ -18,7 +18,12 @@ module.exports = function(moduleConfig) {
                 method: 'GET',
                 path: '/',
                 config: {auth: false},
-                handler: (req, reply) => (reply().redirect(`/${redirectTo}.html`))
+                handler: (req, reply) => {
+                    if (this.config.packer.name === 'webpack' && this.config.packer.hotReload) {
+                        return reply().redirect(`/${redirectTo}.html`);
+                    }
+                    return reply.file(path.join(this.cachePath, `${redirectTo}.html`));
+                }
             }, {
                 method: 'GET',
                 path: '/{p*}',

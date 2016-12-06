@@ -7,7 +7,7 @@ module.exports = (params) => {
     conf.bail = true;
     conf.name = 'browser';
     // conf.resolve.modules.push('dev');
-    conf.module.loaders.unshift({test: /\.jsx?$/, exclude: /(node_modules(\\|\/)(?!(impl|ut)\-).)/, loaders: ['babel-loader?presets[]=es2015&presets[]=stage-0&presets[]=react']});
+    conf.module.loaders.unshift({test: /\.jsx?$/, exclude: /(node_modules(\\|\/)(?!(impl|ut|.*dfsp)\-).)/, loaders: ['babel-loader?presets[]=es2015&presets[]=stage-0&presets[]=react']});
     conf.plugins.push(new webpack.optimize.DedupePlugin());
     conf.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
     conf.plugins.push(new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify('production')}}));
