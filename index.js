@@ -44,7 +44,8 @@ module.exports = function(moduleConfig) {
                                     : new RegExp(this.config.packer.jsxExclude)
                                 : /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)\-).)/,
                     themePath: moduleConfig.themePath,
-                    configPath: moduleConfig.configPath
+                    configPath: moduleConfig.configPath,
+                    loadPaths: this.config.loadPaths
                 }, this.config.packer.hotReload);
 
                 if (this.config.packer.hotReload) {
