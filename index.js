@@ -14,17 +14,19 @@ module.exports = function(moduleConfig) {
                 ((this.config.packer && this.config.packer.name) ? this.config.packer.cachePath : this.config.dist) ||
                 path.join(bus.config.workDir, 'ut-front', this.config.id));
 
-            var globalRoute = this && this.registerRequestHandler && this.registerRequestHandler([{
+            // do index route
+            var indexRoute = {
                 method: 'GET',
                 path: '/',
                 config: {auth: false},
-                handler: (req, reply) => {
-                    if (this.config.packer.name === 'webpack' && this.config.packer.hotReload) {
-                        return reply().redirect(`/${redirectTo}.html`);
-                    }
-                    return reply.file(path.join(this.cachePath, `${redirectTo}.html`));
+                handler: {
+                    file: path.join(this.cachePath, `${redirectTo}.html`)
                 }
-            }, {
+            };
+            if (this.config.packer && this.config.packer.name === 'webpack' && this.config.packer.hotReload) {
+                indexRoute.handler = (req, reply) => (reply().redirect(`/${redirectTo}.html`));
+            }
+            var globalRoute = this && this.registerRequestHandler && this.registerRequestHandler([indexRoute, {
                 method: 'GET',
                 path: '/{p*}',
                 config: {auth: false},
