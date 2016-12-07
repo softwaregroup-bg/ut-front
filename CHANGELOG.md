@@ -1,3 +1,44 @@
+<a name="6.1.0"></a>
+# [6.1.0](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.20...v6.1.0) (2016-12-06)
+
+
+### Features
+
+* UIS-451: Add postcss-assets load paths ([8c29d42](https://github.com/softwaregroup-bg/ut-front/commit/8c29d42))
+* UIS-451: Add postcss-assets to package.json ([8d8846a](https://github.com/softwaregroup-bg/ut-front/commit/8d8846a))
+
+
+
+<a name="6.0.20"></a>
+## [6.0.20](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.19...v6.0.20) (2016-12-06)
+
+
+
+<a name="6.0.19"></a>
+## [6.0.19](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.18...v6.0.19) (2016-12-06)
+
+
+
+<a name="6.0.18"></a>
+## [6.0.18](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.17...v6.0.18) (2016-12-06)
+
+
+
+<a name="6.0.17"></a>
+## [6.0.17](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.16...v6.0.17) (2016-12-06)
+
+
+
+<a name="6.0.16"></a>
+## [6.0.16](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.15...v6.0.16) (2016-12-05)
+
+
+### Bug Fixes
+
+* added ico support ([7f3e93e](https://github.com/softwaregroup-bg/ut-front/commit/7f3e93e))
+
+
+
 <a name="6.0.15"></a>
 ## [6.0.15](https://github.com/softwaregroup-bg/ut-front/compare/v6.0.14...v6.0.15) (2016-12-02)
 

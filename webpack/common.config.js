@@ -60,6 +60,7 @@ module.exports = (params) => {
             extensions: ['.js', '.jsx']
         },
         postcssImportConfigPaths: [params.configPath || '', params.themePath || ''],
+        loadPaths: params.loadPaths,
         plugins,
         module: {
             loaders: [
