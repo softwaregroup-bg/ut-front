@@ -22,12 +22,10 @@ export class UtFront extends React.Component {
     render() {
         return (
             <Provider store={this.store}>
-                <div>
-                    <Router history={this.history}>
-                        {this.props.children}
-                        <Route path='*' component={PageNotFound} />
-                    </Router>
-                </div>
+                <Router history={this.history}>
+                    {this.props.children}
+                    <Route path='*' component={PageNotFound} />
+                </Router>
             </Provider>
         );
     }
