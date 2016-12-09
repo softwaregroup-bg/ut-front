@@ -1,31 +1,39 @@
 const path = require('path');
-const assign = require('lodash.assign');
 
 module.exports = function(moduleConfig) {
     var bus;
-    var cachePath;
-    var lassoCache;
 
     var result = {
         init: function(b) {
             bus = b;
+            this.cachePath = {};
         },
         start: function() {
-            this.bundleName = path.basename(this.config.entryPoint, '.js');
-
-            cachePath = path.resolve(
+            var redirectTo = path.basename(this.config.entryPoint, '.js');
+            this.cachePath = path.resolve(
                 ((this.config.packer && this.config.packer.name) ? this.config.packer.cachePath : this.config.dist) ||
                 path.join(bus.config.workDir, 'ut-front', this.config.id));
-            lassoCache = path.resolve(bus.config.workDir, 'lasso');
 
-            var r = this && this.registerRequestHandler && this.registerRequestHandler([{
+            // do index route
+            var indexRoute = {
                 method: 'GET',
-                path: '/static/lib/{p*}',
+                path: '/',
+                config: {auth: false},
+                handler: {
+                    file: path.join(this.cachePath, `${redirectTo}.html`)
+                }
+            };
+            if (this.config.packer && this.config.packer.name === 'webpack' && this.config.packer.hotReload) {
+                indexRoute.handler = (req, reply) => (reply().redirect(`/${redirectTo}.html`));
+            }
+            var globalRoute = this && this.registerRequestHandler && this.registerRequestHandler([indexRoute, {
+                method: 'GET',
+                path: '/{p*}',
                 config: {auth: false},
                 handler: {
                     directory: {
-                        path: cachePath,
-                        listing: false,
+                        path: this.cachePath,
+                        listing: true,
                         index: true,
                         lookupCompressed: true
                     }
@@ -36,7 +44,8 @@ module.exports = function(moduleConfig) {
                 var env = (this.bus.config && this.bus.config.params && this.bus.config.params.env) || 'production';
                 var wb = require('./webpack/ut-front.config')({
                     sharedVars: {'process.env': {NODE_ENV: `'${env}'`}},
-                    outputPath: cachePath,
+                    outputPath: this.cachePath,
+                    title: '@title!',
                     entryPoint: this.config.entryPoint,
                     jsxExclude: this.config.packer.jsxExclude
                                 ? this.config.packer.jsxExclude.constructor.name === 'RegExp'
@@ -49,7 +58,7 @@ module.exports = function(moduleConfig) {
                 }, this.config.packer.hotReload);
 
                 if (this.config.packer.hotReload) {
-                    wb.output.publicPath = '/static/lib/';
+                    wb.output.publicPath = '/';
                     process.nextTick(() => (this.enableHotReload(wb)));
                 } else {
                     webpack(wb, (err, stats) => {
@@ -61,72 +70,7 @@ module.exports = function(moduleConfig) {
                     });
                 }
             }
-            return r;
-        },
-        pack: function(config) {
-            if (config.packer && config.packer.name === 'webpack') {
-                return {head: '', body: `<div id="utApp"></div><script src="/static/lib/vendor.bundle.js"></script><script src="/static/lib/${this.bundleName}.js"></script>`};
-            } else if (config.packer && config.packer.name === 'lasso') {
-                const serverRequire = require;
-                const lasso = serverRequire('lasso');
-                var lassoConfig = assign({
-                    plugins: [{
-                        plugin: 'lasso-require',
-                        config: {
-                            builtins: {
-                                'os': 'os-browserify',
-                                'fs': require.resolve('ut-bus/browser/fs'),
-                                'stream': require.resolve('stream-browserify')
-                            },
-                            babel: {
-                                extensions: ['es6', 'js', 'jsx'],
-                                presets: ['es2015-without-strict', 'react', 'stage-0'],
-                                only: /(\\|\/)(impl|ut)\-/,
-                                // sourceMaps: 'inline',
-                                babelrc: false
-                            }
-                        }
-                    },
-                        'lasso-marko'
-                    ],
-                    urlPrefix: '/static/lib',
-                    outputDir: cachePath,
-                    cacheDir: lassoCache,
-                    fingerprintsEnabled: false,
-                    minifyJS: true,
-                    resolveCssUrls: true,
-                    bundlingEnabled: true
-                }, moduleConfig, config);
-
-                var main = lassoConfig.main;
-                var from = lassoConfig.from;
-                delete lassoConfig.main;
-                delete lassoConfig.from;
-                delete lassoConfig.packer;
-                lasso.configure(lassoConfig);
-
-                return new Promise(function(resolve, reject) {
-                    lasso.lassoPage({
-                        name: 'app',
-                        dependencies: [
-                            'require-run: ' + main
-                        ],
-                        from: from || __dirname
-                    }, function(err, results) {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve({
-                                packer: config.packer,
-                                head: results.getHeadHtml(),
-                                body: '<div id="utApp"></div>' + results.getBodyHtml()
-                            });
-                        }
-                    });
-                });
-            } else {
-                return {head: '', body: `<div id="utApp"></div><script src="/static/lib/vendor.bundle.js"></script><script src="/static/lib/${this.bundleName}.js"></script>`};
-            }
+            return globalRoute;
         }
     };
     return result;
