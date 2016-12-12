@@ -21,7 +21,6 @@ module.exports = [
     'engine.io-parser',
     'xmlbuilder',
     'lodash.assign',
-    'lodash.assign',
     'lodash.capitalize',
     'lodash.clonedeepwith',
     'lodash.defaultsdeep',
