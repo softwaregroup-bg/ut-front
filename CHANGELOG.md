@@ -1,3 +1,13 @@
+<a name="6.1.3"></a>
+## [6.1.3](https://github.com/softwaregroup-bg/ut-front/compare/v6.1.2...v6.1.3) (2016-12-16)
+
+
+### Bug Fixes
+
+* versions ([5644a01](https://github.com/softwaregroup-bg/ut-front/commit/5644a01))
+
+
+
 <a name="6.1.2"></a>
 ## [6.1.2](https://github.com/softwaregroup-bg/ut-front/compare/v6.1.1...v6.1.2) (2016-12-15)
 
