@@ -1,3 +1,13 @@
+<a name="6.2.0"></a>
+# [6.2.0](https://github.com/softwaregroup-bg/ut-front/compare/v6.1.3...v6.2.0) (2016-12-19)
+
+
+### Features
+
+* UIS-422 Remove useless div ([e5dbd33](https://github.com/softwaregroup-bg/ut-front/commit/e5dbd33))
+
+
+
 <a name="6.1.3"></a>
 ## [6.1.3](https://github.com/softwaregroup-bg/ut-front/compare/v6.1.2...v6.1.3) (2016-12-16)
 
