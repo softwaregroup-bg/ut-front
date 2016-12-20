@@ -57,7 +57,10 @@ module.exports = (params) => {
         },
         resolve: {
             modules: ['node_modules'],
-            extensions: ['.js', '.jsx']
+            extensions: ['.js', '.jsx'],
+            alias: {
+                'joi': 'joi-browser'
+            }
         },
         postcssImportConfigPaths: [params.configPath || '', params.themePath || ''],
         loadPaths: params.loadPaths,
