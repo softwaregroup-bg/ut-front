@@ -1,3 +1,13 @@
+<a name="6.2.1"></a>
+## [6.2.1](https://github.com/softwaregroup-bg/ut-front/compare/v6.2.0...v6.2.1) (2016-12-20)
+
+
+### Bug Fixes
+
+* require joi but resolve joi-browser ([b662d83](https://github.com/softwaregroup-bg/ut-front/commit/b662d83))
+
+
+
 <a name="6.2.0"></a>
 # [6.2.0](https://github.com/softwaregroup-bg/ut-front/compare/v6.1.3...v6.2.0) (2016-12-19)
 
