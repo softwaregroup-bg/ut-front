@@ -1,3 +1,13 @@
+<a name="6.3.0"></a>
+# [6.3.0](https://github.com/softwaregroup-bg/ut-front/compare/v6.2.1...v6.3.0) (2016-12-21)
+
+
+### Features
+
+* upgrade webpack ([#42](https://github.com/softwaregroup-bg/ut-front/issues/42)) ([aaa09e4](https://github.com/softwaregroup-bg/ut-front/commit/aaa09e4))
+
+
+
 <a name="6.2.1"></a>
 ## [6.2.1](https://github.com/softwaregroup-bg/ut-front/compare/v6.2.0...v6.2.1) (2016-12-20)
 
