@@ -42,7 +42,9 @@ module.exports = (params) => {
             postcss: [
                 require('postcss-import')(params.cssImport),
                 require('postcss-cssnext')({}),
-                require('postcss-assets')(params.cssAssets)
+                require('postcss-assets')(params.cssAssets),
+                require('postcss-merge-rules')(),
+                require('postcss-clean')()
             ]
         }
     }));
