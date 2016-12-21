@@ -34,20 +34,31 @@ module.exports = (params) => {
     entry['vendor'] = require('./vendor');
 
     plugins.push(new webpack.IgnorePlugin(
-        /^(app|browser\-window|global\-shortcut|crash\-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request|dtrace\-provider)$/
+        /^('source-map-support|app|browser-window|global-shortcut|crash-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request|dtrace-provider)$/
     ));
 
+    plugins.push(new webpack.LoaderOptionsPlugin({
+        options: {
+            postcss: [
+                require('postcss-import')(params.cssImport),
+                require('postcss-cssnext')({}),
+                require('postcss-assets')(params.cssAssets)
+            ]
+        }
+    }));
+
     plugins.push(new webpack.optimize.CommonsChunkPlugin({names: ['vendor', 'manifest'], filename: `[name].${hashLabel}.js`}));
-    var output = {
-        filename: `[name].${params.hashLabel[0]}.js`,
-        chunkFilename: `${hashLabel}.js`,
-        path: params.outputPath,
-        publicPath: '/'
-    };
+
+    // plugins.push(new webpack.NoErrorsPlugin());
 
     return {
         entry,
-        output,
+        output: {
+            filename: `[name].${params.hashLabel[0]}.js`,
+            chunkFilename: `${hashLabel}.js`,
+            path: params.outputPath,
+            publicPath: '/'
+        },
         node: {
             cluster: 'empty',
             fs: 'empty',
@@ -59,19 +70,57 @@ module.exports = (params) => {
             modules: ['node_modules'],
             extensions: ['.js', '.jsx'],
             alias: {
-                'joi': 'joi-browser'
+                rc: require.resolve('./rc'),
+                'joi': 'joi-browser',
+                // These shims are needed for bunyan
+                fs: require.resolve('./empty'),
+                mv: require.resolve('./empty'),
+                'dtrace-provider': require.resolve('./empty'),
+                'safe-json-stringify': require.resolve('./empty'),
+                'source-map-support': require.resolve('./empty')
             }
         },
-        postcssImportConfigPaths: [params.configPath || '', params.themePath || ''],
-        loadPaths: params.loadPaths,
         plugins,
         module: {
-            loaders: [
-                {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loaders: ['url-loader?limit=10000&minetype=application/font-woff']},
-                {test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loaders: ['file-loader']},
-                {test: /\.json$/, loaders: ['json-loader']},
-                {test: /.*\.(gif|png|jpe?g|svg|ico)$/i, loaders: ['url-loader?limit=30720000']},
-                {test: /\.css$/, loaders: ['style-loader?sourceMap', 'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss-loader']}
+            rules: [
+                {
+                    test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                    use: [{
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10000,
+                            mimetype: 'application/font-woff'
+                        }
+                    }]
+                }, {
+                    test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                    use: 'file-loader'
+                }, {
+                    test: /\.json$/,
+                    use: 'json-loader'
+                }, {
+                    test: /.*\.(gif|png|jpe?g|svg|ico)$/i,
+                    use: {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 30720000
+                        }
+                    }
+                }, {
+                    test: /\.css$/,
+                    use: [{
+                        loader: 'style-loader'
+                    }, {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
+                        }
+                    }, {
+                        loader: 'postcss-loader'
+                    }]
+                }
             ]
         }
     };

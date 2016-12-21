@@ -10,7 +10,21 @@ module.exports = (params) => {
     conf.resolve.modules.push('dev');
     conf.resolve.symlinks = false;
     conf.module.exprContextCritical = false;
-    conf.module.loaders.unshift({test: /\.jsx?$/, exclude: /(node_modules(\\|\/)(?!(impl|ut|.*dfsp)\-).)/, loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=stage-0&presets[]=react&cacheDirectory=true']});
+    conf.module.rules.unshift({
+        test: /\.jsx?$/,
+        exclude: /(node_modules(\\|\/)(?!(impl|ut|.*dfsp)-).)/,
+        use: [{
+            loader: 'react-hot-loader/webpack'
+        }, {
+            loader: 'babel-loader',
+            options: {
+                presets: ['es2015', 'stage-0', 'react'],
+                cacheDirectory: true
+            }
+        }]
+    });
+    // conf.entry['reacthot'] = require('react-hot-loader/patch');
+    conf.plugins.push(new webpack.NamedModulesPlugin());
     conf.plugins.push(new webpack.DefinePlugin(params.sharedVars));
     conf.plugins.push(new BellOnBundlerErrorPlugin());
     return conf;
