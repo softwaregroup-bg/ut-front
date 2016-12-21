@@ -38,7 +38,7 @@
     "lodash.map": "4.6.0"
   },
   "devDependencies": {
-    "ut-tools": "^5.10.8"
+    "ut-tools": "^5.11.0"
   },
   "peerDependencies": {
     "babel-loader": "6.2.10",
