@@ -1,3 +1,43 @@
+<a name="6.2.1"></a>
+## [6.2.1](https://github.com/softwaregroup-bg/ut-front/compare/v6.2.0...v6.2.1) (2016-12-20)
+
+
+### Bug Fixes
+
+* require joi but resolve joi-browser ([b662d83](https://github.com/softwaregroup-bg/ut-front/commit/b662d83))
+
+
+
+<a name="6.2.0"></a>
+# [6.2.0](https://github.com/softwaregroup-bg/ut-front/compare/v6.1.3...v6.2.0) (2016-12-19)
+
+
+### Features
+
+* UIS-422 Remove useless div ([e5dbd33](https://github.com/softwaregroup-bg/ut-front/commit/e5dbd33))
+
+
+
+<a name="6.1.3"></a>
+## [6.1.3](https://github.com/softwaregroup-bg/ut-front/compare/v6.1.2...v6.1.3) (2016-12-16)
+
+
+### Bug Fixes
+
+* versions ([5644a01](https://github.com/softwaregroup-bg/ut-front/commit/5644a01))
+
+
+
+<a name="6.1.2"></a>
+## [6.1.2](https://github.com/softwaregroup-bg/ut-front/compare/v6.1.1...v6.1.2) (2016-12-15)
+
+
+### Bug Fixes
+
+* deps versions bump ([bb04920](https://github.com/softwaregroup-bg/ut-front/commit/bb04920))
+
+
+
 <a name="6.1.1"></a>
 ## [6.1.1](https://github.com/softwaregroup-bg/ut-front/compare/v6.1.0...v6.1.1) (2016-12-09)
 

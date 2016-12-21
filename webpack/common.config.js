@@ -71,6 +71,7 @@ module.exports = (params) => {
             extensions: ['.js', '.jsx'],
             alias: {
                 rc: require.resolve('./rc'),
+                'joi': 'joi-browser',
                 // These shims are needed for bunyan
                 fs: require.resolve('./empty'),
                 mv: require.resolve('./empty'),
