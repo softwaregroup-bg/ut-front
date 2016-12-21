@@ -1,3 +1,18 @@
+<a name="6.4.0"></a>
+# [6.4.0](https://github.com/softwaregroup-bg/ut-front/compare/v6.3.0...v6.4.0) (2016-12-21)
+
+
+### Bug Fixes
+
+* new lint ([3be29fa](https://github.com/softwaregroup-bg/ut-front/commit/3be29fa))
+
+
+### Features
+
+* update dependencies ([29aa322](https://github.com/softwaregroup-bg/ut-front/commit/29aa322))
+
+
+
 <a name="6.3.0"></a>
 # [6.3.0](https://github.com/softwaregroup-bg/ut-front/compare/v6.2.1...v6.3.0) (2016-12-21)
 
