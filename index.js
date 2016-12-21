@@ -51,7 +51,7 @@ module.exports = function(moduleConfig) {
                                 ? this.config.packer.jsxExclude.constructor.name === 'RegExp'
                                     ? this.config.packer.jsxExclude
                                     : new RegExp(this.config.packer.jsxExclude)
-                                : /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)\-).)/,
+                                : /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)-).)/,
                     themePath: moduleConfig.themePath,
                     configPath: moduleConfig.configPath,
                     cssImport: this.config.cssImport,
