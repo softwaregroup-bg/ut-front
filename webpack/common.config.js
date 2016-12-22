@@ -117,7 +117,8 @@ module.exports = (params) => {
                         options: {
                             modules: true,
                             importLoaders: 1,
-                            localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
+                            localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+                            context: path.dirname(require.main.filename)
                         }
                     }, {
                         loader: 'postcss-loader'
