@@ -23,7 +23,6 @@ module.exports = (params) => {
             }
         }]
     });
-    // conf.entry['reacthot'] = require('react-hot-loader/patch');
     conf.plugins.push(new webpack.NamedModulesPlugin());
     conf.plugins.push(new webpack.DefinePlugin(params.sharedVars));
     conf.plugins.push(new BellOnBundlerErrorPlugin());
