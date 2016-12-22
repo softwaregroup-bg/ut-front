@@ -1,3 +1,13 @@
+<a name="6.4.3"></a>
+## [6.4.3](https://github.com/softwaregroup-bg/ut-front/compare/v6.4.2...v6.4.3) (2016-12-22)
+
+
+### Bug Fixes
+
+* correct loader path ([e0f073c](https://github.com/softwaregroup-bg/ut-front/commit/e0f073c))
+
+
+
 <a name="6.4.2"></a>
 ## [6.4.2](https://github.com/softwaregroup-bg/ut-front/compare/v6.4.1...v6.4.2) (2016-12-22)
 
