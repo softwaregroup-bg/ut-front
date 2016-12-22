@@ -1,3 +1,14 @@
+<a name="6.4.2"></a>
+## [6.4.2](https://github.com/softwaregroup-bg/ut-front/compare/v6.4.1...v6.4.2) (2016-12-22)
+
+
+### Bug Fixes
+
+* css class name is generated correctly now ([9952395](https://github.com/softwaregroup-bg/ut-front/commit/9952395))
+* update dependencies ([fb6ada6](https://github.com/softwaregroup-bg/ut-front/commit/fb6ada6))
+
+
+
 <a name="6.4.1"></a>
 ## [6.4.1](https://github.com/softwaregroup-bg/ut-front/compare/v6.4.0...v6.4.1) (2016-12-21)
 
