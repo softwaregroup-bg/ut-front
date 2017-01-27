@@ -64,5 +64,5 @@ Redux DevTools component was removed and replaced by browser extension.
 More info here: https://github.com/zalmoxisus/redux-devtools-extension
 
 ## Submitting data to the server on edit
-The front-end have to send only the changed data back to the server when editing some item.
+The front-end have to send only the changed data plus the primary key back to the server when editing some item.
 We introduce the versionId that will indicate version of the objects. It will be submitted to the server when editing items. If there is a difference between the sent versionId and that in the database the update will be canceled and appropriate error will be returned in response.
