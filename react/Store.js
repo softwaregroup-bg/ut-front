@@ -16,7 +16,8 @@ const resetStore = (reducer, resetAction) => {
 const enhancer = compose(
     window && window.devToolsExtension
         ? window.devToolsExtension({
-            actionsFilter: (action) => {
+            serialize: true,
+            actionSanitizer: (action) => {
                 if (typeof action.type === 'symbol') {
                     const actionCopy = {...action}; // Don't change the original action
                     actionCopy.type = action.type.toString(); // DevTools doesn't work with Symbols
