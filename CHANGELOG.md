@@ -1,3 +1,13 @@
+<a name="6.4.6"></a>
+## [6.4.6](https://github.com/softwaregroup-bg/ut-front/compare/v6.4.5...v6.4.6) (2017-02-06)
+
+
+### Bug Fixes
+
+* redux devtools extention ([caff543](https://github.com/softwaregroup-bg/ut-front/commit/caff543))
+
+
+
 <a name="6.4.5"></a>
 ## [6.4.5](https://github.com/softwaregroup-bg/ut-front/compare/v6.4.4...v6.4.5) (2017-01-27)
 
