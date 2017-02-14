@@ -1,5 +1,7 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import reduxReset from 'redux-reset';
+import { LOGOUT } from './actionTypes';
 
 const resetStore = (reducer, resetAction) => {
     return (state, action) => {
@@ -33,6 +35,6 @@ export function Store(reducers, resetAction, middlewares, environment) {
         routing: routerReducer,
         ...reducers
     });
-    const store = applyMiddleware(...middlewares)(createStore);
+    const store = compose(applyMiddleware(...middlewares), reduxReset(LOGOUT))(createStore);
     return store(resetStore(mixedReducers, resetAction), {}, enhancer);
 };
