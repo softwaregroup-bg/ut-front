@@ -16,6 +16,7 @@ const resetStore = (reducer, resetAction) => {
 };
 
 const enhancer = compose(
+    reduxReset(LOGOUT),
     window && window.devToolsExtension
         ? window.devToolsExtension({
             actionsFilter: (action) => {
@@ -35,6 +36,6 @@ export function Store(reducers, resetAction, middlewares, environment) {
         routing: routerReducer,
         ...reducers
     });
-    const store = compose(applyMiddleware(...middlewares), reduxReset(LOGOUT))(createStore);
+    const store = applyMiddleware(...middlewares)(createStore);
     return store(resetStore(mixedReducers, resetAction), {}, enhancer);
 };
