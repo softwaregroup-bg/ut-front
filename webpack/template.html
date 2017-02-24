@@ -9,6 +9,16 @@
             global=window;
         </script>
         <title><%= htmlWebpackPlugin.options.title %></title>
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #utApp {
+                height: 100%;
+            }
+        </style>
         <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
     </head>
     <body class="ut5"><div id="utApp"></div></body>
