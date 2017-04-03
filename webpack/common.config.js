@@ -61,9 +61,9 @@ module.exports = (params) => {
             publicPath: '/'
         },
         externals: {
-          'react/addons': 'true',
-          'react/lib/ExecutionEnvironment': 'true',
-          'react/lib/ReactContext': 'true'
+            'react/addons': 'true',
+            'react/lib/ExecutionEnvironment': 'true',
+            'react/lib/ReactContext': 'true'
         },
         node: {
             cluster: 'empty',
