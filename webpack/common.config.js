@@ -51,8 +51,7 @@ module.exports = (params) => {
 
     plugins.push(new webpack.optimize.CommonsChunkPlugin({names: ['vendor', 'manifest'], filename: `[name].${hashLabel}.js`}));
 
-    // plugins.push(new webpack.NoErrorsPlugin());
-
+    plugins.push(new webpack.NoErrorsPlugin());
     return {
         entry,
         output: {
@@ -60,6 +59,11 @@ module.exports = (params) => {
             chunkFilename: `${hashLabel}.js`,
             path: params.outputPath,
             publicPath: '/'
+        },
+        externals: {
+          'react/addons': 'true',
+          'react/lib/ExecutionEnvironment': 'true',
+          'react/lib/ReactContext': 'true'
         },
         node: {
             cluster: 'empty',
