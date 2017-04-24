@@ -1,3 +1,18 @@
+<a name="7.0.0"></a>
+# [7.0.0](https://github.com/softwaregroup-bg/ut-front/compare/v6.4.8...v7.0.0) (2017-04-24)
+
+
+### Bug Fixes
+
+* Multi select bubble and assets fix ([#56](https://github.com/softwaregroup-bg/ut-front/issues/56)) ([70ede92](https://github.com/softwaregroup-bg/ut-front/commit/70ede92))
+
+
+### BREAKING CHANGES
+
+* this will require new major version of ut-front-react
+
+
+
 <a name="6.4.8"></a>
 ## [6.4.8](https://github.com/softwaregroup-bg/ut-front/compare/v6.4.7...v6.4.8) (2017-04-05)
 
