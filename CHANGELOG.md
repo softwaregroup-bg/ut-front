@@ -1,3 +1,8 @@
+<a name="6.4.8"></a>
+## [6.4.8](https://github.com/softwaregroup-bg/ut-front/compare/v6.4.7...v6.4.8) (2017-04-05)
+
+
+
 <a name="6.4.7"></a>
 ## [6.4.7](https://github.com/softwaregroup-bg/ut-front/compare/v6.4.6...v6.4.7) (2017-02-28)
 
