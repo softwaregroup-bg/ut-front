@@ -96,21 +96,31 @@ module.exports = (params) => {
                     }]
                 }, {
                     test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                    use: 'file-loader'
+                    use: ['file-loader']
                 }, {
                     test: /\.json$/,
-                    use: 'json-loader'
+                    use: [{
+                        loader: 'thread-loader',
+                        options: {
+                            workers: 1
+                        }
+                    }, 'json-loader']
                 }, {
                     test: /.*\.(gif|png|jpe?g|svg|ico)$/i,
-                    use: {
+                    use: [{
                         loader: 'url-loader',
                         options: {
                             limit: 30720000
                         }
-                    }
+                    }]
                 }, {
                     test: /\.css$/,
                     use: [{
+                        loader: 'thread-loader',
+                        options: {
+                            workers: 3
+                        }
+                    }, {
                         loader: 'style-loader'
                     }, {
                         loader: 'css-loader',
