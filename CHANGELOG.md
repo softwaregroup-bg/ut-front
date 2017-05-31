@@ -1,3 +1,13 @@
+<a name="7.0.8"></a>
+## [7.0.8](https://github.com/softwaregroup-bg/ut-front/compare/v7.0.7...v7.0.8) (2017-05-31)
+
+
+### Bug Fixes
+
+* remove xsrf token from action object ([#58](https://github.com/softwaregroup-bg/ut-front/issues/58)) ([4e17c4a](https://github.com/softwaregroup-bg/ut-front/commit/4e17c4a))
+
+
+
 <a name="7.0.7"></a>
 ## [7.0.7](https://github.com/softwaregroup-bg/ut-front/compare/v7.0.6...v7.0.7) (2017-05-31)
 
