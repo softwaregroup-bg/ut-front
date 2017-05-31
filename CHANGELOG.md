@@ -1,3 +1,13 @@
+<a name="7.0.7"></a>
+## [7.0.7](https://github.com/softwaregroup-bg/ut-front/compare/v7.0.6...v7.0.7) (2017-05-31)
+
+
+### Bug Fixes
+
+* XSRF ([#57](https://github.com/softwaregroup-bg/ut-front/issues/57)) ([cbc707a](https://github.com/softwaregroup-bg/ut-front/commit/cbc707a))
+
+
+
 <a name="7.0.6"></a>
 ## [7.0.6](https://github.com/softwaregroup-bg/ut-front/compare/v7.0.5...v7.0.6) (2017-05-22)
 

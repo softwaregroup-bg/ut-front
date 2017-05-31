@@ -1,6 +1,6 @@
 {
   "name": "ut-front",
-  "version": "7.0.7-pass-headers.0",
+  "version": "7.0.7",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
