@@ -9,12 +9,10 @@ export default (utBus) => {
                 return a;
             }, {});
             var corsCookie = cookies['xsrf-token'];
-            if (corsCookie) {
-                action.params.headers = {'x-xsrf-token': corsCookie};
-            }
             action.methodRequestState = 'requested';
             next(action);
-            return utBus.importMethod(action.method)(action.params)
+
+            return utBus.importMethod(action.method)(Object.assign({}, action.params, (corsCookie ? {headers: {'x-xsrf-token': corsCookie}} : {})))
                 .then(result => {
                     action.result = result;
                     return result;
