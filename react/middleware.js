@@ -3,6 +3,15 @@ import thunk from 'redux-thunk';
 export default (utBus) => {
     const rpc = (store) => (next) => (action) => {
         if (action.method) {
+            var cookies = document.cookie.split(';').map((c) => (c.split('='))).reduce((a, c) => {
+                var key = c.shift();
+                a[key] = c.shift();
+                return a;
+            }, {});
+            var corsCookie = cookies['xsrf-token'];
+            if (corsCookie) {
+                action.params.headers = {'x-xsrf-token': corsCookie};
+            }
             action.methodRequestState = 'requested';
             next(action);
             return utBus.importMethod(action.method)(action.params)
