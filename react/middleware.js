@@ -1,4 +1,5 @@
 import thunk from 'redux-thunk';
+import immutable from 'immutable';
 
 export default (utBus) => {
     const rpc = (store) => (next) => (action) => {
@@ -12,7 +13,13 @@ export default (utBus) => {
             action.methodRequestState = 'requested';
             next(action);
 
-            return utBus.importMethod(action.method)(Object.assign({}, action.params, (corsCookie ? {headers: {'x-xsrf-token': corsCookie}} : {})))
+            // Convert action.params to plain js when action.params is immutable, but keeping the original params,
+            // because some reducers require params to stay immutable.
+            var actionParamsJS;
+            if (action.params instanceof immutable.Collection) {
+                actionParamsJS = action.params.toJS();
+            }
+            return utBus.importMethod(action.method)(Object.assign({}, actionParamsJS || action.params, (corsCookie ? {headers: {'x-xsrf-token': corsCookie}} : {})))
                 .then(result => {
                     action.result = result;
                     return result;
