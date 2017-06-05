@@ -1,3 +1,13 @@
+<a name="7.0.9"></a>
+## [7.0.9](https://github.com/softwaregroup-bg/ut-front/compare/v7.0.8...v7.0.9) (2017-06-05)
+
+
+### Bug Fixes
+
+* ABT-1682: convert immutable action.params to plain js ([993f6b5](https://github.com/softwaregroup-bg/ut-front/commit/993f6b5))
+
+
+
 <a name="7.0.8"></a>
 ## [7.0.8](https://github.com/softwaregroup-bg/ut-front/compare/v7.0.7...v7.0.8) (2017-05-31)
 
