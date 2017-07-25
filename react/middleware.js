@@ -1,11 +1,25 @@
 import thunk from 'redux-thunk';
+import immutable from 'immutable';
 
 export default (utBus) => {
     const rpc = (store) => (next) => (action) => {
         if (action.method) {
+            var cookies = document.cookie.split(';').map((c) => (c.split('='))).reduce((a, c) => {
+                var key = c.shift();
+                a[key] = c.shift();
+                return a;
+            }, {});
+            var corsCookie = cookies['xsrf-token'];
             action.methodRequestState = 'requested';
             next(action);
-            return utBus.importMethod(action.method)(action.params)
+
+            // Convert action.params to plain js when action.params is immutable, but keeping the original params,
+            // because some reducers require params to stay immutable.
+            var actionParamsJS;
+            if (action.params instanceof immutable.Collection) {
+                actionParamsJS = action.params.toJS();
+            }
+            return utBus.importMethod(action.method)(Object.assign({}, actionParamsJS || action.params, (corsCookie ? {headers: {'x-xsrf-token': corsCookie}} : {})))
                 .then(result => {
                     action.result = result;
                     return result;

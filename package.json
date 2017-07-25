@@ -1,6 +1,6 @@
 {
   "name": "ut-front",
-  "version": "7.0.0",
+  "version": "7.0.9",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,7 @@
   "dependencies": {
     "history": "3.2.1",
     "inert": "4.2.0",
+    "immutable": "3.8.1",
     "lodash.assign": "4.2.0",
     "os-browserify": "0.2.1",
     "react": "15.6.1",
