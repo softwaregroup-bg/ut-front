@@ -88,7 +88,7 @@ module.exports = (params) => {
                 {
                     test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                     use: [{
-                        loader: 'url-loader',
+                        loader: 'url',
                         options: {
                             limit: 10000,
                             mimetype: 'application/font-woff'
@@ -96,24 +96,38 @@ module.exports = (params) => {
                     }]
                 }, {
                     test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                    use: 'file-loader'
+                    use: [{
+                        loader: 'file'
+                    }]
                 }, {
                     test: /\.json$/,
-                    use: 'json-loader'
+                    use: [{
+                        loader: 'thread',
+                        options: {
+                            workers: 1
+                        }
+                    }, {
+                        loader: 'json'
+                    }]
                 }, {
                     test: /.*\.(gif|png|jpe?g|svg|ico)$/i,
-                    use: {
-                        loader: 'url-loader',
+                    use: [{
+                        loader: 'url',
                         options: {
                             limit: 30720000
                         }
-                    }
+                    }]
                 }, {
                     test: /\.css$/,
                     use: [{
-                        loader: 'style-loader'
+                        loader: 'thread',
+                        options: {
+                            workers: 3
+                        }
                     }, {
-                        loader: 'css-loader',
+                        loader: 'style'
+                    }, {
+                        loader: 'css',
                         options: {
                             modules: true,
                             importLoaders: 1,
@@ -121,7 +135,7 @@ module.exports = (params) => {
                             context: path.dirname(require.main.filename)
                         }
                     }, {
-                        loader: 'postcss-loader'
+                        loader: 'postcss'
                     }]
                 }
             ]
