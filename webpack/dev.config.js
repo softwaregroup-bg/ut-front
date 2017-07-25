@@ -14,16 +14,16 @@ module.exports = (params) => {
         test: /\.jsx?$/,
         exclude: /(node_modules(\\|\/)(?!(impl|ut|.*dfsp)-).)/,
         use: [{
-            loader: 'thread-loader',
+            loader: 'thread',
             options: {
                 workers: 4
             }
         }, {
             loader: 'react-hot-loader/webpack'
         }, {
-            loader: 'babel-loader',
+            loader: 'babel',
             options: {
-                presets: ['es2015', 'stage-0', 'react'],
+                presets: ['env', 'react', 'react-hmre'],
                 cacheDirectory: true
             }
         }]
