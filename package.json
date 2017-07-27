@@ -1,6 +1,6 @@
 {
   "name": "ut-front",
-  "version": "7.1.0-wp3.1",
+  "version": "7.1.0-wp3.2",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
