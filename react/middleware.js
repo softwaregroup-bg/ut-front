@@ -25,6 +25,11 @@ export default (utBus) => {
                     return result;
                 })
                 .catch(error => {
+                    // Display a friendlier message on connection lost
+                    if (error.type === 'PortHTTP.Generic' && error.message === 'Unexpected end of JSON input') {
+                        error.message = 'Network connection lost';
+                        error.print = 'Network connection lost';
+                    }
                     action.error = error;
                     return error;
                 })
