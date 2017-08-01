@@ -1,3 +1,13 @@
+<a name="7.0.10"></a>
+## [7.0.10](https://github.com/softwaregroup-bg/ut-front/compare/v7.0.9...v7.0.10) (2017-08-01)
+
+
+### Bug Fixes
+
+* UIS-329 display friendlier message on connection lost ([6e33f77](https://github.com/softwaregroup-bg/ut-front/commit/6e33f77))
+
+
+
 <a name="7.0.9"></a>
 ## [7.0.9](https://github.com/softwaregroup-bg/ut-front/compare/v7.0.8...v7.0.9) (2017-06-05)
 
