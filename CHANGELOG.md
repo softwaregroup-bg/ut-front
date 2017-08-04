@@ -1,3 +1,13 @@
+<a name="7.1.1"></a>
+## [7.1.1](https://github.com/softwaregroup-bg/ut-front/compare/v7.1.0...v7.1.1) (2017-08-04)
+
+
+### Bug Fixes
+
+* bufferutils empty module ([b433c4f](https://github.com/softwaregroup-bg/ut-front/commit/b433c4f))
+
+
+
 <a name="7.1.0"></a>
 # [7.1.0](https://github.com/softwaregroup-bg/ut-front/compare/v7.0.10...v7.1.0) (2017-08-04)
 
