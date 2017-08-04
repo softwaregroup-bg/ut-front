@@ -76,6 +76,7 @@ module.exports = (params) => {
                 'joi': 'joi-browser',
                 // These shims are needed for bunyan
                 fs: require.resolve('./empty'),
+                bufferutil: require.resolve('./empty'),
                 mv: require.resolve('./empty'),
                 'dtrace-provider': require.resolve('./empty'),
                 'safe-json-stringify': require.resolve('./empty'),
