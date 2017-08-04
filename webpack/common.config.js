@@ -96,22 +96,32 @@ module.exports = (params) => {
                     }]
                 }, {
                     test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                    use: 'file-loader'
+                    use: [{
+                        loader: 'file-loader'
+                    }]
                 }, {
                     test: /\.json$/,
-                    use: 'json-loader'
+                    use: [{
+                        loader: 'thread-loader',
+                        options: {
+                            workers: 1
+                        }
+                    }, {
+                        loader: 'json-loader'
+                    }]
                 }, {
                     test: /.*\.(gif|png|jpe?g|svg|ico)$/i,
-                    use: {
+                    use: [{
                         loader: 'url-loader',
                         options: {
                             limit: 30720000
                         }
-                    }
+                    }]
                 }, {
                     test: /\.css$/,
                     use: [{
-                        loader: 'style-loader'
+                        loader: 'style-loader',
+                        options: {}
                     }, {
                         loader: 'css-loader',
                         options: {
@@ -121,7 +131,8 @@ module.exports = (params) => {
                             context: path.dirname(require.main.filename)
                         }
                     }, {
-                        loader: 'postcss-loader'
+                        loader: 'postcss-loader',
+                        options: {}
                     }]
                 }
             ]

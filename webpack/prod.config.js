@@ -12,9 +12,14 @@ module.exports = (params) => {
         test: /\.jsx?$/,
         exclude: /(node_modules(\\|\/)(?!(impl|ut|.*dfsp)-).)/,
         use: [{
+            loader: 'thread-loader',
+            options: {
+                workers: 4
+            }
+        }, {
             loader: 'babel-loader',
             options: {
-                presets: ['es2015', 'stage-0', 'react'],
+                presets: ['env', 'react'],
                 cacheDirectory: true
             }
         }]
