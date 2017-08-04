@@ -1,3 +1,13 @@
+<a name="7.1.0"></a>
+# [7.1.0](https://github.com/softwaregroup-bg/ut-front/compare/v7.0.10...v7.1.0) (2017-08-04)
+
+
+### Features
+
+* webpack version bump, react + redux version bump ([a504cfb](https://github.com/softwaregroup-bg/ut-front/commit/a504cfb))
+
+
+
 <a name="7.0.10"></a>
 ## [7.0.10](https://github.com/softwaregroup-bg/ut-front/compare/v7.0.9...v7.0.10) (2017-08-01)
 
