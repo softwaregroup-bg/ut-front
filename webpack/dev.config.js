@@ -23,7 +23,7 @@ module.exports = (params) => {
         }, {
             loader: 'babel-loader',
             options: {
-                presets: ['env', 'react', 'react-hmre'],
+                presets: ['env', 'stage-0', 'react', 'react-hmre'],
                 cacheDirectory: true
             }
         }]
