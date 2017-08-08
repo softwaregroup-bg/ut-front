@@ -1,3 +1,13 @@
+<a name="7.1.2"></a>
+## [7.1.2](https://github.com/softwaregroup-bg/ut-front/compare/v7.1.1...v7.1.2) (2017-08-08)
+
+
+### Bug Fixes
+
+* babel compilers ([2aa44d3](https://github.com/softwaregroup-bg/ut-front/commit/2aa44d3))
+
+
+
 <a name="7.1.1"></a>
 ## [7.1.1](https://github.com/softwaregroup-bg/ut-front/compare/v7.1.0...v7.1.1) (2017-08-04)
 
