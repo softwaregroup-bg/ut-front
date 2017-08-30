@@ -24,6 +24,7 @@ module.exports = (params) => {
             loader: 'babel-loader',
             options: {
                 presets: ['env', 'stage-0', 'react', 'react-hmre'],
+                plugins: ['transform-decorators-legacy'],
                 cacheDirectory: true
             }
         }]
