@@ -23,6 +23,7 @@
     "version": "ut-version"
   },
   "dependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "history": "3.2.1",
     "inert": "4.2.0",
     "immutable": "3.8.1",
@@ -39,7 +40,6 @@
     "lodash.map": "4.6.0"
   },
   "devDependencies": {
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "ut-tools": "*"
   },
   "peerDependencies": {
