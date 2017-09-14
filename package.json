@@ -62,6 +62,7 @@
     "style-loader": "0.13.1",
     "react-hot-loader": "3.0.0-beta.6",
     "url-loader": "0.5.9",
+    "file-loader": "0.11.2",
     "webpack": "3.3.0",
     "html-webpack-plugin": "2.29.0",
     "thread-loader": "1.1.0"
