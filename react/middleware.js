@@ -19,7 +19,7 @@ export default (utBus) => {
             if (action.params instanceof immutable.Collection) {
                 actionParamsJS = action.params.toJS();
             }
-            return utBus.importMethod(action.method)(Object.assign({}, actionParamsJS || action.params, (corsCookie ? {headers: {'x-xsrf-token': corsCookie}} : {})))
+            return utBus.importMethod(action.method)(Object.assign(actionParamsJS || action.params, {}, (corsCookie ? {headers: {'x-xsrf-token': corsCookie}} : {})))
                 .then(result => {
                     action.result = result;
                     return result;
