@@ -13,6 +13,10 @@ export default (utBus) => {
             action.methodRequestState = 'requested';
             next(action);
 
+            if (action.abort) {
+                action.methodRequestState = 'finished';
+                return next(action);
+            }
             // Convert action.params to plain js when action.params is immutable, but keeping the original params,
             // because some reducers require params to stay immutable.
             var actionParamsJS;
