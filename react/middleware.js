@@ -1,6 +1,19 @@
 import thunk from 'redux-thunk';
 import immutable from 'immutable';
 
+/**
+ * Convert action.params to plain js when action.params is immutable
+ */
+const cloneParams = (params) => {
+    if (params instanceof immutable.Collection) {
+        return params.toJS(); // no need to clone as toJS returns a new instance
+    } else if (params instanceof Array) {
+        return params.slice();
+    } else {
+        return Object.assign({}, params);
+    }
+};
+
 export default (utBus) => {
     const rpc = (store) => (next) => (action) => {
         if (action.method) {
@@ -13,13 +26,11 @@ export default (utBus) => {
             action.methodRequestState = 'requested';
             next(action);
 
-            // Convert action.params to plain js when action.params is immutable, but keeping the original params,
-            // because some reducers require params to stay immutable.
-            var actionParamsJS;
-            if (action.params instanceof immutable.Collection) {
-                actionParamsJS = action.params.toJS();
+            const methodParams = cloneParams(action.params);
+            if (corsCookie) {
+                Object.assign(methodParams, { headers: { 'x-xsrf-token': corsCookie } });
             }
-            return utBus.importMethod(action.method)(Object.assign(actionParamsJS || action.params, {}, (corsCookie ? {headers: {'x-xsrf-token': corsCookie}} : {})))
+            return utBus.importMethod(action.method)(methodParams)
                 .then(result => {
                     action.result = result;
                     return result;
