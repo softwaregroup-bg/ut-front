@@ -26,9 +26,9 @@ export default (utBus) => {
             action.methodRequestState = 'requested';
             next(action);
 
-            const methodParams = cloneParams(action.params);
+            var methodParams = cloneParams(action.params);
             if (corsCookie) {
-                Object.assign(methodParams, { headers: { 'x-xsrf-token': corsCookie } });
+                methodParams = Object.assign(methodParams, { headers: { 'x-xsrf-token': corsCookie } });
             }
             return utBus.importMethod(action.method)(methodParams)
                 .then(result => {
