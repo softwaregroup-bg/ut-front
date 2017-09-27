@@ -1,3 +1,14 @@
+<a name="7.1.4"></a>
+## [7.1.4](https://github.com/softwaregroup-bg/ut-front/compare/v7.1.3...v7.1.4) (2017-09-27)
+
+
+### Bug Fixes
+
+* made modifying methodParams explicit ([1275902](https://github.com/softwaregroup-bg/ut-front/commit/1275902))
+* update clone logic ([e9df0d5](https://github.com/softwaregroup-bg/ut-front/commit/e9df0d5))
+
+
+
 <a name="7.1.3"></a>
 ## [7.1.3](https://github.com/softwaregroup-bg/ut-front/compare/v7.1.2...v7.1.3) (2017-08-08)
 
