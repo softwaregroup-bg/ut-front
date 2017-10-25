@@ -1,3 +1,22 @@
+<a name="7.2.0"></a>
+# [7.2.0](https://github.com/softwaregroup-bg/ut-front/compare/v7.1.4...v7.2.0) (2017-10-25)
+
+
+### Bug Fixes
+
+* add decorators plugin to dependencies ([abd26ad](https://github.com/softwaregroup-bg/ut-front/commit/abd26ad))
+* dep ([d3a5971](https://github.com/softwaregroup-bg/ut-front/commit/d3a5971))
+* remove google font ([be75135](https://github.com/softwaregroup-bg/ut-front/commit/be75135))
+
+
+### Features
+
+* abort displatched actions to prevent unwanted api calls ([#67](https://github.com/softwaregroup-bg/ut-front/issues/67)) ([ef5871e](https://github.com/softwaregroup-bg/ut-front/commit/ef5871e))
+* add Assistant font for the Tokuda demo ([2c0f653](https://github.com/softwaregroup-bg/ut-front/commit/2c0f653))
+* add decorators support ([d0c5edd](https://github.com/softwaregroup-bg/ut-front/commit/d0c5edd))
+
+
+
 <a name="7.1.4"></a>
 ## [7.1.4](https://github.com/softwaregroup-bg/ut-front/compare/v7.1.3...v7.1.4) (2017-09-27)
 
