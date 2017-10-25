@@ -26,6 +26,10 @@ export default (utBus) => {
             action.methodRequestState = 'requested';
             next(action);
 
+            if (action.abort) {
+                action.methodRequestState = 'finished';
+                return next(action);
+            }
             var methodParams = cloneParams(action.params);
             if (corsCookie) {
                 methodParams = Object.assign(methodParams, { headers: { 'x-xsrf-token': corsCookie } });
