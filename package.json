@@ -1,6 +1,6 @@
 {
   "name": "ut-front",
-  "version": "7.2.0",
+  "version": "7.3.0-rc-acapulco.0",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
