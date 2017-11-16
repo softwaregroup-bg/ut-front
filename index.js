@@ -54,6 +54,7 @@ module.exports = function(moduleConfig) {
                                 : /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)-).)/,
                     themePath: moduleConfig.themePath,
                     configPath: moduleConfig.configPath,
+                    postcssLoader: this.config.postcssLoader,
                     cssImport: this.config.cssImport,
                     cssAssets: this.config.cssAssets
                 }, this.config.packer.hotReload);
