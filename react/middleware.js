@@ -28,7 +28,7 @@ export default (utBus) => {
 
             if (action.abort) {
                 action.methodRequestState = 'finished';
-                return next(action);
+                return Promise.resolve(next(action));
             }
             var methodParams = cloneParams(action.params);
             if (corsCookie) {
@@ -53,7 +53,7 @@ export default (utBus) => {
                     return next(action);
                 });
         }
-        return next(action);
+        return Promise.resolve(next(action));
     };
 
     const utBuslogger = (store) => (next) => (action) => {
