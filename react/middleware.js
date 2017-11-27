@@ -18,7 +18,7 @@ export default (utBus) => {
     const rpc = (store) => (next) => (action) => {
         if (action.method) {
             var cookies = document.cookie.split(';').map((c) => (c.split('='))).reduce((a, c) => {
-                var key = c.shift();
+                var key = c.shift().trim();
                 a[key] = c.shift();
                 return a;
             }, {});
