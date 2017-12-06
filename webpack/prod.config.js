@@ -1,5 +1,7 @@
 var webpack = require('webpack');
 var common = require('./common.config');
+var os = require('os');
+var path = require('path');
 
 module.exports = (params) => {
     params.hashLabel = ['[chunkhash]'];
@@ -20,7 +22,7 @@ module.exports = (params) => {
             loader: 'babel-loader',
             options: {
                 presets: ['env', 'stage-0', 'react'],
-                cacheDirectory: true
+                cacheDirectory: path.resolve(os.homedir(), '.ut', 'ut-front', 'cache')
             }
         }]
     });

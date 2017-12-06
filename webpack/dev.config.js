@@ -1,6 +1,8 @@
 var webpack = require('webpack');
 var common = require('./common.config');
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
+var os = require('os');
+var path = require('path');
 
 module.exports = (params) => {
     params.hashLabel = ['[hash]', '[id]'];
@@ -25,7 +27,7 @@ module.exports = (params) => {
             options: {
                 presets: ['env', 'stage-0', 'react', 'react-hmre'],
                 plugins: ['transform-decorators-legacy'],
-                cacheDirectory: true
+                cacheDirectory: path.resolve(os.homedir(), '.ut', 'ut-front', 'cache')
             }
         }]
     });

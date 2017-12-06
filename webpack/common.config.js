@@ -37,18 +37,6 @@ module.exports = (params) => {
         /^('source-map-support|app|browser-window|global-shortcut|crash-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request|dtrace-provider)$/
     ));
 
-    plugins.push(new webpack.LoaderOptionsPlugin({
-        options: {
-            postcss: [
-                require('postcss-import')(params.cssImport),
-                require('postcss-cssnext')({}),
-                require('postcss-assets')(params.cssAssets),
-                require('postcss-merge-rules')(),
-                require('postcss-clean')()
-            ]
-        }
-    }));
-
     plugins.push(new webpack.optimize.CommonsChunkPlugin({names: ['vendor', 'manifest'], filename: `[name].${hashLabel}.js`}));
 
     // plugins.push(new webpack.NoErrorsPlugin());
@@ -133,7 +121,15 @@ module.exports = (params) => {
                         }
                     }, {
                         loader: 'postcss-loader',
-                        options: {}
+                        options: params.postcssLoader || {
+                            plugins: [
+                                require('postcss-import')(params.cssImport),
+                                require('postcss-cssnext')({}),
+                                require('postcss-assets')(params.cssAssets),
+                                require('postcss-merge-rules')(),
+                                require('postcss-clean')()
+                            ]
+                        }
                     }]
                 }
             ]
