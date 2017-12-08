@@ -1,3 +1,13 @@
+<a name="8.0.1"></a>
+## [8.0.1](https://github.com/softwaregroup-bg/ut-front/compare/v8.0.0...v8.0.1) (2017-12-08)
+
+
+### Bug Fixes
+
+* remove transitive peer dep ([ed5d575](https://github.com/softwaregroup-bg/ut-front/commit/ed5d575))
+
+
+
 <a name="8.0.0"></a>
 # [8.0.0](https://github.com/softwaregroup-bg/ut-front/compare/v7.2.0...v8.0.0) (2017-12-06)
 
