@@ -43,7 +43,7 @@ module.exports = function(moduleConfig) {
                 const webpack = require('webpack');
                 var env = (this.bus.config && this.bus.config.params && this.bus.config.params.env) || 'production';
                 var wb = require('./webpack/ut-front.config')({
-                    sharedVars: {'process.env': {NODE_ENV: `'${env}'`}},
+                    sharedVars: {env},
                     outputPath: this.cachePath,
                     title: '@title!',
                     entryPoint: this.config.entryPoint,
