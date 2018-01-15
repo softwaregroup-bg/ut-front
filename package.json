@@ -1,6 +1,6 @@
 {
   "name": "ut-front",
-  "version": "8.1.0-rc-bahur.2",
+  "version": "8.1.0-rc-bahur.3",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
