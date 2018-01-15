@@ -38,7 +38,7 @@ module.exports = (params) => {
     ));
 
     plugins.push(new webpack.optimize.CommonsChunkPlugin({names: ['vendor', 'manifest'], filename: `[name].${hashLabel}.js`}));
-    plugins.push(new webpack.DefinePlugin({NODE_ENV: JSON.stringify(params.sharedVars.env)}));
+    plugins.push(new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(params.sharedVars.env)}));
     plugins.push(new webpack.DefinePlugin({NODE_ENV_SHARED: JSON.stringify(params.sharedVars)}));
 
     // plugins.push(new webpack.NoErrorsPlugin());
