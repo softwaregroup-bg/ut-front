@@ -21,7 +21,10 @@ module.exports = function(moduleConfig) {
                 path: '/',
                 config: {auth: false},
                 handler: {
-                    file: path.join(this.cachePath, `${redirectTo}.html`)
+                    file: {
+                        confine: this.cachePath,
+                        path: path.join(this.cachePath, `${redirectTo}.html`)
+                    }
                 }
             };
             if (this.config.packer && this.config.packer.name === 'webpack' && this.config.packer.hotReload) {
