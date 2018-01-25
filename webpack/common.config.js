@@ -110,6 +110,7 @@ module.exports = (params) => {
                     }]
                 }, {
                     test: /\.css$/,
+                    exclude: [/public/],
                     use: [{
                         loader: 'style-loader',
                         options: {}
@@ -133,7 +134,8 @@ module.exports = (params) => {
                             ]
                         }
                     }]
-                }
+                },
+                ...(params.rulesImport || [])
             ]
         }
     };

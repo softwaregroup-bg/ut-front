@@ -1,5 +1,6 @@
 const path = require('path');
 var serverRequire = require;
+var _merge = require('lodash.merge');
 
 module.exports = function(moduleConfig) {
     var bus;
@@ -58,11 +59,12 @@ module.exports = function(moduleConfig) {
                                 : /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)-).)/,
                     themePath: moduleConfig.themePath,
                     configPath: moduleConfig.configPath,
+                    rulesImport: this.config.rulesImport,
                     postcssLoader: this.config.postcssLoader,
                     cssImport: this.config.cssImport,
                     cssAssets: this.config.cssAssets
                 }, this.config.packer.hotReload);
-
+                this.config.resolve && _merge(wb.resolve, this.config.resolve);
                 if (this.config.packer.hotReload) {
                     wb.output.publicPath = '/';
                     process.nextTick(() => (this.enableHotReload(wb)));

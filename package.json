@@ -28,6 +28,7 @@
     "inert": "4.2.0",
     "immutable": "3.8.1",
     "lodash.assign": "4.2.0",
+    "lodash.merge": "4.6.0",
     "os-browserify": "0.2.1",
     "react": "15.6.1",
     "react-css-modules": "4.5.2",
