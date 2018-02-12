@@ -46,7 +46,7 @@ module.exports = function(moduleConfig) {
             if (this.config.packer && this.config.packer.name === 'webpack') {
                 const webpack = serverRequire('webpack');
                 var env = (this.bus.config && this.bus.config.params && this.bus.config.params.env) || 'production';
-                var wb = require('./webpack/ut-front.config')({
+                var wb = serverRequire('./webpack/ut-front.config')({
                     sharedVars: {env},
                     outputPath: this.cachePath,
                     title: '@title!',

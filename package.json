@@ -23,26 +23,14 @@
     "version": "ut-version"
   },
   "dependencies": {
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "history": "3.2.1",
-    "inert": "4.2.0",
-    "immutable": "3.8.1",
     "lodash.assign": "4.2.0",
-    "os-browserify": "0.2.1",
-    "react": "15.6.1",
-    "react-css-modules": "4.5.2",
-    "react-redux": "5.0.5",
-    "react-router": "3.0.0",
-    "react-router-redux": "4.0.8",
-    "redux": "3.7.2",
-    "redux-thunk": "2.2.0",
-    "stream-browserify": "2.0.1",
     "lodash.map": "4.6.0"
   },
   "devDependencies": {
-    "ut-tools": "*"
+    "ut-tools": "^5.32.5"
   },
   "peerDependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015-without-strict": "^0.0.4",
     "babel-preset-env": "^1.6.1",
@@ -52,7 +40,16 @@
     "bell-on-bundler-error-plugin": "^2.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "css-loader": "^0.28.7",
+    "history": "^3.2.1",
+    "immutable": "^3.8.1",
     "json-loader": "^0.5.7",
+    "react": "^15.6.1",
+    "react-css-modules": "^4.5.2",
+    "react-redux": "^5.0.5",
+    "react-router": "^3.0.0",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
@@ -69,10 +66,7 @@
   },
   "implDependencies": {
     "electron-packager": "5.0.1",
-    "electron-prebuilt": "0.34.5",
-    "lasso": "2.1.4",
-    "lasso-marko": "2.0.7",
-    "lasso-minify-js": "1.2.0"
+    "electron-prebuilt": "0.34.5"
   },
   "repository": {
     "type": "git",
