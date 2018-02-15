@@ -13,8 +13,8 @@ const resetStore = (reducer, resetAction) => {
     };
 };
 
-const enhancer = compose(
-    window && window.devToolsExtension
+const enhancer = utBusConfig => compose(
+    utBusConfig.debug && window && window.devToolsExtension
         ? window.devToolsExtension({
             serialize: true,
             actionSanitizer: (action) => {
@@ -29,11 +29,11 @@ const enhancer = compose(
         : f => f
 );
 
-export function Store(reducers, resetAction, middlewares, environment) {
+export function Store(reducers, resetAction, middlewares, environment, utBusConfig = {}) {
     const mixedReducers = combineReducers({
         routing: routerReducer,
         ...reducers
     });
     const store = applyMiddleware(...middlewares)(createStore);
-    return store(resetStore(mixedReducers, resetAction), {}, enhancer);
+    return store(resetStore(mixedReducers, resetAction), {}, enhancer(utBusConfig));
 };

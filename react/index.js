@@ -15,7 +15,8 @@ export class UtFront extends React.Component {
             this.props.reducers,
             this.props.resetAction,
             UtFrontMiddleware(this.props.utBus).concat(this.props.middlewares),
-            this.props.environment
+            this.props.environment,
+            this.props.utBus.config
         );
         this.history = syncHistoryWithStore(useRouterHistory(createHashHistory)(), this.store);
     }
