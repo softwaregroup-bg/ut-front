@@ -1,5 +1,5 @@
 import thunk from 'redux-thunk';
-import immutable from 'immutable';
+import immutable, {fromJS} from 'immutable';
 
 /**
  * Convert action.params to plain js when action.params is immutable
@@ -32,7 +32,7 @@ export default (utBus) => {
             }
             var methodParams = cloneParams(action.params);
             if (corsCookie) {
-                methodParams = Object.assign(methodParams, {$http: {headers: {'x-xsrf-token': corsCookie}}});
+                methodParams = fromJS(methodParams).mergeDeep(fromJS({$http: {headers: {'x-xsrf-token': corsCookie}}})).toJS();
             }
             return utBus.importMethod(action.method)(methodParams)
                 .then(result => {
