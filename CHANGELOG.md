@@ -1,3 +1,19 @@
+<a name="8.1.0"></a>
+# [8.1.0](https://github.com/softwaregroup-bg/ut-front/compare/v8.0.1...v8.1.0) (2018-03-02)
+
+
+### Bug Fixes
+
+* add support for pkg ([ad92926](https://github.com/softwaregroup-bg/ut-front/commit/ad92926))
+* dshshare some node config ([#73](https://github.com/softwaregroup-bg/ut-front/issues/73)) ([6d4b38a](https://github.com/softwaregroup-bg/ut-front/commit/6d4b38a))
+* move frontend as peerDependency ([05a6fc3](https://github.com/softwaregroup-bg/ut-front/commit/05a6fc3))
+* node_env globals name ([091caef](https://github.com/softwaregroup-bg/ut-front/commit/091caef))
+* node_env globals name ([8096965](https://github.com/softwaregroup-bg/ut-front/commit/8096965))
+* shared vars ([70403d1](https://github.com/softwaregroup-bg/ut-front/commit/70403d1))
+* support pkg ([a1c924f](https://github.com/softwaregroup-bg/ut-front/commit/a1c924f))
+
+
+
 <a name="8.0.1"></a>
 ## [8.0.1](https://github.com/softwaregroup-bg/ut-front/compare/v8.0.0...v8.0.1) (2017-12-08)
 
