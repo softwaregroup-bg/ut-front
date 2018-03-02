@@ -32,7 +32,7 @@ export default (utBus) => {
             }
             var methodParams = cloneParams(action.params);
             if (corsCookie) {
-                methodParams = Object.assign(methodParams, { headers: { 'x-xsrf-token': corsCookie } });
+                methodParams = Object.assign(methodParams, {$http: {headers: {'x-xsrf-token': corsCookie}}});
             }
             return utBus.importMethod(action.method)(methodParams)
                 .then(result => {
