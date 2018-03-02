@@ -1,3 +1,13 @@
+<a name="8.1.1"></a>
+## [8.1.1](https://github.com/softwaregroup-bg/ut-front/compare/v8.1.0...v8.1.1) (2018-03-02)
+
+
+### Bug Fixes
+
+* kk lookup ([dd0f2f3](https://github.com/softwaregroup-bg/ut-front/commit/dd0f2f3))
+
+
+
 <a name="8.1.0"></a>
 # [8.1.0](https://github.com/softwaregroup-bg/ut-front/compare/v8.0.1...v8.1.0) (2018-03-02)
 
