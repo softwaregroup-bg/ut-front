@@ -28,7 +28,7 @@ module.exports = function(moduleConfig) {
                 }
             };
             if (this.config.packer && this.config.packer.name === 'webpack' && this.config.packer.hotReload) {
-                indexRoute.handler = (req, reply) => (reply().redirect(`/${redirectTo}.html`));
+                indexRoute.handler = (req, h) => (h.response().redirect(`/${redirectTo}.html`));
             }
             var globalRoute = this && this.registerRequestHandler && this.registerRequestHandler([indexRoute, {
                 method: 'GET',
