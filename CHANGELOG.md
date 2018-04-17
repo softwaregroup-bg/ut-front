@@ -1,3 +1,13 @@
+<a name="8.2.0"></a>
+# [8.2.0](https://github.com/softwaregroup-bg/ut-front/compare/v8.1.2...v8.2.0) (2018-04-17)
+
+
+### Bug Fixes
+
+* hapi 17 fix ([96a43af](https://github.com/softwaregroup-bg/ut-front/commit/96a43af))
+
+
+
 <a name="8.1.2"></a>
 ## [8.1.2](https://github.com/softwaregroup-bg/ut-front/compare/v8.1.1...v8.1.2) (2018-03-02)
 
