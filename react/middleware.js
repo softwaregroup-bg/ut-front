@@ -34,6 +34,9 @@ export default (utBus) => {
             if (corsCookie) {
                 methodParams = fromJS(methodParams).mergeDeep(fromJS({$http: {headers: {'x-xsrf-token': corsCookie}}})).toJS();
             }
+            if (action.$http) {
+                methodParams = fromJS(methodParams).mergeDeep(fromJS({$http: action.$http})).toJS();
+            }
             return utBus.importMethod(action.method)(methodParams)
                 .then(result => {
                     action.result = result;
