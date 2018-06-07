@@ -1,6 +1,6 @@
 {
   "name": "ut-front",
-  "version": "8.2.0",
+  "version": "8.3.0-rc-diesel.0",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
@@ -15,10 +15,10 @@
     "postpublish": "ut-postpublish",
     "postversion": "ut-postversion",
     "precommit": "ut-precommit",
+    "precover": "ut-precover",
     "prepublish": "ut-prepublish",
     "prepush": "ut-prepush",
     "pretest": "ut-pretest",
-    "precover": "ut-precover",
     "preversion": "ut-preversion",
     "test": "ut-test",
     "version": "ut-version"
