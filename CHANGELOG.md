@@ -1,3 +1,13 @@
+<a name="8.3.0"></a>
+# [8.3.0](https://github.com/softwaregroup-bg/ut-front/compare/v8.2.0...v8.3.0) (2018-06-07)
+
+
+### Features
+
+* add $http options ([#78](https://github.com/softwaregroup-bg/ut-front/issues/78)) ([d6f7d36](https://github.com/softwaregroup-bg/ut-front/commit/d6f7d36))
+
+
+
 <a name="8.2.0"></a>
 # [8.2.0](https://github.com/softwaregroup-bg/ut-front/compare/v8.1.2...v8.2.0) (2018-04-17)
 
