@@ -1,3 +1,13 @@
+<a name="8.1.3"></a>
+## [8.1.3](https://github.com/softwaregroup-bg/ut-front/compare/v8.1.2...v8.1.3) (2018-06-29)
+
+
+### Bug Fixes
+
+* assign $http ([aee94c0](https://github.com/softwaregroup-bg/ut-front/commit/aee94c0))
+
+
+
 <a name="8.1.2"></a>
 ## [8.1.2](https://github.com/softwaregroup-bg/ut-front/compare/v8.1.1...v8.1.2) (2018-03-02)
 
