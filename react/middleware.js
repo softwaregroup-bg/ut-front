@@ -14,15 +14,25 @@ const cloneParams = (params) => {
     }
 };
 
+const getCookies = () => document.cookie.split(';').map((c) => (c.split('='))).reduce((a, c) => {
+    var key = c.shift().trim();
+    a[key] = c.shift();
+    return a;
+}, {});
+
 export default (utBus) => {
     const rpc = (store) => (next) => (action) => {
         if (action.method) {
-            var cookies = document.cookie.split(';').map((c) => (c.split('='))).reduce((a, c) => {
-                var key = c.shift().trim();
-                a[key] = c.shift();
-                return a;
-            }, {});
+            var cookies = getCookies();
             var corsCookie = cookies['xsrf-token'];
+            var importMethodParams = {};
+            var $meta = fromJS({$http: {mtid: ((action.mtid === 'notification' && 'notification') || 'request')}});
+            var methodParams = fromJS(cloneParams(action.params))
+                .mergeDeep($meta);
+
+            if (action.requestTimeout) {
+                importMethodParams = Object.assign({}, importMethodParams, {timeout: action.requestTimeout});
+            }
             action.methodRequestState = 'requested';
             next(action);
 
@@ -30,14 +40,11 @@ export default (utBus) => {
                 action.methodRequestState = 'finished';
                 return next(action);
             }
-            var methodParams = cloneParams(action.params);
             if (corsCookie) {
-                methodParams = fromJS(methodParams).mergeDeep(fromJS({$http: {headers: {'x-xsrf-token': corsCookie}}})).toJS();
+                methodParams = methodParams.mergeDeep(fromJS({$http: {headers: {'x-xsrf-token': corsCookie}}}));
             }
-            if (action.$http) {
-                methodParams = fromJS(methodParams).mergeDeep(fromJS({$http: action.$http})).toJS();
-            }
-            return utBus.importMethod(action.method)(methodParams)
+
+            return utBus.importMethod(action.method, importMethodParams)(methodParams.toJS())
                 .then(result => {
                     action.result = result;
                     return result;
