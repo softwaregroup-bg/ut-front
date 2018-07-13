@@ -1,6 +1,6 @@
 {
   "name": "ut-front",
-  "version": "8.4.0-rc-einstein.0",
+  "version": "8.4.0-rc-einstein.1",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
