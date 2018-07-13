@@ -30,6 +30,10 @@ export default (utBus) => {
             var methodParams = fromJS(cloneParams(action.params))
                 .mergeDeep($meta);
 
+            if (action.$http) {
+                methodParams = methodParams.mergeDeep(fromJS({$http: action.$http}));
+            }
+
             if (action.requestTimeout) {
                 importMethodParams = Object.assign({}, importMethodParams, {timeout: action.requestTimeout});
             }
