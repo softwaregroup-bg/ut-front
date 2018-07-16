@@ -26,7 +26,7 @@ export default (utBus) => {
             var cookies = getCookies();
             var corsCookie = cookies['xsrf-token'];
             var importMethodParams = {};
-            var $meta = fromJS({$http: {mtid: ((action.mtid === 'notification' && 'notification') || 'request')}});
+            var $meta = fromJS({$http: {mtid: ((action.mtid === 'notification' && 'notification') || 'request'), ...(action.$http || {})}});
             var methodParams = fromJS(cloneParams(action.params))
                 .mergeDeep($meta);
 
