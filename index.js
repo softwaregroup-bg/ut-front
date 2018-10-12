@@ -19,7 +19,7 @@ module.exports = function(moduleConfig) {
             var indexRoute = {
                 method: 'GET',
                 path: '/',
-                config: {auth: false},
+                options: {auth: false},
                 handler: {
                     file: {
                         confine: this.cachePath,
@@ -33,7 +33,7 @@ module.exports = function(moduleConfig) {
             var globalRoute = this && this.registerRequestHandler && this.registerRequestHandler([indexRoute, {
                 method: 'GET',
                 path: '/{p*}',
-                config: {auth: false},
+                options: {auth: false},
                 handler: {
                     directory: {
                         path: this.cachePath,
