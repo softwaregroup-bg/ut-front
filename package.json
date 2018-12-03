@@ -1,31 +1,64 @@
 {
-  "name": "ut-front",
-  "version": "6.4.5",
-  "description": "Frontend module",
-  "main": "index.js",
-  "scripts": {
-    "lint": "ut-lint .",
-    "release": "ut-release",
-    "changelog": "ut-changelog",
-    "check": "ut-check",
-    "cover": "ut-cover",
-    "gitlab": "ut-gitlab",
-    "jenkins": "ut-jenkins",
-    "lint-js": "ut-lint-js .",
-    "postpublish": "ut-postpublish",
-    "postversion": "ut-postversion",
-    "precommit": "ut-precommit",
-    "prepublish": "ut-prepublish",
-    "prepush": "ut-prepush",
-    "pretest": "ut-pretest",
-    "preversion": "ut-preversion",
-    "test": "ut-test",
-    "version": "ut-version"
+  "_args": [
+    [
+      {
+        "raw": "ut-front@6.4.5",
+        "scope": null,
+        "escapedName": "ut-front",
+        "name": "ut-front",
+        "rawSpec": "6.4.5",
+        "spec": "6.4.5",
+        "type": "version"
+      },
+      "E:\\Git\\impl-mpay"
+    ]
+  ],
+  "_from": "ut-front@6.4.5",
+  "_id": "ut-front@6.4.5",
+  "_inCache": true,
+  "_location": "/ut-front",
+  "_nodeVersion": "6.9.4",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/ut-front-6.4.5.tgz_1485525722765_0.4073011151049286"
+  },
+  "_npmUser": {
+    "name": "kalin.krustev",
+    "email": "kalin.krustev@gmail.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {
+    "hoist-non-react-statics": "1.2.0",
+    "invariant": "2.2.2",
+    "lodash": "4.17.4",
+    "loose-envify": "1.3.1"
+  },
+  "_requested": {
+    "raw": "ut-front@6.4.5",
+    "scope": null,
+    "escapedName": "ut-front",
+    "name": "ut-front",
+    "rawSpec": "6.4.5",
+    "spec": "6.4.5",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://nexus.softwaregroup-bg.com/repository/npm-all/ut-front/-/ut-front-6.4.5.tgz",
+  "_shasum": "fcf533530b3972cb9f3b46018d5c8bcb3e5509fb",
+  "_shrinkwrap": null,
+  "_spec": "ut-front@6.4.5",
+  "_where": "E:\\Git\\impl-mpay",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/softwaregroup-bg/ut-front/issues"
   },
   "dependencies": {
     "history": "3.2.1",
     "inert": "4.0.4",
     "lodash.assign": "4.2.0",
+    "lodash.map": "4.6.0",
     "os-browserify": "0.2.1",
     "react": "15.4.1",
     "react-css-modules": "4.1.0",
@@ -35,11 +68,36 @@
     "redux": "3.6.0",
     "redux-thunk": "2.1.0",
     "stream-browserify": "2.0.1",
-    "lodash.map": "4.6.0"
+    "redux-reset": "0.2.0"
   },
+  "description": "Frontend module",
   "devDependencies": {
     "ut-tools": "^5.11.1"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "fcf533530b3972cb9f3b46018d5c8bcb3e5509fb",
+    "tarball": "https://nexus.softwaregroup-bg.com/repository/npm-all/ut-front/-/ut-front-6.4.5.tgz"
+  },
+  "gitHead": "9c346504e9d553f4b25e9471e6d67208165aeef2",
+  "homepage": "https://github.com/softwaregroup-bg/ut-front#readme",
+  "implDependencies": {
+    "electron-packager": "5.0.1",
+    "electron-prebuilt": "0.34.5",
+    "lasso": "2.1.4",
+    "lasso-marko": "2.0.7",
+    "lasso-minify-js": "1.2.0"
+  },
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "kalin.krustev",
+      "email": "kalin.krustev@gmail.com"
+    }
+  ],
+  "name": "ut-front",
+  "optionalDependencies": {},
   "peerDependencies": {
     "babel-loader": "6.2.10",
     "babel-preset-es2015-without-strict": "0.0.4",
@@ -62,17 +120,29 @@
     "webpack": "2.1.0-beta.27",
     "html-webpack-plugin": "2.24.1"
   },
-  "implDependencies": {
-    "electron-packager": "5.0.1",
-    "electron-prebuilt": "0.34.5",
-    "lasso": "2.1.4",
-    "lasso-marko": "2.0.7",
-    "lasso-minify-js": "1.2.0"
-  },
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
-    "url": "git@github.com:softwaregroup-bg/ut-front.git"
+    "url": "git+ssh://git@github.com/softwaregroup-bg/ut-front.git"
   },
-  "author": "",
-  "license": "Apache-2.0"
+  "scripts": {
+    "changelog": "ut-changelog",
+    "check": "ut-check",
+    "cover": "ut-cover",
+    "gitlab": "ut-gitlab",
+    "jenkins": "ut-jenkins",
+    "lint": "ut-lint .",
+    "lint-js": "ut-lint-js .",
+    "postpublish": "ut-postpublish",
+    "postversion": "ut-postversion",
+    "precommit": "ut-precommit",
+    "prepublish": "ut-prepublish",
+    "prepush": "ut-prepush",
+    "pretest": "ut-pretest",
+    "preversion": "ut-preversion",
+    "release": "ut-release",
+    "test": "ut-test",
+    "version": "ut-version"
+  },
+  "version": "6.4.5"
 }

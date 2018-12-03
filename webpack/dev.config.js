@@ -5,9 +5,10 @@ var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 module.exports = (params) => {
     params.hashLabel = ['[hash]', '[id]'];
     var conf = common(params);
-    conf.devtool = 'eval-source-map';
+    conf.devtool = 'source-map';
     conf.output.pathinfo = true;
     conf.resolve.modules.push('dev');
+    conf.resolve.modules.push('local-modules');
     conf.resolve.symlinks = false;
     conf.module.exprContextCritical = false;
     conf.module.rules.unshift({

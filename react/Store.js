@@ -1,5 +1,7 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import reduxReset from 'redux-reset';
+import { LOGOUT } from './actionTypes';
 
 const resetStore = (reducer, resetAction) => {
     return (state, action) => {
@@ -14,6 +16,7 @@ const resetStore = (reducer, resetAction) => {
 };
 
 const enhancer = compose(
+    reduxReset(LOGOUT),
     window && window.devToolsExtension
         ? window.devToolsExtension({
             actionsFilter: (action) => {

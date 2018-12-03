@@ -69,7 +69,7 @@ module.exports = (params) => {
             repl: 'empty'
         },
         resolve: {
-            modules: ['node_modules'],
+            modules: ['node_modules', 'local-modules'],
             extensions: ['.js', '.jsx'],
             alias: {
                 rc: require.resolve('./rc'),
