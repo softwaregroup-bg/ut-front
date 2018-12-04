@@ -29,7 +29,7 @@ const enhancer = compose(
         : f => f
 );
 
-export function Store(reducers, resetAction, middlewares, environment) {
+export function Store(reducers, resetAction, middlewares) {
     const mixedReducers = combineReducers({
         routing: routerReducer,
         ...reducers
