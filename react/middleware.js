@@ -20,7 +20,7 @@ const getCookies = () => document.cookie.split(';').map((c) => (c.split('='))).r
     return a;
 }, {});
 
-export default (utBus) => {
+export default (utMethod) => {
     const rpc = (store) => (next) => (action) => {
         if (action.method) {
             var cookies = getCookies();
@@ -48,7 +48,7 @@ export default (utBus) => {
                 methodParams = methodParams.mergeDeep(fromJS({$http: {headers: {'x-xsrf-token': corsCookie}}}));
             }
 
-            return utBus.importMethod(action.method, importMethodParams)(methodParams.toJS())
+            return utMethod(action.method, importMethodParams)(methodParams.toJS())
                 .then(result => {
                     action.result = result;
                     return result;

@@ -126,10 +126,13 @@ module.exports = (params) => {
                         options: params.postcssLoader || {
                             plugins: [
                                 require('postcss-import')(params.cssImport),
-                                require('postcss-cssnext')({}),
+                                require('postcss-cssnext')(),
                                 require('postcss-assets')(params.cssAssets),
                                 require('postcss-merge-rules')(),
-                                require('postcss-clean')()
+                                require('postcss-clean')({
+                                    level: 2,
+                                    rebase: false
+                                })
                             ]
                         }
                     }]

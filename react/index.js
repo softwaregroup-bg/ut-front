@@ -14,8 +14,7 @@ export class UtFront extends React.Component {
         this.store = Store(
             this.props.reducers,
             this.props.resetAction,
-            UtFrontMiddleware(this.props.utBus).concat(this.props.middlewares),
-            this.props.environment
+            UtFrontMiddleware(this.props.utMethod).concat(this.props.middlewares)
         );
         this.history = syncHistoryWithStore(useRouterHistory(createHashHistory)(), this.store);
     }
@@ -33,8 +32,7 @@ export class UtFront extends React.Component {
 
 UtFront.propTypes = {
     children: React.PropTypes.object,
-    utBus: React.PropTypes.object.isRequired,
-    environment: React.PropTypes.string,
+    utMethod: React.PropTypes.func.isRequired,
     reducers: React.PropTypes.object,
     resetAction: React.PropTypes.any,
     middlewares: React.PropTypes.array
@@ -42,7 +40,6 @@ UtFront.propTypes = {
 
 UtFront.defaultProps = {
     children: {},
-    environment: 'dev',
     reducers: {},
     middlewares: []
 };

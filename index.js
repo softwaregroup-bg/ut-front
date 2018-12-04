@@ -1,10 +1,10 @@
 const path = require('path');
 var serverRequire = require;
 
-module.exports = () => function utFront({utBus, config}) {
+module.exports = () => function utFront({config}) {
     return {
         gateway: () => [
-            function http() {
+            function http({utBus}) {
                 return {
                     init: function() {
                         this.cachePath = {};
