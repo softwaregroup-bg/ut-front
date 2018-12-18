@@ -56,7 +56,7 @@ module.exports = function(config) {
             if (url.indexOf('?') !== -1) {
                 url = url.substring(0, url.indexOf('?'));
             }
-            callback({path: path.normalize(path.join(__dirname, '/browser/', url))});
+            callback({path: path.normalize(path.join(__dirname, '/browser/', url))}); // eslint-disable-line
         }, function(error) {
             throw error;
         });
