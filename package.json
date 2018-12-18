@@ -3,6 +3,7 @@
   "version": "8.5.0-rc-godfather.2",
   "description": "Frontend module",
   "main": "index.js",
+  "browser": "browser.js",
   "scripts": {
     "lint": "ut-lint .",
     "release": "ut-release",
