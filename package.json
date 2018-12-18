@@ -1,6 +1,6 @@
 {
   "name": "ut-front",
-  "version": "8.5.0-rc-godfather.1",
+  "version": "8.5.0-rc-godfather.2",
   "description": "Frontend module",
   "main": "index.js",
   "scripts": {
