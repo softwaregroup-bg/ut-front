@@ -1,11 +1,11 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
+var os = require('os');
 
 module.exports = (params) => {
     var entry = {};
     var plugins = [];
-    var hashLabel = params.hashLabel.join('.');
     if (typeof params.entryPoint === 'string') {
         params.entryPoint = [params.entryPoint];
     } else if (!(params.entryPoint instanceof Array)) {
@@ -17,39 +17,42 @@ module.exports = (params) => {
         prev[name] = [item];
         plugins.push(new HtmlWebpackPlugin({
             title: params.title,
-            chunksSortMode: (a, b) => {
-                if (a.files.filter((e) => (e.indexOf('manifest') >= 0)).length) {
-                    return -1;
-                } else if (b.files.filter((e) => (e.indexOf('manifest') >= 0)).length) {
-                    return 1;
-                }
-                return a.files.filter((e) => (e.indexOf(name) >= 0)).length;
-            },
             template: path.join(__dirname, 'template.html'),
             filename: `${name}.html`,
-            chunks: ['vendor', 'manifest', name]})
-        );
+            chunks: ['runtime', 'vendor', 'ut', name]
+        }));
         return prev;
     }, entry);
-    entry['vendor'] = require('./vendor');
 
     plugins.push(new webpack.IgnorePlugin(
         /^('source-map-support|app|browser-window|global-shortcut|crash-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request|dtrace-provider)$/
     ));
 
-    plugins.push(new webpack.optimize.CommonsChunkPlugin({names: ['vendor', 'manifest'], filename: `[name].${hashLabel}.js`}));
-    plugins.push(new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(params.sharedVars.env)}));
-    plugins.push(new webpack.DefinePlugin({NODE_ENV_SHARED: JSON.stringify(params.sharedVars)}));
-
-    // plugins.push(new webpack.NoErrorsPlugin());
-
     return {
         entry,
+        name: 'browser',
         output: {
-            filename: `[name].${params.hashLabel[0]}.js`,
-            chunkFilename: `${hashLabel}.js`,
+            filename: `[name].[chunkhash].js`,
+            chunkFilename: `[name].[chunkhash].js`,
             path: params.outputPath,
             publicPath: '/'
+        },
+        optimization: {
+            splitChunks: {
+                cacheGroups: {
+                    vendor: {
+                        test: /[\\/]node_modules[\\/](?!(impl|ut)-)/i,
+                        name: 'vendor',
+                        chunks: 'all'
+                    },
+                    ut: {
+                        test: /[\\/]node_modules[\\/](impl|ut)-/i,
+                        name: 'ut',
+                        chunks: 'all'
+                    }
+                }
+            },
+            runtimeChunk: 'single'
         },
         node: {
             cluster: 'empty',
@@ -59,7 +62,8 @@ module.exports = (params) => {
             repl: 'empty'
         },
         resolve: {
-            modules: ['node_modules'],
+            modules: ['node_modules', 'dev'],
+            symlinks: false,
             extensions: ['.js', '.jsx'],
             alias: {
                 rc: require.resolve('./rc'),
@@ -77,6 +81,32 @@ module.exports = (params) => {
         module: {
             rules: [
                 {
+                    test: /\.jsx?$/,
+                    exclude: /(node_modules(\\|\/)(?!(impl|ut)-).)/,
+                    use: [{
+                        loader: 'thread-loader',
+                        options: {
+                            workers: 4
+                        }
+                    }, {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                '@babel/preset-env',
+                                '@babel/preset-react'
+                            ],
+                            plugins: [
+                                '@babel/plugin-transform-runtime',
+                                (process.env.NODE_ENV !== 'production') && 'react-hot-loader/babel' // eslint-disable-line
+                            ].filter(value => value),
+                            sourceType: 'unambiguous', // https://github.com/webpack/webpack/issues/4039#issuecomment-419284940
+                            babelrc: false,
+                            cacheCompression: false,
+                            cacheDirectory: path.resolve(os.homedir(), '.ut', 'ut-front', 'cache')
+                        }
+                    }]
+                },
+                {
                     test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                     use: [{
                         loader: 'url-loader',
@@ -89,16 +119,6 @@ module.exports = (params) => {
                     test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                     use: [{
                         loader: 'file-loader'
-                    }]
-                }, {
-                    test: /\.json$/,
-                    use: [{
-                        loader: 'thread-loader',
-                        options: {
-                            workers: 1
-                        }
-                    }, {
-                        loader: 'json-loader'
                     }]
                 }, {
                     test: /.*\.(gif|png|jpe?g|svg|ico)$/i,
@@ -123,11 +143,11 @@ module.exports = (params) => {
                         }
                     }, {
                         loader: 'postcss-loader',
-                        options: params.postcssLoader || {
+                        options: {
                             plugins: [
-                                require('postcss-import')(params.cssImport),
-                                require('postcss-cssnext')(),
-                                require('postcss-assets')(params.cssAssets),
+                                require('postcss-import')(params.cssImport || {path: path.resolve('config')}),
+                                require('postcss-preset-env')({preserve: false}),
+                                require('postcss-assets')(params.cssAssets || {relative: true}),
                                 require('postcss-merge-rules')(),
                                 require('postcss-clean')({
                                     level: 2,
