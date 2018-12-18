@@ -37,8 +37,7 @@ module.exports = () => function utFront({config}) {
                             handler: {
                                 directory: {
                                     path: this.cachePath,
-                                    listing: true,
-                                    index: true,
+                                    index: false,
                                     lookupCompressed: true
                                 }
                             }
@@ -58,7 +57,6 @@ module.exports = () => function utFront({config}) {
                                     : /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)-).)/,
                                 themePath: config.themePath,
                                 configPath: config.configPath,
-                                postcssLoader: this.config.postcssLoader,
                                 cssImport: this.config.cssImport,
                                 cssAssets: this.config.cssAssets
                             }, this.config.packer.hotReload);
