@@ -1,33 +1,23 @@
-var webpack = require('webpack');
 var common = require('./common.config');
-var os = require('os');
-var path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = (params) => {
-    params.hashLabel = ['[chunkhash]'];
     var conf = common(params);
     conf.bail = true;
-    conf.name = 'browser';
-    // conf.resolve.modules.push('dev');
-    // conf.resolve.symlinks = false;
-    conf.module.rules.unshift({
-        test: /\.jsx?$/,
-        exclude: /(node_modules(\\|\/)(?!(impl|ut|.*dfsp)-).)/,
-        use: [{
-            loader: 'thread-loader',
-            options: {
-                workers: 4
+    conf.mode = 'production';
+    // conf.devtool = 'source-map';
+    // conf.optimization.minimize = false;
+    // conf.optimization.concatenateModules: false,
+    conf.optimization.minimizer = [
+        new TerserPlugin({
+            terserOptions: {
+                keep_classnames: true,
+                keep_fnames: true
             }
-        }, {
-            loader: 'babel-loader',
-            options: {
-                presets: ['env', 'stage-0', 'react'],
-                cacheDirectory: path.resolve(os.homedir(), '.ut', 'ut-front', 'cache')
-            }
-        }]
-    });
-    conf.plugins.push(new webpack.optimize.DedupePlugin());
-    conf.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
-    conf.plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
+        })
+    ];
+    conf.plugins.push(new CompressionPlugin());
+
     return conf;
 };
