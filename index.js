@@ -43,20 +43,13 @@ module.exports = () => function utFront({config}) {
                             }
                         }]);
                         if (this.config.packer && this.config.packer.name === 'webpack') {
+                            this.log.info && this.log.info('Starting webpack');
                             const webpack = serverRequire('webpack');
-                            var env = (this.bus.config && this.bus.config.params && this.bus.config.params.env) || 'production';
                             var wb = serverRequire('./webpack/ut-front.config')({
-                                sharedVars: {env},
                                 outputPath: this.cachePath,
                                 title: '@title!',
+                                hotReload: this.config.packer.hotReload,
                                 entryPoint: this.config.entryPoint,
-                                jsxExclude: this.config.packer.jsxExclude
-                                    ? this.config.packer.jsxExclude.constructor.name === 'RegExp'
-                                        ? this.config.packer.jsxExclude
-                                        : new RegExp(this.config.packer.jsxExclude)
-                                    : /(node_modules(\\|\/)(?!(.*impl|.*ut|.*dfsp)-).)/,
-                                themePath: config.themePath,
-                                configPath: config.configPath,
                                 cssImport: this.config.cssImport,
                                 cssAssets: this.config.cssAssets
                             }, this.config.packer.hotReload);

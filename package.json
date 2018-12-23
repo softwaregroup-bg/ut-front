@@ -56,7 +56,8 @@
     "thread-loader": "^1.2.0",
     "url-loader": "^1.1.2",
     "webpack": "^4.27.1",
-    "webpack-bundle-analyzer": "^3.0.3"
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-hot-middleware": "^2.24.3"
   },
   "implDependencies": {
     "electron-packager": "5.0.1",
