@@ -19,7 +19,7 @@ module.exports = (params) => {
             title: params.title,
             template: path.join(__dirname, 'template.html'),
             filename: `${name}.html`,
-            chunks: ['runtime', 'vendor', 'ut', name]
+            chunks: ['runtime', 'vendor', 'ut', 'hmr', name]
         }));
         return prev;
     }, entry);
@@ -27,13 +27,17 @@ module.exports = (params) => {
     plugins.push(new webpack.IgnorePlugin(
         /^('source-map-support|app|browser-window|global-shortcut|crash-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request|dtrace-provider)$/
     ));
+    if (params.hotReload) {
+        plugins.push(new webpack.HotModuleReplacementPlugin());
+        entry.hmr = 'webpack-hot-middleware/client';
+    }
 
     return {
         entry,
         name: 'browser',
         output: {
-            filename: `[name].[chunkhash].js`,
-            chunkFilename: `[name].[chunkhash].js`,
+            filename: params.hotReload ? '[name].[hash].js' : '[name].[chunkhash].js',
+            chunkFilename: params.hotReload ? '[name].[hash].js' : '[name].[chunkhash].js',
             path: params.outputPath,
             publicPath: '/'
         },
@@ -82,7 +86,7 @@ module.exports = (params) => {
             rules: [
                 {
                     test: /\.jsx?$/,
-                    exclude: /(node_modules(\\|\/)(?!(impl|ut)-).)/,
+                    exclude: /node_modules[\\/](?!(impl|ut)-)/,
                     use: [{
                         loader: 'thread-loader',
                         options: {
@@ -97,7 +101,7 @@ module.exports = (params) => {
                             ],
                             plugins: [
                                 '@babel/plugin-transform-runtime',
-                                (process.env.NODE_ENV !== 'production') && 'react-hot-loader/babel' // eslint-disable-line
+                                params.hotReload && 'react-hot-loader/babel'
                             ].filter(value => value),
                             sourceType: 'unambiguous', // https://github.com/webpack/webpack/issues/4039#issuecomment-419284940
                             babelrc: false,
