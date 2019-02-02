@@ -1,3 +1,25 @@
+# [9.0.0](https://github.com/softwaregroup-bg/ut-front/compare/v8.4.0...v9.0.0) (2019-02-02)
+
+
+### Bug Fixes
+
+* add browser.js ([fadfe1d](https://github.com/softwaregroup-bg/ut-front/commit/fadfe1d))
+* deprecation ([d4a7ad7](https://github.com/softwaregroup-bg/ut-front/commit/d4a7ad7))
+* lint ([e9aeec1](https://github.com/softwaregroup-bg/ut-front/commit/e9aeec1))
+* react-router upgrade & hot reload ([3c9236f](https://github.com/softwaregroup-bg/ut-front/commit/3c9236f))
+* refactor as function ([#84](https://github.com/softwaregroup-bg/ut-front/issues/84)) ([ad7e15d](https://github.com/softwaregroup-bg/ut-front/commit/ad7e15d))
+* remove postcssLoader and dir listing ([91fc80c](https://github.com/softwaregroup-bg/ut-front/commit/91fc80c))
+* remove react code ([51b637f](https://github.com/softwaregroup-bg/ut-front/commit/51b637f))
+* upgrade dependencies ([13b404c](https://github.com/softwaregroup-bg/ut-front/commit/13b404c))
+* upgrade webpack ([50595bc](https://github.com/softwaregroup-bg/ut-front/commit/50595bc))
+
+
+### BREAKING CHANGES
+
+* require upgrade of ut-run
+
+
+
 <a name="8.4.0"></a>
 # [8.4.0](https://github.com/softwaregroup-bg/ut-front/compare/v8.3.0...v8.4.0) (2018-08-02)
 
