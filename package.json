@@ -29,7 +29,7 @@
     "lodash.map": "4.6.0"
   },
   "devDependencies": {
-    "ut-tools": "^6.5.0"
+    "ut-tools": "^6.8.10"
   },
   "peerDependencies": {
     "@babel/core": "^7.2.2",
