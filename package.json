@@ -29,6 +29,7 @@
     "lodash.map": "4.6.0"
   },
   "devDependencies": {
+    "tap": "^12.5.2",
     "ut-tools": "^6.8.10"
   },
   "peerDependencies": {
