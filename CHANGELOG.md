@@ -1,3 +1,12 @@
+# [9.1.0](https://github.com/softwaregroup-bg/ut-front/compare/v9.0.0...v9.1.0) (2019-02-10)
+
+
+### Features
+
+* add babel plugin to support class properties ([#86](https://github.com/softwaregroup-bg/ut-front/issues/86)) ([c4d168b](https://github.com/softwaregroup-bg/ut-front/commit/c4d168b))
+
+
+
 # [9.0.0](https://github.com/softwaregroup-bg/ut-front/compare/v8.4.0...v9.0.0) (2019-02-02)
 
 
