@@ -101,6 +101,7 @@ module.exports = (params) => {
                             ],
                             plugins: [
                                 '@babel/plugin-transform-runtime',
+                                ['@babel/plugin-proposal-class-properties', {loose: true}],
                                 params.hotReload && 'react-hot-loader/babel'
                             ].filter(value => value),
                             sourceType: 'unambiguous', // https://github.com/webpack/webpack/issues/4039#issuecomment-419284940
