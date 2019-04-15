@@ -39,6 +39,7 @@ this will be cought by method middleware, it will send the request, return promi
 }
 ```
 
+
 after we receive the response action following object will be resolved in promise and dispached to redux store:
 
 ```javascript
