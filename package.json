@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "lodash.assign": "4.2.0",
-    "lodash.map": "4.6.0"
+    "lodash.map": "4.6.0",
+    "compression-webpack-plugin": "1.1.12"
   },
   "devDependencies": {
     "ut-tools": "^5.32.5"
