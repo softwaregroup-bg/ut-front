@@ -1,3 +1,7 @@
+## [9.1.2](https://github.com/softwaregroup-bg/ut-front/compare/v9.1.1...v9.1.2) (2019-10-01)
+
+
+
 ## [9.1.1](https://github.com/softwaregroup-bg/ut-front/compare/v9.1.0...v9.1.1) (2019-03-22)
 
 
