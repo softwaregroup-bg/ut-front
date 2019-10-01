@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "tap": "^12.5.2",
-    "ut-tools": "^6.25.3"
+    "ut-tools": "^6.25.4"
   },
   "peerDependencies": {
     "@babel/core": "^7.2.2",
