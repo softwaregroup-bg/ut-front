@@ -25,7 +25,7 @@ module.exports = (params) => {
     }, entry);
 
     plugins.push(new webpack.IgnorePlugin(
-        /^('source-map-support|app|browser-window|global-shortcut|crash-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|url|glob|mv|minimatch|stream-browserify|browser-request|dtrace-provider)$/
+        /^('source-map-support|app|browser-window|global-shortcut|crash-reporter|protocol|dgram|JSONStream|inert|hapi|socket\.io|winston|async|bn\.js|engine\.io|glob|mv|minimatch|stream-browserify|browser-request|dtrace-provider)$/
     ));
     if (params.hotReload) {
         plugins.push(new webpack.HotModuleReplacementPlugin());
