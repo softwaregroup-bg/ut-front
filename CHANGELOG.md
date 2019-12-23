@@ -1,3 +1,12 @@
+## [9.1.3](https://github.com/softwaregroup-bg/ut-front/compare/v9.1.2...v9.1.3) (2019-12-23)
+
+
+### Bug Fixes
+
+* do not ignore url for webpack ([59bbb61](https://github.com/softwaregroup-bg/ut-front/commit/59bbb61))
+
+
+
 ## [9.1.2](https://github.com/softwaregroup-bg/ut-front/compare/v9.1.1...v9.1.2) (2019-10-01)
 
 
