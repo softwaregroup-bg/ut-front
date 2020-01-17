@@ -29,8 +29,8 @@
     "lodash.map": "4.6.0"
   },
   "devDependencies": {
-    "tap": "^12.5.2",
-    "ut-tools": "^6.25.4"
+    "tap": "^13.1.1",
+    "ut-tools": "^6.30.5"
   },
   "peerDependencies": {
     "@babel/core": "^7.2.2",
