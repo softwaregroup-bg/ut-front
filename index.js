@@ -1,5 +1,5 @@
 const path = require('path');
-var serverRequire = require;
+const serverRequire = require;
 
 module.exports = () => function utFront({config}) {
     return {
@@ -10,13 +10,13 @@ module.exports = () => function utFront({config}) {
                         this.cachePath = {};
                     },
                     start: function() {
-                        var redirectTo = path.basename(this.config.entryPoint, '.js');
+                        const redirectTo = path.basename(this.config.entryPoint, '.js');
                         this.cachePath = path.resolve(
                             ((this.config.packer && this.config.packer.name) ? this.config.packer.cachePath : this.config.dist) ||
                             path.join(utBus.config.workDir, 'ut-front', this.config.id));
 
                         // do index route
-                        var indexRoute = {
+                        const indexRoute = {
                             method: 'GET',
                             path: '/',
                             options: {auth: false},
@@ -30,7 +30,7 @@ module.exports = () => function utFront({config}) {
                         if (this.config.packer && this.config.packer.name === 'webpack' && this.config.packer.hotReload) {
                             indexRoute.handler = (req, h) => (h.response().redirect(`/${redirectTo}.html`));
                         }
-                        var globalRoute = this && this.registerRequestHandler && this.registerRequestHandler([indexRoute, {
+                        const globalRoute = this && this.registerRequestHandler && this.registerRequestHandler([indexRoute, {
                             method: 'GET',
                             path: '/{p*}',
                             options: {auth: false},
@@ -45,7 +45,7 @@ module.exports = () => function utFront({config}) {
                         if (this.config.packer && this.config.packer.name === 'webpack') {
                             this.log.info && this.log.info('Starting webpack');
                             const webpack = serverRequire('webpack');
-                            var wb = serverRequire('./webpack/ut-front.config')({
+                            const wb = serverRequire('./webpack/ut-front.config')({
                                 outputPath: this.cachePath,
                                 title: '@title!',
                                 hotReload: this.config.packer.hotReload,
