@@ -5,7 +5,7 @@ export default (utBus) => {
     const rpc = (store) => (next) => (action) => {
         if (action.method) {
             var cookies = document.cookie.split(';').map((c) => (c.split('='))).reduce((a, c) => {
-                var key = c.shift();
+                var key = c.shift().trim();
                 a[key] = c.shift();
                 return a;
             }, {});
@@ -19,7 +19,7 @@ export default (utBus) => {
             if (action.params instanceof immutable.Collection) {
                 actionParamsJS = action.params.toJS();
             }
-            return utBus.importMethod(action.method)(Object.assign({}, actionParamsJS || action.params, (corsCookie ? {headers: {'x-xsrf-token': corsCookie}} : {})))
+            return utBus.importMethod(action.method)(Object.assign({}, actionParamsJS || action.params), Object.assign({}, (corsCookie ? {headers: {'x-xsrf-token': corsCookie}} : {})))
                 .then(result => {
                     action.result = result;
                     return result;
